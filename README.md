@@ -25,6 +25,8 @@ You should also go to `src/.env.example` and put in your `TOKEN` & `OWNERS` IDs 
 sapphire generate command <name>
 ```
 
+This will automatically generate a slash command in the `src/commands` folder from the template in the `templates` folder
+
 ### Hot Module Reloading
 
 It is advised to firstly build the dist folder and then use `yarn dev`, this will enable [@sapphire/plugin-hmr][sapphire-hmr] and will actively reload modules when they are updated.
