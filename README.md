@@ -1,6 +1,14 @@
 # Karasu
 
-This is a music bot created by using the [sapphire framework][sapphire] & [discord-player@dev][discord-player] with this project being written in TypeScript
+This is a music bot created by using the [sapphire framework][sapphire] & [discord-player@dev][discord-player] with this project being written in TypeScript.
+
+## Features
+
+- Music system with slash commands
+- Hot Module Reloading
+- ESlint configuration
+- Built-in cooldown system
+- Easy to configure and use
 
 ### Prerequisite
 
@@ -9,7 +17,7 @@ yarn install
 yarn build
 ```
 
-You should also go to `src/.env` and put in your `TOKEN` & `OWNERS` IDs, it is also recommended to add `src/.env` to your `.gitignore`
+You should also go to `src/.env.example` and put in your `TOKEN` & `OWNERS` IDs then rename the file to `.env`, it is also recommended to add `src/.env` to your `.gitignore`
 
 ### How can I generate a command?
 
@@ -17,22 +25,22 @@ You should also go to `src/.env` and put in your `TOKEN` & `OWNERS` IDs, it is a
 sapphire generate command <name>
 ```
 
+### Hot Module Reloading
+
+It is advised to firstly build the dist folder and then use `yarn dev`, this will enable [@sapphire/plugin-hmr][sapphire-hmr] and will actively reload modules when they are updated.
+
 ### Development
 
-This example can be run with `tsc-watch` to watch the files and automatically restart your bot.
+This project can be run with `tsc-watch` to watch the files and automatically restart your bot.
 
 ```sh
 yarn run watch:start
 yarn dev
 ```
 
-### Hot Module Reloading
-
-It is advised to firstly build the dist folder and then use `yarn dev`, this will enable [@sapphire/plugin-hmr][sapphire-hmr] and will actively reload modules when they are updated.
-
 ## License
 
-Dedicated to the public domain via the [Unlicense], courtesy of the Sapphire Community and its contributors ---> generated from the Sapphire CLI
+Dedicated to the public domain via the [Unlicense], courtesy of the Sapphire Community and its contributors - [this license is generated from the Sapphire CLI]
 
 [sapphire]: https://github.com/sapphiredev/framework
 [sapphire-hmr]: https://www.npmjs.com/package/@sapphire/plugin-hmr
