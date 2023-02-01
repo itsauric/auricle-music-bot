@@ -19,7 +19,7 @@ export class QueueCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		// This command is not working as intended
+		// Disclaimer: this command is not working as intended - edits may be made in the future
 
 		const queue = this.container.client.player.getQueue(interaction.guild!);
 
