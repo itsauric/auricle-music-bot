@@ -27,6 +27,7 @@
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
+    "@sapphire/cli": "^1.4.0",
     "@sapphire/eslint-config": "4.3.8",
     "@sapphire/prettier-config": "1.4.5",
     "@sapphire/ts-config": "3.3.4",
