@@ -7,14 +7,11 @@ import { GuildMember } from 'discord.js';
 })
 export class DisconnectCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder //
-					.setName(this.name)
-					.setDescription(this.description);
-			},
-			{ idHints: ['1017993380191555696'] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder //
+				.setName(this.name)
+				.setDescription(this.description);
+		});
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {

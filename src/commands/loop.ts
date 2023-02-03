@@ -7,26 +7,23 @@ import { GuildMember } from 'discord.js';
 })
 export class LoopCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder //
-					.setName(this.name)
-					.setDescription(this.description)
-					.addNumberOption((option) =>
-						option
-							.setName('mode')
-							.setDescription('Choose a loop mode')
-							.setRequired(true)
-							.addChoices(
-								{ name: 'Off', value: 0 },
-								{ name: 'Track', value: 1 },
-								{ name: 'Queue', value: 2 },
-								{ name: 'Autoplay', value: 3 }
-							)
-					);
-			},
-			{ idHints: ['1018203517430792263'] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder //
+				.setName(this.name)
+				.setDescription(this.description)
+				.addNumberOption((option) =>
+					option
+						.setName('mode')
+						.setDescription('Choose a loop mode')
+						.setRequired(true)
+						.addChoices(
+							{ name: 'Off', value: 0 },
+							{ name: 'Track', value: 1 },
+							{ name: 'Queue', value: 2 },
+							{ name: 'Autoplay', value: 3 }
+						)
+				);
+		});
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {

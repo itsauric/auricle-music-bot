@@ -7,14 +7,11 @@ import { EmbedBuilder } from 'discord.js';
 })
 export class NowPlayingCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder //
-					.setName(this.name)
-					.setDescription(this.description);
-			},
-			{ idHints: ['1017993383077228555'] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder //
+				.setName(this.name)
+				.setDescription(this.description);
+		});
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {

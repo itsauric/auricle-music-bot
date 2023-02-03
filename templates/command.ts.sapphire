@@ -9,18 +9,15 @@ import { Command } from '@sapphire/framework';
 	description: 'A basic slash command'
 })
 export class {{name}}Command extends Command {
-    public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder //
-					.setName(this.name)
-					.setDescription(this.description);
-			},
-			{ idHints: ['commandId'] }
-		);
+	public override registerApplicationCommands(registry: Command.Registry) {
+		registry.registerChatInputCommand((builder) => {
+			builder //
+				.setName(this.name)
+				.setDescription(this.description);
+		});
 	}
 
-    public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		return interaction.reply({ content: `${interaction.commandName}`, ephemeral: true });
 	}
 }

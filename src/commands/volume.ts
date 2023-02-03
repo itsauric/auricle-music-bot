@@ -7,22 +7,19 @@ import { GuildMember } from 'discord.js';
 })
 export class VolumeCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder //
-					.setName(this.name)
-					.setDescription(this.description)
-					.addIntegerOption((option) =>
-						option
-							.setName('amount')
-							.setDescription('The amount of volume you want to change to')
-							.setMinValue(0)
-							.setMaxValue(100)
-							.setRequired(true)
-					);
-			},
-			{ idHints: ['1071180852052107264'] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder //
+				.setName(this.name)
+				.setDescription(this.description)
+				.addIntegerOption((option) =>
+					option
+						.setName('amount')
+						.setDescription('The amount of volume you want to change to')
+						.setMinValue(0)
+						.setMaxValue(100)
+						.setRequired(true)
+				);
+		});
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {

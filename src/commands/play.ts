@@ -8,15 +8,12 @@ import type { GuildMember } from 'discord.js';
 })
 export class PlayCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder //
-					.setName(this.name)
-					.setDescription(this.description)
-					.addStringOption((option) => option.setName('query').setDescription('A query of your choice').setRequired(true));
-			},
-			{ idHints: ['1017993587096563732'] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder //
+				.setName(this.name)
+				.setDescription(this.description)
+				.addStringOption((option) => option.setName('query').setDescription('A query of your choice').setRequired(true));
+		});
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {

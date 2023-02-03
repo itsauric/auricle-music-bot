@@ -8,30 +8,21 @@ import { ApplicationCommandType } from 'discord.js';
 })
 export class PingCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder //
-					.setName(this.name)
-					.setDescription(this.description);
-			},
-			{ idHints: ['1017993384545243226'] }
-		);
-		registry.registerContextMenuCommand(
-			(builder) => {
-				builder //
-					.setName(this.name)
-					.setType(ApplicationCommandType.Message);
-			},
-			{ idHints: ['1017993585167179786'] }
-		);
-		registry.registerContextMenuCommand(
-			(builder) => {
-				builder //
-					.setName(this.name)
-					.setType(ApplicationCommandType.User);
-			},
-			{ idHints: ['1017993586144464996'] }
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder //
+				.setName(this.name)
+				.setDescription(this.description);
+		});
+		registry.registerContextMenuCommand((builder) => {
+			builder //
+				.setName(this.name)
+				.setType(ApplicationCommandType.Message);
+		});
+		registry.registerContextMenuCommand((builder) => {
+			builder //
+				.setName(this.name)
+				.setType(ApplicationCommandType.User);
+		});
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
