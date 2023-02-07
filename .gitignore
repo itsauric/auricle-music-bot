@@ -5,8 +5,13 @@ node_modules/
 *.iml
 
 # Yarn files
-.yarn/install-state.gz
-.yarn/build-state.yml
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # Other
 .DS_Store
