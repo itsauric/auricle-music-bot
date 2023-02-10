@@ -16,7 +16,7 @@ export class ClearCommand extends Command {
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		if (interaction.member instanceof GuildMember) {
-			const queue = this.container.client.player.getQueue(interaction.guild!);
+			const queue = this.container.client.player.nodes.get(interaction.guild!);
 			const permissions = this.container.client.perms.voice(interaction, this.container.client);
 
 			if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am not in a voice channel`, ephemeral: true });
@@ -24,11 +24,9 @@ export class ClearCommand extends Command {
 			if (!queue.tracks)
 				return interaction.reply({ content: `${this.container.client.dev.error} | There is nothing to clear`, ephemeral: true });
 
-			await interaction.deferReply();
-
-			queue.clear();
-			return interaction.followUp({
-				content: `${this.container.client.dev.success} | I have cleared the queue`
+			queue.tracks.clear();
+			return interaction.reply({
+				content: `${this.container.client.dev.success} | I have **cleared** the queue`
 			});
 		}
 	}

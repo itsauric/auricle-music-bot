@@ -1,6 +1,5 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
-import { QueryType } from 'discord-player';
 import type { GuildMember } from 'discord.js';
 
 @ApplyOptions<Command.Options>({
@@ -23,22 +22,10 @@ export class PlayCommand extends Command {
 		if (permissions.client()) return interaction.reply({ content: permissions.client(), ephemeral: true });
 
 		const query = interaction.options.getString('query');
-		const queue = await this.container.client.player.createQueue(interaction.guild!, {
-			metadata: {
-				channel: interaction.channel,
-				client: interaction.guild?.members.me
-			},
-			leaveOnEmptyCooldown: 300000,
-			leaveOnEmpty: true,
-			leaveOnEnd: false
-		});
 
 		if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
 
-		const results = await this.container.client.player.search(query!, {
-			requestedBy: interaction.user,
-			searchEngine: QueryType.AUTO
-		});
+		const results = await this.container.client.player.search(query!);
 
 		if (!results.hasTracks())
 			return interaction.reply({
@@ -47,20 +34,30 @@ export class PlayCommand extends Command {
 			});
 
 		await interaction.deferReply();
-		await interaction.editReply({ content: `⏱️ | Loading ${results.playlist ? 'a playlist...' : 'a track...'}` });
+		await interaction.editReply({ content: `⏳ | Loading ${results.playlist ? 'a playlist...' : 'a track...'}` });
 
 		try {
-			if (!queue.connection) await queue.connect(member.voice.channel!);
-			await interaction.editReply({
-				content: `${this.container.client.dev.success} | Successfully loaded ${results.playlist ? 'the playlist' : 'the track'}`
+			const res = await this.container.client.player.play(member.voice.channel!, query!, {
+				nodeOptions: {
+					metadata: {
+						channel: interaction.channel,
+						client: interaction.guild?.members.me,
+						requestedBy: interaction.user.username
+					},
+					leaveOnEmptyCooldown: 300000,
+					leaveOnEmpty: true,
+					leaveOnEnd: false
+				}
 			});
-		} catch (error) {
-			this.container.client.player.deleteQueue(interaction.guild!);
+
+			await interaction.editReply({
+				content: `${this.container.client.dev.success} | Successfully enqueued${
+					res.track.playlist ? ` **multiple tracks** from: **${res.track.playlist.title}**` : `: **${res.track.title}**`
+				}`
+			});
+		} catch (error: any) {
 			await interaction.editReply({ content: `${this.container.client.dev.error} | An error has occurred` });
 			return console.log(error);
 		}
-
-		results.playlist ? queue.addTracks(results.tracks) : queue.addTrack(results.tracks[0]);
-		if (!queue.playing) await queue.play();
 	}
 }

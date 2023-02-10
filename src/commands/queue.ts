@@ -15,45 +15,47 @@ export class QueueCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		const queue = this.container.client.player.getQueue(interaction.guild!);
+		const queue = this.container.client.player.nodes.get(interaction.guild!);
 
 		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am not in a voice channel`, ephemeral: true });
-		if (!queue.tracks || !queue.current)
+		if (!queue.tracks || !queue.currentTrack)
 			return interaction.reply({ content: `${this.container.client.dev.error} | There is no queue`, ephemeral: true });
 
 		await interaction.deferReply();
 
-		const { title, url } = queue.current;
-		let pagesNum = Math.ceil(queue.tracks.length / 5);
+		const { title, url } = queue.currentTrack;
+		let pagesNum = Math.ceil(queue.tracks.size / 5);
 
 		if (pagesNum === 0) {
 			pagesNum = 1;
 		}
 
 		const tracks: any = [];
-		for (let i = 0; i < queue.tracks.length; i++) {
-			const song = queue.tracks[i];
+		for (let i = 0; i < queue.tracks.size; i++) {
+			const song = queue.tracks.toArray()[i];
 			tracks.push(
 				`**${i + 1})** [${song.title}](${song.url})
-			  `
+		`
 			);
 		}
 
 		const paginatedMessage = new PaginatedMessage();
+
+		// handle error if pages exceed 25 pages
+		if (pagesNum > 25) pagesNum = 25;
 
 		for (let i = 0; i < pagesNum; i++) {
 			const str = tracks.slice(i * 5, i * 5 + 5).join('');
 
 			paginatedMessage.addPageEmbed((embed) =>
 				embed
-					.setAuthor({
-						name: `Queue for ${interaction.guild!.name}`,
-						iconURL: interaction.guild?.iconURL()?.toString()
-					})
 					.setColor('Red')
-					.setDescription(`**Now Playing:** [${title}](${url})\n\n**Queue:** ${str === '' ? '*No more queued songs*' : `\n${str}`}`)
+					.setDescription(
+						`**Queue** for **session** in **${queue.channel?.name}:**\n${str === '' ? '*No more queued songs*' : `\n${str}`}
+						**Now Playing:** [${title}](${url})\n`
+					)
 					.setFooter({
-						text: `${queue.tracks.length} song(s) in queue`
+						text: `${queue.tracks.size} song(s) in queue`
 					})
 			);
 		}

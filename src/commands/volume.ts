@@ -24,20 +24,20 @@ export class VolumeCommand extends Command {
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		if (interaction.member instanceof GuildMember) {
-			const queue = this.container.client.player.getQueue(interaction.guild!);
+			const queue = this.container.client.player.nodes.get(interaction.guild!);
 			const permissions = this.container.client.perms.voice(interaction, this.container.client);
 			const volume = interaction.options.getInteger('amount');
 
 			if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am not in a voice channel`, ephemeral: true });
 			if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
-			if (!queue.nowPlaying)
+			if (!queue.currentTrack)
 				return interaction.reply({ content: `${this.container.client.dev.error} | There is nothing playing`, ephemeral: true });
 
 			await interaction.deferReply();
 
-			queue.setVolume(volume!);
+			queue.node.setVolume(volume!);
 			return interaction.followUp({
-				content: `${this.container.client.dev.success} | I changed the volume to: ${volume}`
+				content: `${this.container.client.dev.success} | I changed the **volume** to: ${volume}`
 			});
 		}
 	}

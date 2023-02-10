@@ -15,14 +15,14 @@ export class NowPlayingCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		const queue = this.container.client.player.getQueue(interaction.guild!);
+		const queue = this.container.client.player.nodes.get(interaction.guild!);
 
 		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am not in a voice channel`, ephemeral: true });
-		if (!queue.current)
+		if (!queue.currentTrack)
 			return interaction.reply({ content: `${this.container.client.dev.error} | There is no song currently playing`, ephemeral: true });
 
 		await interaction.deferReply();
-		const track = queue.current;
+		const { title, url, duration, author } = queue.currentTrack;
 
 		const embed = new EmbedBuilder()
 			.setAuthor({
@@ -30,11 +30,12 @@ export class NowPlayingCommand extends Command {
 				iconURL: interaction.user.displayAvatarURL()
 			})
 			.setColor('Red')
-			.setDescription(`[${track.title}](${track.url})`)
+			.setDescription(`[${title}](${url})`)
 			.addFields([
-				{ name: 'Duration', value: `${track.duration}`, inline: true },
-				{ name: 'Requested By', value: `${track.requestedBy?.username}`, inline: true },
-				{ name: 'By', value: `${track.author}`, inline: true }
+				{ name: 'Duration', value: `${duration}`, inline: true },
+				// eslint-disable-next-line @typescript-eslint/dot-notation
+				{ name: 'Requested By', value: `${queue.metadata!['requestedBy'] || 'Unknown User'}`, inline: true },
+				{ name: 'By', value: `${author}`, inline: true }
 			]);
 
 		return interaction.followUp({ embeds: [embed] });
