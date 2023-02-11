@@ -1,3 +1,5 @@
+import { quran } from '@quranjs/api';
+import type { ChapterId } from '@quranjs/api/dist/types';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import { EmbedBuilder } from 'discord.js';
@@ -24,6 +26,26 @@ export class NowPlayingCommand extends Command {
 		await interaction.deferReply();
 		const { title, url, duration, author } = queue.currentTrack;
 
+		if (author === 'download.quranicaudio.com') {
+			const { nameSimple, nameArabic, versesCount } = await quran.v4.chapters.findById(title.replace('.mp3', '') as unknown as ChapterId);
+
+			const embed = new EmbedBuilder()
+				.setAuthor({
+					name: 'Now Playing',
+					iconURL: interaction.user.displayAvatarURL()
+				})
+				.setColor('Green')
+				.setDescription(`[${nameSimple}](${url})`)
+				.addFields([
+					{ name: 'Arabic', value: `${nameArabic}`, inline: true },
+					// eslint-disable-next-line @typescript-eslint/dot-notation
+					{ name: 'Verses', value: `${versesCount}`, inline: true },
+					{ name: 'Reciter', value: '[Mishary Rashid Alafasy](https://quran.com/en/reciters/7)', inline: true }
+				]);
+
+			return interaction.followUp({ embeds: [embed] });
+		}
+
 		const embed = new EmbedBuilder()
 			.setAuthor({
 				name: 'Now Playing',
@@ -38,6 +60,6 @@ export class NowPlayingCommand extends Command {
 				{ name: 'By', value: `${author}`, inline: true }
 			]);
 
-		return interaction.followUp({ embeds: [embed] });
+		return interaction.reply({ embeds: [embed] });
 	}
 }
