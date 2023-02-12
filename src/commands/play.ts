@@ -11,8 +11,22 @@ export class PlayCommand extends Command {
 			builder //
 				.setName(this.name)
 				.setDescription(this.description)
-				.addStringOption((option) => option.setName('query').setDescription('A query of your choice').setRequired(true));
+				.addStringOption((option) => {
+					return option.setName('query').setDescription('A query of your choice').setRequired(true).setAutocomplete(true);
+				});
 		});
+	}
+
+	public override async autocompleteRun(interaction: Command.AutocompleteInteraction) {
+		const query = interaction.options.getString('query');
+		const results = await this.container.client.player.search(query!);
+
+		return interaction.respond(
+			results.tracks.slice(0, 10).map((t) => ({
+				name: t.title,
+				value: t.url
+			}))
+		);
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
@@ -37,7 +51,7 @@ export class PlayCommand extends Command {
 		await interaction.editReply({ content: `⏳ | Loading ${results.playlist ? 'a playlist...' : 'a track...'}` });
 
 		try {
-			const res = await this.container.client.player.play(member.voice.channel!, query!, {
+			const res = await this.container.client.player.play(member.voice.channel!.id, results, {
 				nodeOptions: {
 					metadata: {
 						channel: interaction.channel,

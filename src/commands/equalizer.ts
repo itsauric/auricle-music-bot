@@ -1,23 +1,30 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import { GuildMember } from 'discord.js';
+import { EqualizerConfigurationPreset, BASS_EQ_BANDS } from 'discord-player';
 
 @ApplyOptions<Command.Options>({
-	description: 'A basic slash command'
+	description: 'Equalizer'
 })
-export class VolumeCommand extends Command {
+export class EqualizerCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder //
 				.setName(this.name)
 				.setDescription(this.description)
-				.addIntegerOption((option) =>
+				.addStringOption((option) =>
 					option
-						.setName('amount')
-						.setDescription('The amount of volume you want to change to')
-						.setMinValue(0)
-						.setMaxValue(100)
-						.setRequired(false)
+						.setName('preset')
+						.setDescription('The biquad filter to use')
+						.addChoices(
+							{ name: 'Off', value: 'Off' },
+							{ name: 'Bass', value: 'Bass' },
+							...Object.keys(EqualizerConfigurationPreset).map((m) => ({
+								name: m,
+								value: m
+							}))
+						)
+						.setRequired(true)
 				);
 		});
 	}
@@ -26,23 +33,32 @@ export class VolumeCommand extends Command {
 		if (interaction.member instanceof GuildMember) {
 			const queue = this.container.client.player.nodes.get(interaction.guild!.id);
 			const permissions = this.container.client.perms.voice(interaction, this.container.client);
-			const volume = interaction.options.getInteger('amount');
+			const preset = interaction.options.getString('preset', true);
 
 			if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am not in a voice channel`, ephemeral: true });
 			if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
 			if (!queue.currentTrack)
 				return interaction.reply({ content: `${this.container.client.dev.error} | There is nothing playing`, ephemeral: true });
+			if (!queue.filters.equalizer)
+				return interaction.reply({
+					content: `${this.container.client.dev.error} | Equalizer is not available to this queue`,
+					ephemeral: true
+				});
 
 			await interaction.deferReply();
 
-			if (typeof volume !== 'number') {
-				return interaction.followUp({
-					content: `🔊 | Current volume is **${queue.node.volume}%**`
-				});
+			if (preset === 'Off') {
+				queue.filters.equalizer.disable();
+			} else if (preset === 'Bass') {
+				queue.filters.equalizer.setEQ(BASS_EQ_BANDS);
+				queue.filters.equalizer.enable();
+			} else {
+				queue.filters.equalizer.setEQ(EqualizerConfigurationPreset[preset]);
+				queue.filters.equalizer.enable();
 			}
-			queue.node.setVolume(volume!);
+
 			return interaction.followUp({
-				content: `${this.container.client.dev.success} | I changed the volume to: **${queue.node.volume}%**`
+				content: `${this.container.client.dev.success} | **Equalizer** set to: \`${preset}\``
 			});
 		}
 	}

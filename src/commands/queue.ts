@@ -15,7 +15,7 @@ export class QueueCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		const queue = this.container.client.player.nodes.get(interaction.guild!);
+		const queue = this.container.client.player.nodes.get(interaction.guild!.id);
 
 		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am not in a voice channel`, ephemeral: true });
 		if (!queue.tracks || !queue.currentTrack)
@@ -32,9 +32,9 @@ export class QueueCommand extends Command {
 
 		const tracks: any = [];
 		for (let i = 0; i < queue.tracks.size; i++) {
-			const song = queue.tracks.toArray()[i];
+			const track = queue.tracks.toArray()[i];
 			tracks.push(
-				`**${i + 1})** [${song.title}](${song.url})
+				`**${i + 1})** [${track.title}](${track.url})
 		`
 			);
 		}
@@ -51,11 +51,11 @@ export class QueueCommand extends Command {
 				embed
 					.setColor('Red')
 					.setDescription(
-						`**Queue** for **session** in **${queue.channel?.name}:**\n${str === '' ? '*No more queued songs*' : `\n${str}`}
+						`**Queue** for **session** in **${queue.channel?.name}:**\n${str === '' ? '*No more queued tracks*' : `\n${str}`}
 						**Now Playing:** [${title}](${url})\n`
 					)
 					.setFooter({
-						text: `${queue.tracks.size} song(s) in queue`
+						text: `${queue.tracks.size} track(s) in queue`
 					})
 			);
 		}

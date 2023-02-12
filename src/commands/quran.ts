@@ -38,7 +38,7 @@ export class QuranCommand extends Command {
 		await interaction.deferReply();
 
 		try {
-			await this.container.client.player.play(member.voice.channel!, (await audio).audioUrl!, {
+			await this.container.client.player.play(member.voice.channel!.id, (await audio).audioUrl!, {
 				nodeOptions: {
 					metadata: {
 						channel: interaction.channel,

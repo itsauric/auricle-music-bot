@@ -5,7 +5,7 @@ import { Command } from '@sapphire/framework';
 import { EmbedBuilder } from 'discord.js';
 
 @ApplyOptions<Command.Options>({
-	description: 'Displays the now playing song'
+	description: 'Displays the now playing track'
 })
 export class NowPlayingCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
@@ -17,14 +17,14 @@ export class NowPlayingCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		const queue = this.container.client.player.nodes.get(interaction.guild!);
+		const queue = this.container.client.player.nodes.get(interaction.guild!.id);
 
 		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am not in a voice channel`, ephemeral: true });
 		if (!queue.currentTrack)
-			return interaction.reply({ content: `${this.container.client.dev.error} | There is no song currently playing`, ephemeral: true });
+			return interaction.reply({ content: `${this.container.client.dev.error} | There is no track **currently playing`, ephemeral: true });
 
 		await interaction.deferReply();
-		const { title, url, duration, author } = queue.currentTrack;
+		const { title, url, author, thumbnail } = queue.currentTrack;
 
 		if (author === 'download.quranicaudio.com') {
 			const { nameSimple, nameArabic, versesCount } = await quran.v4.chapters.findById(title.replace('.mp3', '') as unknown as ChapterId);
@@ -46,6 +46,8 @@ export class NowPlayingCommand extends Command {
 			return interaction.followUp({ embeds: [embed] });
 		}
 
+		const ts = queue.node.getTimestamp();
+
 		const embed = new EmbedBuilder()
 			.setAuthor({
 				name: 'Now Playing',
@@ -53,13 +55,22 @@ export class NowPlayingCommand extends Command {
 			})
 			.setColor('Red')
 			.setDescription(`[${title}](${url})`)
+			.setThumbnail(thumbnail ?? interaction.user.displayAvatarURL())
 			.addFields([
-				{ name: 'Duration', value: `${duration}`, inline: true },
+				{ name: 'Duration', value: `${ts?.current.label}/${ts?.total.label} (${ts?.progress}%)`, inline: true },
 				// eslint-disable-next-line @typescript-eslint/dot-notation
 				{ name: 'Requested By', value: `${queue.metadata!['requestedBy'] || 'Unknown User'}`, inline: true },
-				{ name: 'By', value: `${author}`, inline: true }
-			]);
+				{ name: 'By', value: `${author}`, inline: true },
+				{
+					name: 'Latency',
+					value: `>>> **Voice Connection**: \`${queue.ping}ms\`\n**Event Loop**: \`${queue.player.eventLoopLag.toFixed(0)}ms\``,
+					inline: false
+				}
+			])
+			.setFooter({
+				text: queue.node.createProgressBar()!
+			});
 
-		return interaction.reply({ embeds: [embed] });
+		return interaction.followUp({ embeds: [embed] });
 	}
 }

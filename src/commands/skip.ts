@@ -3,7 +3,7 @@ import { Command } from '@sapphire/framework';
 import { GuildMember } from 'discord.js';
 
 @ApplyOptions<Command.Options>({
-	description: 'Skips to the next song'
+	description: 'Skips to the next track'
 })
 export class SkipCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
@@ -16,7 +16,7 @@ export class SkipCommand extends Command {
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		if (interaction.member instanceof GuildMember) {
-			const queue = this.container.client.player.nodes.get(interaction.guild!);
+			const queue = this.container.client.player.nodes.get(interaction.guild!.id);
 			const permissions = this.container.client.perms.voice(interaction, this.container.client);
 
 			if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am not in a voice channel`, ephemeral: true });
