@@ -51,7 +51,7 @@ export class QueueCommand extends Command {
 				embed
 					.setColor('Red')
 					.setDescription(
-						`**Queue** for **session** in **${queue.channel?.name}:**\n${str === '' ? '*No more queued tracks*' : `\n${str}`}
+						`**Queue** for **session** in **${queue.channel?.name}:**\n${str === '' ? '*• No more queued tracks*\n' : `\n${str}`}
 						**Now Playing:** [${title}](${url})\n`
 					)
 					.setFooter({
