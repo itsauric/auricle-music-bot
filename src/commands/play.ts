@@ -22,7 +22,7 @@ export class PlayCommand extends Command {
 		const results = await this.container.client.player.search(query!);
 
 		return interaction.respond(
-			results.tracks.slice(0, 10).map((t) => ({
+			results.tracks.slice(0, 5).map((t) => ({
 				name: t.title,
 				value: t.url
 			}))
