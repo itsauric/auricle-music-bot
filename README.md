@@ -31,15 +31,6 @@ This will automatically generate a slash command in the `src/commands` folder fr
 
 It is advised to firstly build the dist folder and then use `yarn dev`, this will enable [@sapphire/plugin-hmr][sapphire-hmr] and will actively reload modules when they are updated.
 
-### Development
-
-This project can be run with `tsc-watch` to watch the files and automatically restart your bot.
-
-```sh
-yarn run watch:start
-yarn dev
-```
-
 ## License
 
 Dedicated to the public domain via the [Unlicense], courtesy of the Sapphire Community and its contributors - [this license is generated from the Sapphire CLI]
