@@ -2,7 +2,7 @@ import { BucketScope, LogLevel, SapphireClient } from '@sapphire/framework';
 import { Player } from 'discord-player';
 import { GatewayIntentBits } from 'discord.js';
 import Emojis from './emojis.json';
-import { envParseArray } from './lib/env-parser';
+import { envParseArray } from '@skyra/env-utilities';
 import * as Permissions from './lib/perms';
 
 export class KarasuClient extends SapphireClient {

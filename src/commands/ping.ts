@@ -29,27 +29,27 @@ export class PingCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		const msg = await interaction.reply({ content: `Ping?`, ephemeral: true, fetchReply: true });
+		const msg = await interaction.reply({ content: `Ping?`, fetchReply: true });
 
 		if (isMessageInstance(msg)) {
 			const diff = msg.createdTimestamp - interaction.createdTimestamp;
 			const ping = Math.round(this.container.client.ws.ping);
-			return interaction.editReply(`Pong 🏓! The round trip took: ${diff}ms. Heartbeat: ${ping}ms.)`);
+			return interaction.editReply(`The round trip took **${diff}ms** and the heartbeat being **${ping}ms**`);
 		}
 
-		return interaction.editReply('Failed to retrieve ping :(');
+		return interaction.editReply('Failed to retrieve ping...');
 	}
 
 	// context menu command
 	public async contextMenuRun(interaction: Command.ContextMenuCommandInteraction) {
-		const msg = await interaction.reply({ content: `Ping?`, ephemeral: true, fetchReply: true });
+		const msg = await interaction.reply({ content: `Ping?`, fetchReply: true });
 
 		if (isMessageInstance(msg)) {
 			const diff = msg.createdTimestamp - interaction.createdTimestamp;
 			const ping = Math.round(this.container.client.ws.ping);
-			return interaction.editReply(`Pong 🏓! The round trip took: ${diff}ms. Heartbeat: ${ping}ms.)`);
+			return interaction.editReply(`The round trip took **${diff}ms** and the heartbeat being **${ping}ms**`);
 		}
 
-		return interaction.editReply('Failed to retrieve ping :(');
+		return interaction.editReply('Failed to retrieve ping...');
 	}
 }
