@@ -1,12 +1,15 @@
-import { ApplyOptions } from '@sapphire/decorators';
 import { isMessageInstance } from '@sapphire/discord.js-utilities';
 import { Command } from '@sapphire/framework';
 import { ApplicationCommandType } from 'discord.js';
 
-@ApplyOptions<Command.Options>({
-	description: 'ping pong'
-})
 export class PingCommand extends Command {
+	public constructor(context: Command.Context, options: Command.Options) {
+		super(context, {
+			...options,
+			description: 'Returns the round trip and heartbeat'
+		});
+	}
+
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder //

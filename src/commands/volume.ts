@@ -1,11 +1,14 @@
-import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import { GuildMember } from 'discord.js';
 
-@ApplyOptions<Command.Options>({
-	description: 'A basic slash command'
-})
 export class VolumeCommand extends Command {
+	public constructor(context: Command.Context, options: Command.Options) {
+		super(context, {
+			...options,
+			description: 'Changes the volume of the track and entire queue'
+		});
+	}
+
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder //
@@ -31,18 +34,21 @@ export class VolumeCommand extends Command {
 			if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am not in a voice channel`, ephemeral: true });
 			if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
 			if (!queue.currentTrack)
-				return interaction.reply({ content: `${this.container.client.dev.error} | There is nothing playing`, ephemeral: true });
+				return interaction.reply({
+					content: `${this.container.client.dev.error} | There is no track **currently** playing`,
+					ephemeral: true
+				});
 
 			await interaction.deferReply();
 
 			if (typeof volume !== 'number') {
 				return interaction.followUp({
-					content: `🔊 | Current volume is **${queue.node.volume}%**`
+					content: `🔊 | **Current** volume is **${queue.node.volume}%**`
 				});
 			}
 			queue.node.setVolume(volume!);
 			return interaction.followUp({
-				content: `${this.container.client.dev.success} | I changed the volume to: **${queue.node.volume}%**`
+				content: `${this.container.client.dev.success} | I **changed** the volume to: **${queue.node.volume}%**`
 			});
 		}
 	}

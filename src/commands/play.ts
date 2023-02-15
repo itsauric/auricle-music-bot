@@ -1,11 +1,14 @@
-import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import type { GuildMember } from 'discord.js';
 
-@ApplyOptions<Command.Options>({
-	description: 'Plays the given query'
-})
 export class PlayCommand extends Command {
+	public constructor(context: Command.Context, options: Command.Options) {
+		super(context, {
+			...options,
+			description: 'Plays and enqueues track(s) of the query provided'
+		});
+	}
+
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder //

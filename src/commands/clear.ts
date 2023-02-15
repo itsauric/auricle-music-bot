@@ -1,11 +1,14 @@
-import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import { GuildMember } from 'discord.js';
 
-@ApplyOptions<Command.Options>({
-	description: 'Clears the queue'
-})
 export class ClearCommand extends Command {
+	public constructor(context: Command.Context, options: Command.Options) {
+		super(context, {
+			...options,
+			description: 'Clears the current queue and removes all enqueued tracks'
+		});
+	}
+
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder //

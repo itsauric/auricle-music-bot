@@ -1,11 +1,14 @@
-import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import { GuildMember } from 'discord.js';
 
-@ApplyOptions<Command.Options>({
-	description: 'Skips to the next track'
-})
 export class SkipCommand extends Command {
+	public constructor(context: Command.Context, options: Command.Options) {
+		super(context, {
+			...options,
+			description: 'Skips the current track and automatically plays the next'
+		});
+	}
+
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder //

@@ -1,13 +1,16 @@
 import { quran } from '@quranjs/api';
 import type { ChapterId } from '@quranjs/api/dist/types';
-import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import { EmbedBuilder } from 'discord.js';
 
-@ApplyOptions<Command.Options>({
-	description: 'Displays the now playing track'
-})
 export class NowPlayingCommand extends Command {
+	public constructor(context: Command.Context, options: Command.Options) {
+		super(context, {
+			...options,
+			description: 'Displays the current track in an embed'
+		});
+	}
+
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder //
@@ -21,7 +24,7 @@ export class NowPlayingCommand extends Command {
 
 		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am not in a voice channel`, ephemeral: true });
 		if (!queue.currentTrack)
-			return interaction.reply({ content: `${this.container.client.dev.error} | There is no track **currently playing`, ephemeral: true });
+			return interaction.reply({ content: `${this.container.client.dev.error} | There is no track **currently** playing`, ephemeral: true });
 
 		await interaction.deferReply();
 		const { title, url, author, thumbnail } = queue.currentTrack;

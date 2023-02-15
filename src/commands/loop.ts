@@ -1,4 +1,3 @@
-import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import { QueueRepeatMode } from 'discord-player';
 import { GuildMember } from 'discord.js';
@@ -10,10 +9,14 @@ const repeatModes = [
 	{ name: 'Autoplay', value: QueueRepeatMode.AUTOPLAY }
 ];
 
-@ApplyOptions<Command.Options>({
-	description: 'Loops the current playing track or queue'
-})
 export class LoopCommand extends Command {
+	public constructor(context: Command.Context, options: Command.Options) {
+		super(context, {
+			...options,
+			description: 'Loops the current playing track or the entire queue'
+		});
+	}
+
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder //

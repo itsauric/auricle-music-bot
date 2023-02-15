@@ -1,11 +1,14 @@
-import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import { GuildMember } from 'discord.js';
 
-@ApplyOptions<Command.Options>({
-	description: 'Disconnects the bot from the voice channel'
-})
 export class DisconnectCommand extends Command {
+	public constructor(context: Command.Context, options: Command.Options) {
+		super(context, {
+			...options,
+			description: 'Disconnects the bot from the voice channel and deletes the queue'
+		});
+	}
+
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder //

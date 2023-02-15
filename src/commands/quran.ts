@@ -1,13 +1,16 @@
 import { quran } from '@quranjs/api';
 import type { ChapterId } from '@quranjs/api/dist/types';
-import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
 import type { GuildMember } from 'discord.js';
 
-@ApplyOptions<Command.Options>({
-	description: 'A basic slash command'
-})
 export class QuranCommand extends Command {
+	public constructor(context: Command.Context, options: Command.Options) {
+		super(context, {
+			...options,
+			description: 'Enqueues the Holy Quran from Reciter Mishary Rashid Alafasy'
+		});
+	}
+
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder //
