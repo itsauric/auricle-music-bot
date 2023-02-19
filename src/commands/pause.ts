@@ -1,12 +1,11 @@
 import { Command } from '@sapphire/framework';
-import { EqualizerConfigurationPreset } from 'discord-player';
 import { GuildMember } from 'discord.js';
 
-export class EqualizerCommand extends Command {
+export class PauseCommand extends Command {
 	public constructor(context: Command.Context, options: Command.Options) {
 		super(context, {
 			...options,
-			description: 'The equaliser filter that can be applied to tracks'
+			description: 'Pauses or resumes the current track'
 		});
 	}
 
@@ -15,18 +14,7 @@ export class EqualizerCommand extends Command {
 			builder //
 				.setName(this.name)
 				.setDescription(this.description)
-				.addStringOption((option) =>
-					option
-						.setName('preset')
-						.setDescription('The equaliser filter to use')
-						.addChoices(
-							...Object.keys(EqualizerConfigurationPreset).map((m) => ({
-								name: m,
-								value: m
-							}))
-						)
-						.setRequired(true)
-				);
+				.addBooleanOption((option) => option.setName('state').setDescription('The paused state to set to').setRequired(true));
 		});
 	}
 
@@ -34,28 +22,23 @@ export class EqualizerCommand extends Command {
 		if (interaction.member instanceof GuildMember) {
 			const queue = this.container.client.player.nodes.get(interaction.guild!.id);
 			const permissions = this.container.client.perms.voice(interaction, this.container.client);
-			const preset = interaction.options.getString('preset') as string;
+			const state = interaction.options.getBoolean('state') as boolean;
 
 			if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am not in a voice channel`, ephemeral: true });
 			if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
+
 			if (!queue.currentTrack)
 				return interaction.reply({
 					content: `${this.container.client.dev.error} | There is no track **currently** playing`,
 					ephemeral: true
 				});
-			if (!queue.filters.equalizer)
-				return interaction.reply({
-					content: `${this.container.client.dev.error} | The equaliser filter is not **available** to be used in this queue`,
-					ephemeral: true
-				});
 
 			await interaction.deferReply();
 
-			queue.filters.equalizer.setEQ(EqualizerConfigurationPreset[preset]);
-			queue.filters.equalizer.enable();
+			const result = queue.node.setPaused(state);
 
 			return interaction.followUp({
-				content: `${this.container.client.dev.success} | **Equaliser filter** set to: \`${preset}\``
+				content: `${this.container.client.dev.success} | **Playback** has been **${result ? 'paused' : 'resumed'}**`
 			});
 		}
 	}
