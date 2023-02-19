@@ -9,7 +9,6 @@
     "@discord-player/extractor": "dev",
     "@discord-player/utils": "dev",
     "@discordjs/opus": "^0.9.0",
-    "@quranjs/api": "^1.6.0",
     "@sapphire/decorators": "^6.0.0",
     "@sapphire/discord-utilities": "^3.0.0",
     "@sapphire/discord.js-utilities": "^6.0.1",
