@@ -1,5 +1,3 @@
-import { quran } from '@quranjs/api';
-import type { ChapterId } from '@quranjs/api/dist/types';
 import { Command } from '@sapphire/framework';
 import { EmbedBuilder } from 'discord.js';
 
@@ -27,51 +25,25 @@ export class NowPlayingCommand extends Command {
 			return interaction.reply({ content: `${this.container.client.dev.error} | There is no track **currently** playing`, ephemeral: true });
 
 		await interaction.deferReply();
-		const { title, url, author, thumbnail } = queue.currentTrack;
-
-		if (author === 'download.quranicaudio.com') {
-			const { nameSimple, nameArabic, versesCount } = await quran.v4.chapters.findById(title.replace('.mp3', '') as unknown as ChapterId);
-
-			const embed = new EmbedBuilder()
-				.setAuthor({
-					name: 'Now Playing',
-					iconURL: interaction.user.displayAvatarURL()
-				})
-				.setColor('Green')
-				.setDescription(`[${nameSimple}](${url})`)
-				.addFields([
-					{ name: 'Arabic', value: `${nameArabic}`, inline: true },
-					// eslint-disable-next-line @typescript-eslint/dot-notation
-					{ name: 'Verses', value: `${versesCount}`, inline: true },
-					{ name: 'Reciter', value: '[Mishary Rashid Alafasy](https://quran.com/en/reciters/7)', inline: true }
-				]);
-
-			return interaction.followUp({ embeds: [embed] });
-		}
+		const track = queue.currentTrack;
 
 		const ts = queue.node.getTimestamp();
 
 		const embed = new EmbedBuilder()
 			.setAuthor({
-				name: 'Now Playing',
-				iconURL: interaction.user.displayAvatarURL()
+				name: (track.requestedBy ?? interaction.user).username,
+				iconURL: (track.requestedBy ?? interaction.user).displayAvatarURL()
 			})
 			.setColor('Red')
-			.setDescription(`[${title}](${url})`)
-			.setThumbnail(thumbnail ?? interaction.user.displayAvatarURL())
+			.setTitle('💿 Now Playing')
+			.setDescription(`[${track.title}](${track.url})`)
+			.setThumbnail(track.thumbnail ?? interaction.user.displayAvatarURL())
 			.addFields([
-				{ name: 'Duration', value: `${ts?.current.label}/${ts?.total.label} (${ts?.progress}%)`, inline: true },
-				// eslint-disable-next-line @typescript-eslint/dot-notation
-				{ name: 'Requested By', value: `${queue.metadata!['requestedBy'] || 'Unknown User'}`, inline: true },
-				{ name: 'By', value: `${author}`, inline: true },
-				{
-					name: 'Latency',
-					value: `>>> **Voice Connection**: \`${queue.ping}ms\`\n**Event Loop**: \`${queue.player.eventLoopLag.toFixed(0)}ms\``,
-					inline: false
-				}
+				{ name: 'Author', value: track.author },
+				{ name: 'Progress', value: `${queue.node.createProgressBar()} (${ts?.progress}%)` }
 			])
 			.setFooter({
-				text: queue.node.createProgressBar()!
+				text: `Ping: ${queue.ping}ms | Event Loop Lag: ${queue.player.eventLoopLag.toFixed(0)}ms`
 			});
 
 		return interaction.followUp({ embeds: [embed] });
