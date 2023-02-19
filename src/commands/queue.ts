@@ -26,21 +26,13 @@ export class QueueCommand extends Command {
 
 		await interaction.deferReply();
 
-		const { title, url } = queue.currentTrack;
 		let pagesNum = Math.ceil(queue.tracks.size / 5);
 
-		if (pagesNum === 0) {
+		if (pagesNum <= 0) {
 			pagesNum = 1;
 		}
 
-		const tracks: any = [];
-		for (let i = 0; i < queue.tracks.size; i++) {
-			const track = queue.tracks.toArray()[i];
-			tracks.push(
-				`**${i + 1})** [${track.title}](${track.url})
-		`
-			);
-		}
+		const tracks = queue.tracks.toArray().map((track, idx) => `**${++idx})** [${track.title}](${track.url})`);
 
 		const paginatedMessage = new PaginatedMessage();
 
@@ -48,14 +40,14 @@ export class QueueCommand extends Command {
 		if (pagesNum > 25) pagesNum = 25;
 
 		for (let i = 0; i < pagesNum; i++) {
-			const str = tracks.slice(i * 5, i * 5 + 5).join('');
+			const list = tracks.slice(i * 5, i * 5 + 5).join('\n');
 
 			paginatedMessage.addPageEmbed((embed) =>
 				embed
 					.setColor('Red')
 					.setDescription(
-						`**Queue** for **session** in **${queue.channel?.name}:**\n${str === '' ? '*• No more queued tracks*\n' : `\n${str}`}
-						**Now Playing:** [${title}](${url})\n`
+						`**Queue** for **session** in **${queue.channel?.name}:**\n${list === '' ? '*• No more queued tracks*\n' : `\n${list}`}
+						\n**Now Playing:** [${queue.currentTrack?.title}](${queue.currentTrack?.url})\n`
 					)
 					.setFooter({
 						text: `${queue.tracks.size} track(s) in queue`
