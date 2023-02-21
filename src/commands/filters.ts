@@ -62,7 +62,7 @@ export class FiltersCommand extends Command {
 			if (filter === 'Off') {
 				await queue.filters.ffmpeg.setFilters(false);
 				return interaction.followUp({
-					content: `${this.container.client.dev.success} | **Audio filter** have been *disabled**`
+					content: `${this.container.client.dev.success} | **Audio filter** has been **disabled**`
 				});
 			}
 
