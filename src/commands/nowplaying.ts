@@ -26,7 +26,6 @@ export class NowPlayingCommand extends Command {
 
 		await interaction.deferReply();
 		const track = queue.currentTrack;
-
 		const ts = queue.node.getTimestamp();
 
 		const embed = new EmbedBuilder()
