@@ -1,10 +1,11 @@
 {
-  "name": "karasu-music-bot",
+  "name": "karasu",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "author": "username",
+  "author": "Abdul Rahim",
   "license": "UNLICENSE",
   "dependencies": {
+    "@auric/radio": "^1.3.0",
     "@discord-player/equalizer": "dev",
     "@discord-player/extractor": "dev",
     "@discord-player/utils": "dev",
@@ -24,6 +25,7 @@
     "@skyra/env-utilities": "^1.1.0",
     "discord-player": "dev",
     "discord.js": "^14.7.1",
+    "opusscript": "^0.0.8",
     "play-dl": "^1.9.6"
   },
   "devDependencies": {
@@ -48,7 +50,7 @@
   "scripts": {
     "dev": "run-p watch start",
     "build": "swc src -d dist",
-    "watch": "swc src -d dist -w",
+    "watch": "swc src -d dist -w --log-watch-compilation",
     "start": "node dist/index.js",
     "watch:start": "tsc-watch --onSuccess \"node ./dist/index.js\"",
     "format": "prettier --write \"src/**/*.ts\""
