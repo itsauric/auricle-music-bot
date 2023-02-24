@@ -32,7 +32,7 @@ export class QueueCommand extends Command {
 			pagesNum = 1;
 		}
 
-		const tracks = queue.tracks.toArray().map((track, idx) => `**${++idx})** [${track.title}](${track.url})`);
+		const tracks = queue.tracks.map((track, idx) => `**${++idx})** [${track.title}](${track.url})`);
 
 		const paginatedMessage = new PaginatedMessage();
 
