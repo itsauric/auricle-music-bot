@@ -1,5 +1,5 @@
 import { Command } from '@sapphire/framework';
-import type { FiltersName } from 'discord-player';
+import { FiltersName, useQueue } from 'discord-player';
 import { GuildMember } from 'discord.js';
 
 export class FiltersCommand extends Command {
@@ -40,11 +40,12 @@ export class FiltersCommand extends Command {
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		if (interaction.member instanceof GuildMember) {
-			const queue = this.container.client.player.nodes.get(interaction.guild!.id);
+			const queue = useQueue(interaction.guild!.id);
 			const permissions = this.container.client.perms.voice(interaction, this.container.client);
 			const filter = interaction.options.getString('filter') as FiltersName | 'Off';
 
-			if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am not in a voice channel`, ephemeral: true });
+			if (!queue)
+				return interaction.reply({ content: `${this.container.client.dev.error} | I am **not** in a voice channel`, ephemeral: true });
 			if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
 			if (!queue.currentTrack)
 				return interaction.reply({
@@ -53,7 +54,7 @@ export class FiltersCommand extends Command {
 				});
 			if (!queue.filters.ffmpeg)
 				return interaction.reply({
-					content: `${this.container.client.dev.error} | The FFmpeg filters are not **available** to be used in this queue`,
+					content: `${this.container.client.dev.error} | The FFmpeg filters are **not available** to be used in this queue`,
 					ephemeral: true
 				});
 
@@ -62,7 +63,7 @@ export class FiltersCommand extends Command {
 			if (filter === 'Off') {
 				await queue.filters.ffmpeg.setFilters(false);
 				return interaction.followUp({
-					content: `${this.container.client.dev.success} | **Audio filter** has been **disabled**`
+					content: `${this.container.client.dev.success} | **Audio** filter has been **disabled**`
 				});
 			}
 

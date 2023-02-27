@@ -34,7 +34,7 @@ export class RadioCommand extends Command {
 
 		if (!results)
 			return interaction.reply({
-				content: `${this.container.client.dev.error} | No radios were found for your query`,
+				content: `${this.container.client.dev.error} | **No** radios were found for your query`,
 				ephemeral: true
 			});
 
@@ -42,8 +42,7 @@ export class RadioCommand extends Command {
 		await interaction.editReply({ content: `⏳ | Loading radio...` });
 
 		try {
-			const results = await this.container.client.radio.search(query);
-			const res = await this.container.client.player.play(member.voice.channel!.id, results, {
+			await this.container.client.player.play(member.voice.channel!.id, results.url_resolved, {
 				nodeOptions: {
 					metadata: {
 						channel: interaction.channel,
@@ -58,9 +57,11 @@ export class RadioCommand extends Command {
 					// volume: 120
 				}
 			});
-			return interaction.editReply(`Now playing: **${res.track.title || 'Unknown Radio'}**`);
+			return interaction.editReply({
+				content: `${this.container.client.dev.success} | Successfully enqueued: **${results.name || 'Unknown Radio'}**`
+			});
 		} catch (error) {
-			await interaction.editReply({ content: `${this.container.client.dev.error} | An error has occurred` });
+			await interaction.editReply({ content: `${this.container.client.dev.error} | An **error** has occurred` });
 			return console.log(error);
 		}
 	}

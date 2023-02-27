@@ -1,4 +1,5 @@
 import { Command } from '@sapphire/framework';
+import { s } from '@sapphire/shapeshift';
 import type { GuildMember } from 'discord.js';
 
 export class PlayCommand extends Command {
@@ -23,13 +24,19 @@ export class PlayCommand extends Command {
 	public override async autocompleteRun(interaction: Command.AutocompleteInteraction) {
 		const query = interaction.options.getString('query');
 		const results = await this.container.client.player.search(query!);
+		const url = s.string.url();
 
-		return interaction.respond(
-			results.tracks.slice(0, 5).map((t) => ({
-				name: t.title,
-				value: t.url
-			}))
-		);
+		try {
+			url.parse(query);
+			return interaction;
+		} catch (error) {
+			return interaction.respond(
+				results.tracks.slice(0, 5).map((t) => ({
+					name: t.title,
+					value: t.url
+				}))
+			);
+		}
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
@@ -46,7 +53,7 @@ export class PlayCommand extends Command {
 
 		if (!results.hasTracks())
 			return interaction.reply({
-				content: `${this.container.client.dev.error} | No tracks were found for your query`,
+				content: `${this.container.client.dev.error} | **No** tracks were found for your query`,
 				ephemeral: true
 			});
 
@@ -64,9 +71,8 @@ export class PlayCommand extends Command {
 					leaveOnEmptyCooldown: 300000,
 					leaveOnEmpty: true,
 					leaveOnEnd: false,
-					bufferingTimeout: 0
-					// defaultFFmpegFilters: ['lofi', 'bassboost', 'normalizer'],
-					// volume: 120
+					bufferingTimeout: 0,
+					selfDeaf: true
 				}
 			});
 
@@ -76,7 +82,7 @@ export class PlayCommand extends Command {
 				}`
 			});
 		} catch (error: any) {
-			await interaction.editReply({ content: `${this.container.client.dev.error} | An error has occurred` });
+			await interaction.editReply({ content: `${this.container.client.dev.error} | An **error** has occurred` });
 			return console.log(error);
 		}
 	}

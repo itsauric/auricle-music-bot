@@ -1,4 +1,5 @@
 import { Command } from '@sapphire/framework';
+import { useQueue } from 'discord-player';
 import { GuildMember } from 'discord.js';
 
 export class VolumeCommand extends Command {
@@ -27,7 +28,7 @@ export class VolumeCommand extends Command {
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		if (interaction.member instanceof GuildMember) {
-			const queue = this.container.client.player.nodes.get(interaction.guild!.id);
+			const queue = useQueue(interaction.guild!.id);
 			const permissions = this.container.client.perms.voice(interaction, this.container.client);
 			const volume = interaction.options.getInteger('amount');
 

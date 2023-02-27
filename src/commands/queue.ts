@@ -1,5 +1,6 @@
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { Command } from '@sapphire/framework';
+import { useQueue } from 'discord-player';
 
 export class QueueCommand extends Command {
 	public constructor(context: Command.Context, options: Command.Options) {
@@ -18,11 +19,11 @@ export class QueueCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		const queue = this.container.client.player.nodes.get(interaction.guild!.id);
+		const queue = useQueue(interaction.guild!.id);
 
-		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am not in a voice channel`, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am **not** in a voice channel`, ephemeral: true });
 		if (!queue.tracks || !queue.currentTrack)
-			return interaction.reply({ content: `${this.container.client.dev.error} | There is no queue`, ephemeral: true });
+			return interaction.reply({ content: `${this.container.client.dev.error} | There is **no** queue to **display**`, ephemeral: true });
 
 		await interaction.deferReply();
 
