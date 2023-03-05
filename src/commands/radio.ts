@@ -1,4 +1,5 @@
 import { Command } from '@sapphire/framework';
+import { useMasterPlayer } from 'discord-player';
 import type { GuildMember } from 'discord.js';
 
 export class RadioCommand extends Command {
@@ -21,6 +22,7 @@ export class RadioCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+		const player = useMasterPlayer();
 		const member = interaction.member as GuildMember;
 		const permissions = this.container.client.perms.voice(interaction, this.container.client);
 		if (permissions.member()) return interaction.reply({ content: permissions.member(), ephemeral: true });
@@ -42,7 +44,7 @@ export class RadioCommand extends Command {
 		await interaction.editReply({ content: `⏳ | Loading radio...` });
 
 		try {
-			await this.container.client.player.play(member.voice.channel!.id, results.url_resolved, {
+			await player!.play(member.voice.channel!.id, results.url_resolved, {
 				nodeOptions: {
 					metadata: {
 						channel: interaction.channel,

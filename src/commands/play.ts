@@ -1,5 +1,6 @@
 import { Command } from '@sapphire/framework';
 import { s } from '@sapphire/shapeshift';
+import { useMasterPlayer } from 'discord-player';
 import type { GuildMember } from 'discord.js';
 
 export class PlayCommand extends Command {
@@ -22,8 +23,9 @@ export class PlayCommand extends Command {
 	}
 
 	public override async autocompleteRun(interaction: Command.AutocompleteInteraction) {
+		const player = useMasterPlayer();
 		const query = interaction.options.getString('query');
-		const results = await this.container.client.player.search(query!);
+		const results = await player!.search(query!);
 		const url = s.string.url();
 
 		try {
@@ -40,6 +42,7 @@ export class PlayCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+		const player = useMasterPlayer();
 		const member = interaction.member as GuildMember;
 		const permissions = this.container.client.perms.voice(interaction, this.container.client);
 		if (permissions.member()) return interaction.reply({ content: permissions.member(), ephemeral: true });
@@ -49,7 +52,7 @@ export class PlayCommand extends Command {
 
 		if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
 
-		const results = await this.container.client.player.search(query!);
+		const results = await player!.search(query!);
 
 		if (!results.hasTracks())
 			return interaction.reply({
@@ -61,7 +64,7 @@ export class PlayCommand extends Command {
 		await interaction.editReply({ content: `⏳ | Loading ${results.playlist ? 'a playlist...' : 'a track...'}` });
 
 		try {
-			const res = await this.container.client.player.play(member.voice.channel!.id, results, {
+			const res = await player!.play(member.voice.channel!.id, results, {
 				nodeOptions: {
 					metadata: {
 						channel: interaction.channel,
