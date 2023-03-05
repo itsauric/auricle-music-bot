@@ -5,7 +5,6 @@
   "author": "username",
   "license": "UNLICENSE",
   "dependencies": {
-    "@auric/radio": "^1.3.2",
     "@discord-player/equalizer": "0.2.0",
     "@discord-player/extractor": "4.1.0",
     "@discord-player/utils": "0.2.0",
