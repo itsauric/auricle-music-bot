@@ -31,8 +31,8 @@ export class NowPlayingCommand extends Command {
 
 		const embed = new EmbedBuilder()
 			.setAuthor({
-				name: (track.requestedBy ?? interaction.user).username,
-				iconURL: (track.requestedBy ?? interaction.user).displayAvatarURL()
+				name: interaction.user.username,
+				iconURL: interaction.user.displayAvatarURL()
 			})
 			.setColor('Red')
 			.setTitle('💿 Now Playing')

@@ -68,8 +68,7 @@ export class PlayCommand extends Command {
 				nodeOptions: {
 					metadata: {
 						channel: interaction.channel,
-						client: interaction.guild?.members.me,
-						requestedBy: interaction.user.username
+						client: interaction.guild?.members.me
 					},
 					leaveOnEmptyCooldown: 300000,
 					leaveOnEmpty: true,
