@@ -5,14 +5,14 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@discord-player/equalizer@npm:*, @discord-player/equalizer@npm:0.2.0":
+"@discord-player/equalizer@npm:*, @discord-player/equalizer@npm:^0.2.0":
   version: 0.2.0
   resolution: "@discord-player/equalizer@npm:0.2.0"
   checksum: 41dcf6578563f69e9cc886bfdc980bdf98df435c75c52d81aa1403aef6b8a4f4d8117476dd465a06b19933a2ca598d27df618a72a2381670b646a2e62e383e04
   languageName: node
   linkType: hard
 
-"@discord-player/extractor@npm:4.1.0":
+"@discord-player/extractor@npm:^4.1.0":
   version: 4.1.0
   resolution: "@discord-player/extractor@npm:4.1.0"
   dependencies:
@@ -31,7 +31,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discord-player/utils@npm:*, @discord-player/utils@npm:0.2.0":
+"@discord-player/utils@npm:*, @discord-player/utils@npm:^0.2.0":
   version: 0.2.0
   resolution: "@discord-player/utils@npm:0.2.0"
   dependencies:
@@ -289,7 +289,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/eslint-config@npm:4.3.8":
+"@sapphire/eslint-config@npm:^4.3.8":
   version: 4.3.8
   resolution: "@sapphire/eslint-config@npm:4.3.8"
   dependencies:
@@ -404,7 +404,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/prettier-config@npm:1.4.5":
+"@sapphire/prettier-config@npm:^1.4.5":
   version: 1.4.5
   resolution: "@sapphire/prettier-config@npm:1.4.5"
   dependencies:
@@ -469,7 +469,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/ts-config@npm:3.3.4":
+"@sapphire/ts-config@npm:^3.3.4":
   version: 3.3.4
   resolution: "@sapphire/ts-config@npm:3.3.4"
   dependencies:
@@ -677,7 +677,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:8.21.1":
+"@types/eslint@npm:^8.21.1":
   version: 8.21.1
   resolution: "@types/eslint@npm:8.21.1"
   dependencies:
@@ -717,7 +717,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:18.14.6":
+"@types/node@npm:*, @types/node@npm:^18.14.6":
   version: 18.14.6
   resolution: "@types/node@npm:18.14.6"
   checksum: 2f88f482cabadc6dbddd627a1674239e68c3c9beab56eb4ae2309fb96fd17fc3a509d99b0309bafe13b58529574f49ecf3a583f2ebe2896dd32fe4be436dc96e
@@ -747,36 +747,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ws@npm:8.5.4, @types/ws@npm:^8.5.3, @types/ws@npm:^8.5.4":
+"@types/ws@npm:^8.5.3, @types/ws@npm:^8.5.4":
   version: 8.5.4
   resolution: "@types/ws@npm:8.5.4"
   dependencies:
     "@types/node": "*"
   checksum: fefbad20d211929bb996285c4e6f699b12192548afedbe4930ab4384f8a94577c9cd421acaad163cacd36b88649509970a05a0b8f20615b30c501ed5269038d1
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/eslint-plugin@npm:5.54.1":
-  version: 5.54.1
-  resolution: "@typescript-eslint/eslint-plugin@npm:5.54.1"
-  dependencies:
-    "@typescript-eslint/scope-manager": 5.54.1
-    "@typescript-eslint/type-utils": 5.54.1
-    "@typescript-eslint/utils": 5.54.1
-    debug: ^4.3.4
-    grapheme-splitter: ^1.0.4
-    ignore: ^5.2.0
-    natural-compare-lite: ^1.4.0
-    regexpp: ^3.2.0
-    semver: ^7.3.7
-    tsutils: ^3.21.0
-  peerDependencies:
-    "@typescript-eslint/parser": ^5.0.0
-    eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 76476c08ca0142a9bf6e2381f5cd1c037d86fbafa9c0dded4a97bd3b23b5962dd2c3943bade11b21d674195674f0e36dbf80faa15a1906f5a2ca1f699baf1dd5
   languageName: node
   linkType: hard
 
@@ -804,20 +780,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:5.54.1":
+"@typescript-eslint/eslint-plugin@npm:^5.54.1":
   version: 5.54.1
-  resolution: "@typescript-eslint/parser@npm:5.54.1"
+  resolution: "@typescript-eslint/eslint-plugin@npm:5.54.1"
   dependencies:
     "@typescript-eslint/scope-manager": 5.54.1
-    "@typescript-eslint/types": 5.54.1
-    "@typescript-eslint/typescript-estree": 5.54.1
+    "@typescript-eslint/type-utils": 5.54.1
+    "@typescript-eslint/utils": 5.54.1
     debug: ^4.3.4
+    grapheme-splitter: ^1.0.4
+    ignore: ^5.2.0
+    natural-compare-lite: ^1.4.0
+    regexpp: ^3.2.0
+    semver: ^7.3.7
+    tsutils: ^3.21.0
   peerDependencies:
+    "@typescript-eslint/parser": ^5.0.0
     eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: f466513d306ca926b97c2cec1eebaf2cd15d45bd5633a4358f23ba9a4de1b0ec4630b1c20abc395943934ed1d2ef65f545fd6737c317a7abe579612101e8a83f
+  checksum: 76476c08ca0142a9bf6e2381f5cd1c037d86fbafa9c0dded4a97bd3b23b5962dd2c3943bade11b21d674195674f0e36dbf80faa15a1906f5a2ca1f699baf1dd5
   languageName: node
   linkType: hard
 
@@ -835,6 +818,23 @@ __metadata:
     typescript:
       optional: true
   checksum: 368d6dd85be42c3f518f0ddeed23ecd1d3c9484a77ae291ee4e08e2703ed379bed613bde014cd8ab2a3e06e85dd8aef201112ae5e3d2a07deba29ae80bb1fe06
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/parser@npm:^5.54.1":
+  version: 5.54.1
+  resolution: "@typescript-eslint/parser@npm:5.54.1"
+  dependencies:
+    "@typescript-eslint/scope-manager": 5.54.1
+    "@typescript-eslint/types": 5.54.1
+    "@typescript-eslint/typescript-estree": 5.54.1
+    debug: ^4.3.4
+  peerDependencies:
+    eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: f466513d306ca926b97c2cec1eebaf2cd15d45bd5633a4358f23ba9a4de1b0ec4630b1c20abc395943934ed1d2ef65f545fd6737c317a7abe579612101e8a83f
   languageName: node
   linkType: hard
 
@@ -1625,7 +1625,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-player@npm:6.0.0":
+"discord-player@npm:^6.0.0":
   version: 6.0.0
   resolution: "discord-player@npm:6.0.0"
   dependencies:
@@ -1878,17 +1878,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:8.7.0":
-  version: 8.7.0
-  resolution: "eslint-config-prettier@npm:8.7.0"
-  peerDependencies:
-    eslint: ">=7.0.0"
-  bin:
-    eslint-config-prettier: bin/cli.js
-  checksum: b05bc7f2296ce3e0925c14147849706544870e0382d38af2352d709a6cf8521bdaff2bd8e5021f1780e570775a8ffa1d2bac28b8065d90d43a3f1f98fd26ce52
-  languageName: node
-  linkType: hard
-
 "eslint-config-prettier@npm:^8.5.0":
   version: 8.6.0
   resolution: "eslint-config-prettier@npm:8.6.0"
@@ -1900,7 +1889,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-prettier@npm:4.2.1, eslint-plugin-prettier@npm:^4.2.1":
+"eslint-config-prettier@npm:^8.7.0":
+  version: 8.7.0
+  resolution: "eslint-config-prettier@npm:8.7.0"
+  peerDependencies:
+    eslint: ">=7.0.0"
+  bin:
+    eslint-config-prettier: bin/cli.js
+  checksum: b05bc7f2296ce3e0925c14147849706544870e0382d38af2352d709a6cf8521bdaff2bd8e5021f1780e570775a8ffa1d2bac28b8065d90d43a3f1f98fd26ce52
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-prettier@npm:^4.2.1":
   version: 4.2.1
   resolution: "eslint-plugin-prettier@npm:4.2.1"
   dependencies:
@@ -1960,7 +1960,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:8.35.0, eslint@npm:^8.22.0":
+"eslint@npm:^8.22.0, eslint@npm:^8.35.0":
   version: 8.35.0
   resolution: "eslint@npm:8.35.0"
   dependencies:
@@ -3088,15 +3088,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "karasu@workspace:."
   dependencies:
-    "@discord-player/equalizer": 0.2.0
-    "@discord-player/extractor": 4.1.0
-    "@discord-player/utils": 0.2.0
+    "@discord-player/equalizer": ^0.2.0
+    "@discord-player/extractor": ^4.1.0
+    "@discord-player/utils": ^0.2.0
     "@discordjs/opus": ^0.9.0
     "@sapphire/decorators": ^6.0.0
     "@sapphire/discord-utilities": ^3.0.0
     "@sapphire/discord.js-utilities": ^6.0.2
     "@sapphire/duration": ^1.0.0
-    "@sapphire/eslint-config": 4.3.8
+    "@sapphire/eslint-config": ^4.3.8
     "@sapphire/fetch": ^2.4.1
     "@sapphire/framework": ^4.2.0
     "@sapphire/plugin-api": ^5.0.1
@@ -3104,29 +3104,29 @@ __metadata:
     "@sapphire/plugin-hmr": ^2.0.0
     "@sapphire/plugin-logger": ^3.0.1
     "@sapphire/plugin-subcommands": ^4.0.0
-    "@sapphire/prettier-config": 1.4.5
+    "@sapphire/prettier-config": ^1.4.5
     "@sapphire/shapeshift": ^3.8.1
-    "@sapphire/ts-config": 3.3.4
+    "@sapphire/ts-config": ^3.3.4
     "@sapphire/utilities": ^3.11.0
     "@skyra/env-utilities": ^1.1.0
     "@swc/cli": ^0.1.62
     "@swc/core": ^1.3.37
-    "@types/eslint": 8.21.1
-    "@types/node": 18.14.6
-    "@types/ws": 8.5.4
-    "@typescript-eslint/eslint-plugin": 5.54.1
-    "@typescript-eslint/parser": 5.54.1
-    discord-player: 6.0.0
+    "@types/eslint": ^8.21.1
+    "@types/node": ^18.14.6
+    "@types/ws": ^8.5.4
+    "@typescript-eslint/eslint-plugin": ^5.54.1
+    "@typescript-eslint/parser": ^5.54.1
+    discord-player: ^6.0.0
     discord.js: ^14.7.1
-    eslint: 8.35.0
-    eslint-config-prettier: 8.7.0
-    eslint-plugin-prettier: 4.2.1
+    eslint: ^8.35.0
+    eslint-config-prettier: ^8.7.0
+    eslint-plugin-prettier: ^4.2.1
     npm-run-all: ^4.1.5
     opusscript: ^0.0.8
     play-dl: ^1.9.6
-    prettier: 2.8.4
+    prettier: ^2.8.4
     tsc-watch: ^6.0.0
-    typescript: 4.9.5
+    typescript: ^4.9.5
   languageName: unknown
   linkType: soft
 
@@ -3992,7 +3992,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:2.8.4, prettier@npm:^2.7.1, prettier@npm:^2.8.2":
+"prettier@npm:^2.7.1, prettier@npm:^2.8.2, prettier@npm:^2.8.4":
   version: 2.8.4
   resolution: "prettier@npm:2.8.4"
   bin:
@@ -4839,7 +4839,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.9.5, typescript@npm:^4.6.3, typescript@npm:^4.7.4":
+"typescript@npm:^4.6.3, typescript@npm:^4.7.4, typescript@npm:^4.9.5":
   version: 4.9.5
   resolution: "typescript@npm:4.9.5"
   bin:
@@ -4849,7 +4849,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.9.5#~builtin<compat/typescript>, typescript@patch:typescript@^4.6.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.6.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.9.5#~builtin<compat/typescript>":
   version: 4.9.5
   resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=a1c5e5"
   bin:
