@@ -61,7 +61,6 @@ export class PlayCommand extends Command {
 			});
 
 		await interaction.deferReply();
-		await interaction.editReply({ content: `⏳ | Loading ${results.playlist ? 'a playlist...' : 'a track...'}` });
 
 		try {
 			const res = await player!.play(member.voice.channel!.id, results, {

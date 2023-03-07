@@ -34,7 +34,6 @@ export class ShuffleCommand extends Command {
 				});
 
 			queue.tracks.shuffle();
-
 			return interaction.reply({
 				content: `${this.container.client.dev.success} | I have **shuffled** the queue`
 			});

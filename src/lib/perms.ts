@@ -11,16 +11,16 @@ export function voice(interaction, container: KarasuClient) {
 		const missingPerms = interaction.member.voice.channel.permissionsFor(interaction.guild!.members.me!).missing(resolved);
 
 		if (missingPerms.length)
-			return `${container.dev.error} | I am missing the required voice channel permissions: \`${missingPerms.join(', ')}\``;
+			return `${container.dev.error} | I am **missing** the required voice channel permissions: \`${missingPerms.join(', ')}\``;
 	}
 
 	function member() {
-		if (!interaction.member.voice.channel) return `${container.dev.error} | You need to be in a voice channel.`;
+		if (!interaction.member.voice.channel) return `${container.dev.error} | You **need** to be in a voice channel.`;
 	}
 
 	function clientToMember() {
 		if (interaction.guild?.members.me?.voice.channelId && interaction.member.voice.channelId !== interaction.guild?.members.me?.voice.channelId)
-			return `${container.dev.error} | You are not in my voice channel`;
+			return `${container.dev.error} | You are **not** in my voice channel`;
 	}
 
 	return { client, member, clientToMember };
