@@ -50,7 +50,7 @@
   "scripts": {
     "dev": "run-p watch start",
     "build": "swc src -d dist",
-    "watch": "swc src -d dist -w --log-watch-compilation",
+    "watch": "swc src -d dist -w",
     "start": "node dist/index.js",
     "watch:start": "tsc-watch --onSuccess \"node ./dist/index.js\"",
     "format": "prettier --write \"src/**/*.ts\""
