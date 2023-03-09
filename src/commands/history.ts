@@ -29,8 +29,6 @@ export class HistoryCommand extends Command {
 				ephemeral: true
 			});
 
-		await interaction.deferReply();
-
 		let pagesNum = Math.ceil(queue.tracks.size / 5);
 
 		if (pagesNum <= 0) {

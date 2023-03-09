@@ -25,7 +25,6 @@ export class NowPlayingCommand extends Command {
 		if (!queue.currentTrack)
 			return interaction.reply({ content: `${this.container.client.dev.error} | There is no track **currently** playing`, ephemeral: true });
 
-		await interaction.deferReply();
 		const track = queue.currentTrack;
 		const ts = queue.node.getTimestamp();
 
@@ -46,6 +45,6 @@ export class NowPlayingCommand extends Command {
 				text: `Ping: ${queue.ping}ms | Event Loop Lag: ${queue.player.eventLoopLag.toFixed(0)}ms`
 			});
 
-		return interaction.followUp({ embeds: [embed] });
+		return interaction.reply({ embeds: [embed] });
 	}
 }
