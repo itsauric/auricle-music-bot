@@ -10,6 +10,11 @@ This is a music bot created by using the [sapphire framework][sapphire] & [disco
 - Built-in cooldown system
 - Easy to configure and use
 
+
+## Forking
+
+This repository may be frequently updated, so how can you keep up-to-date? You should either fork or clone this repository. In a terminal of your choice or any command line, whenever a new commit is made to this repo, you should run the `git pull` command in your forked/cloned version directory. This should automatically pull in any new changes made to `karasu-music-bot` and this should then update your version.
+
 ### Prerequisite
 
 ```sh
