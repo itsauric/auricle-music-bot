@@ -12,9 +12,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discord-player/extractor@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "@discord-player/extractor@npm:4.1.0"
+"@discord-player/extractor@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "@discord-player/extractor@npm:4.1.1"
   dependencies:
     file-type: ^16.5.4
     genius-lyrics: ^4.4.2
@@ -24,10 +24,9 @@ __metadata:
     spotify-url-info: ^3.2.3
     youtube-sr: ^4.3.4
   peerDependencies:
-    discord-player: "*"
     play-dl: 1.x
     ytdl-core: 4.x
-  checksum: 5cf8aeadc9cd6d74a4d8f0cc429d037a157aab35a789c06b969d923a7b352d899089c5f96e40b6801475cbd89d541c92a265a727afb684c9d61eb591732fdb99
+  checksum: eba506578407b8335f0067a9975d21566de9095eb7c580c6e4f042732d981dc2044b7119b39276450e85808c2f3cd4733afe3c54c8bd20a4175e9c6c259a3891
   languageName: node
   linkType: hard
 
@@ -126,6 +125,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint-community/eslint-utils@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "@eslint-community/eslint-utils@npm:4.2.0"
+  dependencies:
+    eslint-visitor-keys: ^3.3.0
+  peerDependencies:
+    eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
+  checksum: 82fdd1cc2a5d169def0e665ec790580ef708e7df9c91f20006595dc90e3bd42ec31c8976a2eeccd336286301a72e937c0ddf3ab4b7377d7014997c36333a7d22
+  languageName: node
+  linkType: hard
+
+"@eslint-community/regexpp@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "@eslint-community/regexpp@npm:4.4.0"
+  checksum: 2d127af0c752b80e8a782eacfe996a86925d21de92da3ffc6f9e615e701145e44a62e26bdd88bfac2cd76779c39ba8d9875a91046ec5e7e5f23cb647c247ea6a
+  languageName: node
+  linkType: hard
+
 "@eslint/eslintrc@npm:^2.0.0":
   version: 2.0.0
   resolution: "@eslint/eslintrc@npm:2.0.0"
@@ -143,10 +160,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/eslintrc@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@eslint/eslintrc@npm:2.0.1"
+  dependencies:
+    ajv: ^6.12.4
+    debug: ^4.3.2
+    espree: ^9.5.0
+    globals: ^13.19.0
+    ignore: ^5.2.0
+    import-fresh: ^3.2.1
+    js-yaml: ^4.1.0
+    minimatch: ^3.1.2
+    strip-json-comments: ^3.1.1
+  checksum: 56b9192a687a450db53a7b883daf9f0f447c43b3510189cf88808a7a2467c2a302a42a50f184cc6d5a9faf3d1df890a2ef0fd0d60b751f32a3e9dfea717c6b48
+  languageName: node
+  linkType: hard
+
 "@eslint/js@npm:8.35.0":
   version: 8.35.0
   resolution: "@eslint/js@npm:8.35.0"
   checksum: 6687ceff659a6d617e37823f809dc9c4b096535961a81acead27d26b1a51a4cf608a5e59d831ddd57f24f6f8bb99340a4a0e19f9c99b390fbb4b275f51ed5f5e
+  languageName: node
+  linkType: hard
+
+"@eslint/js@npm:8.36.0":
+  version: 8.36.0
+  resolution: "@eslint/js@npm:8.36.0"
+  checksum: b7d6b84b823c8c7784be390741196617565527b1f7c0977fde9455bfb57fd88f81c074a03dd878757d2c33fa29f24291e9ecbc1425710f067917324b55e1bf3a
   languageName: node
   linkType: hard
 
@@ -270,15 +311,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord.js-utilities@npm:6.0.2, @sapphire/discord.js-utilities@npm:^6.0.2":
-  version: 6.0.2
-  resolution: "@sapphire/discord.js-utilities@npm:6.0.2"
+"@sapphire/discord.js-utilities@npm:6.0.3, @sapphire/discord.js-utilities@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "@sapphire/discord.js-utilities@npm:6.0.3"
   dependencies:
     "@sapphire/discord-utilities": ^3.0.0
     "@sapphire/duration": ^1.0.0
     "@sapphire/utilities": ^3.11.0
     tslib: ^2.5.0
-  checksum: 985b15b9d5f7bb2bed5e919ab7fc8a69dca9ef5baa3a44443b64558dce3303560027b0ed21a72ff849179e9181524316ffdfed6eb267020e3c10378b361c2f07
+  checksum: 9b0f2cc2da626b7ade3a14087eebd03adf60ec67f1b8fdd2d16dc5cf4c08f553e29db5341e205913a7dc9c27757d6ebc729a6b311932e544d37b4f5c857513cd
   languageName: node
   linkType: hard
 
@@ -313,20 +354,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/framework@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "@sapphire/framework@npm:4.2.0"
+"@sapphire/framework@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "@sapphire/framework@npm:4.2.1"
   dependencies:
     "@discordjs/builders": ^1.4.0
     "@sapphire/discord-utilities": ^3.0.0
-    "@sapphire/discord.js-utilities": 6.0.2
+    "@sapphire/discord.js-utilities": 6.0.3
     "@sapphire/lexure": ^1.1.2
     "@sapphire/pieces": ^3.6.0
     "@sapphire/ratelimits": ^2.4.5
     "@sapphire/result": ^2.6.0
     "@sapphire/stopwatch": ^1.5.0
     "@sapphire/utilities": ^3.11.0
-  checksum: b224c68b8ff8d6233097ca8c6d67a997d8c81d421d4374aa59e91f0cbfac1daf1369ed29be8640089346ae7652ac27a85455533fc151e48a36cdebeb17d8f89a
+  checksum: d4c51ac8d795db185167909f21831327d45085c9cf5a710a42470baf7c6d0aa6c2177e8cc58717f0d5d4fab93f3634efea1a6df959ad0807dcaee156437e4b0d
   languageName: node
   linkType: hard
 
@@ -533,90 +574,90 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.3.37":
-  version: 1.3.37
-  resolution: "@swc/core-darwin-arm64@npm:1.3.37"
+"@swc/core-darwin-arm64@npm:1.3.39":
+  version: 1.3.39
+  resolution: "@swc/core-darwin-arm64@npm:1.3.39"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.3.37":
-  version: 1.3.37
-  resolution: "@swc/core-darwin-x64@npm:1.3.37"
+"@swc/core-darwin-x64@npm:1.3.39":
+  version: 1.3.39
+  resolution: "@swc/core-darwin-x64@npm:1.3.39"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.3.37":
-  version: 1.3.37
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.37"
+"@swc/core-linux-arm-gnueabihf@npm:1.3.39":
+  version: 1.3.39
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.39"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.3.37":
-  version: 1.3.37
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.37"
+"@swc/core-linux-arm64-gnu@npm:1.3.39":
+  version: 1.3.39
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.39"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.3.37":
-  version: 1.3.37
-  resolution: "@swc/core-linux-arm64-musl@npm:1.3.37"
+"@swc/core-linux-arm64-musl@npm:1.3.39":
+  version: 1.3.39
+  resolution: "@swc/core-linux-arm64-musl@npm:1.3.39"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.3.37":
-  version: 1.3.37
-  resolution: "@swc/core-linux-x64-gnu@npm:1.3.37"
+"@swc/core-linux-x64-gnu@npm:1.3.39":
+  version: 1.3.39
+  resolution: "@swc/core-linux-x64-gnu@npm:1.3.39"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.3.37":
-  version: 1.3.37
-  resolution: "@swc/core-linux-x64-musl@npm:1.3.37"
+"@swc/core-linux-x64-musl@npm:1.3.39":
+  version: 1.3.39
+  resolution: "@swc/core-linux-x64-musl@npm:1.3.39"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.3.37":
-  version: 1.3.37
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.37"
+"@swc/core-win32-arm64-msvc@npm:1.3.39":
+  version: 1.3.39
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.39"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.3.37":
-  version: 1.3.37
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.37"
+"@swc/core-win32-ia32-msvc@npm:1.3.39":
+  version: 1.3.39
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.39"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.3.37":
-  version: 1.3.37
-  resolution: "@swc/core-win32-x64-msvc@npm:1.3.37"
+"@swc/core-win32-x64-msvc@npm:1.3.39":
+  version: 1.3.39
+  resolution: "@swc/core-win32-x64-msvc@npm:1.3.39"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.3.37":
-  version: 1.3.37
-  resolution: "@swc/core@npm:1.3.37"
+"@swc/core@npm:^1.3.39":
+  version: 1.3.39
+  resolution: "@swc/core@npm:1.3.39"
   dependencies:
-    "@swc/core-darwin-arm64": 1.3.37
-    "@swc/core-darwin-x64": 1.3.37
-    "@swc/core-linux-arm-gnueabihf": 1.3.37
-    "@swc/core-linux-arm64-gnu": 1.3.37
-    "@swc/core-linux-arm64-musl": 1.3.37
-    "@swc/core-linux-x64-gnu": 1.3.37
-    "@swc/core-linux-x64-musl": 1.3.37
-    "@swc/core-win32-arm64-msvc": 1.3.37
-    "@swc/core-win32-ia32-msvc": 1.3.37
-    "@swc/core-win32-x64-msvc": 1.3.37
+    "@swc/core-darwin-arm64": 1.3.39
+    "@swc/core-darwin-x64": 1.3.39
+    "@swc/core-linux-arm-gnueabihf": 1.3.39
+    "@swc/core-linux-arm64-gnu": 1.3.39
+    "@swc/core-linux-arm64-musl": 1.3.39
+    "@swc/core-linux-x64-gnu": 1.3.39
+    "@swc/core-linux-x64-musl": 1.3.39
+    "@swc/core-win32-arm64-msvc": 1.3.39
+    "@swc/core-win32-ia32-msvc": 1.3.39
+    "@swc/core-win32-x64-msvc": 1.3.39
   dependenciesMeta:
     "@swc/core-darwin-arm64":
       optional: true
@@ -638,7 +679,7 @@ __metadata:
       optional: true
     "@swc/core-win32-x64-msvc":
       optional: true
-  checksum: 1cfa1ce8967a1d04361af076023bb50cc90bb413c347b0d7c7e86cf9b8277d05471dd2a24708a77365e527c51ddde3cd752fe49975b9e236c3abf9590e3106dd
+  checksum: 2c5376627587302d9146a13670ab88d49d236361f226058625a287e275952a282e46c6f8620ec756917406c2ab801093c28668d95837646e39742d65e193965d
   languageName: node
   linkType: hard
 
@@ -717,10 +758,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.14.6":
+"@types/node@npm:*":
   version: 18.14.6
   resolution: "@types/node@npm:18.14.6"
   checksum: 2f88f482cabadc6dbddd627a1674239e68c3c9beab56eb4ae2309fb96fd17fc3a509d99b0309bafe13b58529574f49ecf3a583f2ebe2896dd32fe4be436dc96e
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^18.15.0":
+  version: 18.15.0
+  resolution: "@types/node@npm:18.15.0"
+  checksum: d81372276dd5053b1743338b61a2178ff9722dc609189d01fc7d1c2acd539414039e0e4780678730514390dad3f29c366a28c29e8dbd5b0025651181f6dd6669
   languageName: node
   linkType: hard
 
@@ -1625,9 +1673,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-player@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "discord-player@npm:6.0.0"
+"discord-player@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "discord-player@npm:6.1.0"
   dependencies:
     "@discord-player/equalizer": "*"
     "@discord-player/utils": "*"
@@ -1637,7 +1685,7 @@ __metadata:
     "@discord-player/extractor": "*"
     discord.js: 14.x
     youtube-sr: 4.x
-  checksum: 31649abb038be6f1e366278cdc6b326d23c42423d5b9e7db29e6a0d5c4c5916c5dd96bdaf5deadec668a9f6fd0b784bfe0df7b791eef62769c34eb5f5497ad7f
+  checksum: 722dda6d8536595a4b759da8c9e9a4ede5ce2aebada0e389c58d12df36a474851aeca2fae99858da041178c5400c77e8ce8eb56baac2e6879328672f0f6a37fe
   languageName: node
   linkType: hard
 
@@ -1960,7 +2008,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.22.0, eslint@npm:^8.35.0":
+"eslint@npm:^8.22.0":
   version: 8.35.0
   resolution: "eslint@npm:8.35.0"
   dependencies:
@@ -2010,6 +2058,56 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint@npm:^8.36.0":
+  version: 8.36.0
+  resolution: "eslint@npm:8.36.0"
+  dependencies:
+    "@eslint-community/eslint-utils": ^4.2.0
+    "@eslint-community/regexpp": ^4.4.0
+    "@eslint/eslintrc": ^2.0.1
+    "@eslint/js": 8.36.0
+    "@humanwhocodes/config-array": ^0.11.8
+    "@humanwhocodes/module-importer": ^1.0.1
+    "@nodelib/fs.walk": ^1.2.8
+    ajv: ^6.10.0
+    chalk: ^4.0.0
+    cross-spawn: ^7.0.2
+    debug: ^4.3.2
+    doctrine: ^3.0.0
+    escape-string-regexp: ^4.0.0
+    eslint-scope: ^7.1.1
+    eslint-visitor-keys: ^3.3.0
+    espree: ^9.5.0
+    esquery: ^1.4.2
+    esutils: ^2.0.2
+    fast-deep-equal: ^3.1.3
+    file-entry-cache: ^6.0.1
+    find-up: ^5.0.0
+    glob-parent: ^6.0.2
+    globals: ^13.19.0
+    grapheme-splitter: ^1.0.4
+    ignore: ^5.2.0
+    import-fresh: ^3.0.0
+    imurmurhash: ^0.1.4
+    is-glob: ^4.0.0
+    is-path-inside: ^3.0.3
+    js-sdsl: ^4.1.4
+    js-yaml: ^4.1.0
+    json-stable-stringify-without-jsonify: ^1.0.1
+    levn: ^0.4.1
+    lodash.merge: ^4.6.2
+    minimatch: ^3.1.2
+    natural-compare: ^1.4.0
+    optionator: ^0.9.1
+    strip-ansi: ^6.0.1
+    strip-json-comments: ^3.1.0
+    text-table: ^0.2.0
+  bin:
+    eslint: bin/eslint.js
+  checksum: e9a961fc3b3de5cff5a1cb2c92eeffaa7e155a715489e30b3e1e76f186bd1255e0481e09564f2094733c0b1dbd3453499fb72ae7c043c83156e11e6d965b2304
+  languageName: node
+  linkType: hard
+
 "espree@npm:^9.4.0":
   version: 9.4.1
   resolution: "espree@npm:9.4.1"
@@ -2018,6 +2116,17 @@ __metadata:
     acorn-jsx: ^5.3.2
     eslint-visitor-keys: ^3.3.0
   checksum: 4d266b0cf81c7dfe69e542c7df0f246e78d29f5b04dda36e514eb4c7af117ee6cfbd3280e560571ed82ff6c9c3f0003c05b82583fc7a94006db7497c4fe4270e
+  languageName: node
+  linkType: hard
+
+"espree@npm:^9.5.0":
+  version: 9.5.0
+  resolution: "espree@npm:9.5.0"
+  dependencies:
+    acorn: ^8.8.0
+    acorn-jsx: ^5.3.2
+    eslint-visitor-keys: ^3.3.0
+  checksum: a7f110aefb6407e0d3237aa635ab3cea87106ae63748dd23c67031afccc640d04c4209fca2daf16e2233c82efb505faead0fb84097478fd9cc6e8f8dd80bf99d
   languageName: node
   linkType: hard
 
@@ -3089,16 +3198,16 @@ __metadata:
   resolution: "karasu@workspace:."
   dependencies:
     "@discord-player/equalizer": ^0.2.0
-    "@discord-player/extractor": ^4.1.0
+    "@discord-player/extractor": ^4.1.1
     "@discord-player/utils": ^0.2.0
     "@discordjs/opus": ^0.9.0
     "@sapphire/decorators": ^6.0.0
     "@sapphire/discord-utilities": ^3.0.0
-    "@sapphire/discord.js-utilities": ^6.0.2
+    "@sapphire/discord.js-utilities": ^6.0.3
     "@sapphire/duration": ^1.0.0
     "@sapphire/eslint-config": ^4.3.8
     "@sapphire/fetch": ^2.4.1
-    "@sapphire/framework": ^4.2.0
+    "@sapphire/framework": ^4.2.1
     "@sapphire/plugin-api": ^5.0.1
     "@sapphire/plugin-editable-commands": ^3.0.0
     "@sapphire/plugin-hmr": ^2.0.0
@@ -3110,15 +3219,15 @@ __metadata:
     "@sapphire/utilities": ^3.11.0
     "@skyra/env-utilities": ^1.1.0
     "@swc/cli": ^0.1.62
-    "@swc/core": ^1.3.37
+    "@swc/core": ^1.3.39
     "@types/eslint": ^8.21.1
-    "@types/node": ^18.14.6
+    "@types/node": ^18.15.0
     "@types/ws": ^8.5.4
     "@typescript-eslint/eslint-plugin": ^5.54.1
     "@typescript-eslint/parser": ^5.54.1
-    discord-player: ^6.0.0
+    discord-player: ^6.1.0
     discord.js: ^14.7.1
-    eslint: ^8.35.0
+    eslint: ^8.36.0
     eslint-config-prettier: ^8.7.0
     eslint-plugin-prettier: ^4.2.1
     npm-run-all: ^4.1.5
