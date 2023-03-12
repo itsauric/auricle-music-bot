@@ -1,5 +1,4 @@
 import '@sapphire/plugin-api/register';
-import '@sapphire/plugin-editable-commands/register';
 import '@sapphire/plugin-hmr/register';
 import '@sapphire/plugin-logger/register';
 import { setup, type ArrayString } from '@skyra/env-utilities';
