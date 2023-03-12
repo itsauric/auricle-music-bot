@@ -1,5 +1,4 @@
 import { Command } from '@sapphire/framework';
-import { s } from '@sapphire/shapeshift';
 import { useMasterPlayer } from 'discord-player';
 import type { GuildMember } from 'discord.js';
 
@@ -26,19 +25,25 @@ export class PlayCommand extends Command {
 		const player = useMasterPlayer();
 		const query = interaction.options.getString('query');
 		const results = await player!.search(query!);
-		const url = s.string.url();
 
-		try {
-			url.parse(query);
-			return interaction;
-		} catch (error) {
-			return interaction.respond(
-				results.tracks.slice(0, 5).map((t) => ({
-					name: t.title,
-					value: t.url
+		let tracks;
+		tracks = results!.tracks
+			.map((t) => ({
+				name: t.title,
+				value: t.url
+			}))
+			.slice(0, 5);
+
+		if (results.playlist) {
+			tracks = results!.tracks
+				.map(() => ({
+					name: `${results.playlist!.title} [playlist]`,
+					value: results.playlist!.url
 				}))
-			);
+				.slice(0, 1);
 		}
+
+		return interaction.respond(tracks);
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
@@ -77,9 +82,9 @@ export class PlayCommand extends Command {
 				}
 			});
 
-			await interaction.editReply({
+			return interaction.editReply({
 				content: `${this.container.client.dev.success} | Successfully enqueued${
-					res.track.playlist ? ` **multiple tracks** from: **${res.track.playlist.title}**` : `: **${res.track.title}**`
+					res.track.playlist ? ` **track(s)** from: **${res.track.playlist.title}**` : `: **${res.track.title}**`
 				}`
 			});
 		} catch (error: any) {
