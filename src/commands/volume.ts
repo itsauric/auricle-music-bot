@@ -1,5 +1,5 @@
 import { Command } from '@sapphire/framework';
-import { useQueue } from 'discord-player';
+import { useQueue, useTimeline } from 'discord-player';
 
 export class VolumeCommand extends Command {
 	public constructor(context: Command.Context, options: Command.Options) {
@@ -22,18 +22,19 @@ export class VolumeCommand extends Command {
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		const queue = useQueue(interaction.guild!.id);
+		const timeline = useTimeline(interaction.guild!.id)!;
 		const permissions = this.container.client.perms.voice(interaction, this.container.client);
 		const volume = interaction.options.getInteger('amount');
 
 		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am not in a voice channel`, ephemeral: true });
 		if (!queue.currentTrack)
 			return interaction.reply({ content: `${this.container.client.dev.error} | There is no track **currently** playing`, ephemeral: true });
-		if (!volume) return interaction.reply({ content: `🔊 | **Current** volume is **${queue.node.volume}%**` });
+		if (!volume) return interaction.reply({ content: `🔊 | **Current** volume is **${timeline.volume}%**` });
 		if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
 
-		queue.node.setVolume(volume!);
+		timeline.setVolume(volume!);
 		return interaction.reply({
-			content: `${this.container.client.dev.success} | I **changed** the volume to: **${queue.node.volume}%**`
+			content: `${this.container.client.dev.success} | I **changed** the volume to: **${timeline.volume}%**`
 		});
 	}
 }

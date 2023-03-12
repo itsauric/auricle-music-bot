@@ -1,5 +1,5 @@
 import { Command } from '@sapphire/framework';
-import { useQueue } from 'discord-player';
+import { useQueue, useTimeline } from 'discord-player';
 
 export class PauseCommand extends Command {
 	public constructor(context: Command.Context, options: Command.Options) {
@@ -19,6 +19,7 @@ export class PauseCommand extends Command {
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		const queue = useQueue(interaction.guild!.id);
+		const timeline = useTimeline(interaction.guild!.id)!;
 		const permissions = this.container.client.perms.voice(interaction, this.container.client);
 
 		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am **not** in a voice channel`, ephemeral: true });
@@ -26,8 +27,8 @@ export class PauseCommand extends Command {
 			return interaction.reply({ content: `${this.container.client.dev.error} | There is no track **currently** playing`, ephemeral: true });
 		if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
 
-		queue.node.setPaused(!queue.node.isPaused());
-		const state = queue.node.isPaused();
+		timeline.paused ? timeline.resume() : timeline.pause();
+		const state = timeline.paused;
 		return interaction.reply({ content: `${this.container.client.dev.success} | **Playback** has been **${state ? 'paused' : 'resumed'}**` });
 	}
 }
