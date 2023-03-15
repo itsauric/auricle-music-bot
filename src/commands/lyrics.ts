@@ -25,12 +25,16 @@ export class LyricsCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+		const { emojis } = this.container.client.utils;
 		const queue = useQueue(interaction.guild!.id);
 		const track = interaction.options.getString('track') || (queue?.currentTrack?.title as string);
 		const lyrics = await genius.search(track).catch(() => null);
 
 		if (!lyrics)
-			return interaction.reply({ content: `${this.container.client.dev.error} | There are **no** lyrics for this track`, ephemeral: true });
+			return interaction.reply({
+				content: `${emojis.error} | There are **no** lyrics for this track`,
+				ephemeral: true
+			});
 		const trimmedLyrics = lyrics.lyrics.substring(0, 1997);
 
 		const embed = new EmbedBuilder()

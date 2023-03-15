@@ -38,34 +38,36 @@ export class FiltersCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+		const { emojis, voice } = this.container.client.utils;
 		const queue = useQueue(interaction.guild!.id);
-		const permissions = this.container.client.perms.voice(interaction, this.container.client);
+		const permissions = voice(interaction);
 		const filter = interaction.options.getString('filter') as FiltersName | 'Off';
 
-		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am **not** in a voice channel`, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
 		if (!queue.currentTrack)
-			return interaction.reply({ content: `${this.container.client.dev.error} | There is no track **currently** playing`, ephemeral: true });
-		if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
+			return interaction.reply({
+				content: `${emojis.error} | There is no track **currently** playing`,
+				ephemeral: true
+			});
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
 
 		if (!queue.filters.ffmpeg)
 			return interaction.reply({
-				content: `${this.container.client.dev.error} | The FFmpeg filters are **not available** to be used in this queue`,
+				content: `${emojis.error} | The FFmpeg filters are **not available** to be used in this queue`,
 				ephemeral: true
 			});
 
 		if (filter === 'Off') {
 			await queue.filters.ffmpeg.setFilters(false);
 			return interaction.reply({
-				content: `${this.container.client.dev.success} | **Audio** filter has been **disabled**`
+				content: `${emojis.success} | **Audio** filter has been **disabled**`
 			});
 		}
 
 		await queue.filters.ffmpeg.toggle(filter.includes('bassboost') ? ['bassboost', 'normalizer'] : filter);
 
 		return interaction.reply({
-			content: `${this.container.client.dev.success} | **${filter}** filter has been **${
-				queue.filters.ffmpeg.isEnabled(filter) ? 'enabled' : 'disabled'
-			}**`
+			content: `${emojis.success} | **${filter}** filter has been **${queue.filters.ffmpeg.isEnabled(filter) ? 'enabled' : 'disabled'}**`
 		});
 	}
 }

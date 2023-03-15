@@ -20,14 +20,19 @@ export class DisconnectCommand extends Command {
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		if (interaction.member instanceof GuildMember) {
-			const permissions = this.container.client.perms.voice(interaction, this.container.client);
-			if (permissions.member()) return interaction.reply({ content: permissions.member(), ephemeral: true });
-			if (permissions.client()) return interaction.reply({ content: permissions.client(), ephemeral: true });
+			const { emojis, voice } = this.container.client.utils;
+			const permissions = voice(interaction);
+
+			if (permissions.member) return interaction.reply({ content: permissions.member, ephemeral: true });
+			if (permissions.client) return interaction.reply({ content: permissions.client, ephemeral: true });
 			const queue = useQueue(interaction.guild!.id);
 			const player = useMasterPlayer();
 
 			if (queue)
-				return interaction.reply({ content: `${this.container.client.dev.error} | I am **already** in a voice channel`, ephemeral: true });
+				return interaction.reply({
+					content: `${emojis.error} | I am **already** in a voice channel`,
+					ephemeral: true
+				});
 
 			const newQueue = player?.queues.create(interaction.guild!.id, {
 				metadata: {
@@ -42,7 +47,7 @@ export class DisconnectCommand extends Command {
 			});
 			await newQueue?.connect(interaction.member.voice.channel!.id);
 			return interaction.reply({
-				content: `${this.container.client.dev.success} | I have **successfully connected** to the voice channel`
+				content: `${emojis.success} | I have **successfully connected** to the voice channel`
 			});
 		}
 	}

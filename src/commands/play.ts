@@ -47,21 +47,20 @@ export class PlayCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+		const { emojis, voice } = this.container.client.utils;
 		const player = useMasterPlayer();
-		const member = interaction.member as GuildMember;
-		const permissions = this.container.client.perms.voice(interaction, this.container.client);
-		if (permissions.member()) return interaction.reply({ content: permissions.member(), ephemeral: true });
-		if (permissions.client()) return interaction.reply({ content: permissions.client(), ephemeral: true });
-
+		const permissions = voice(interaction);
 		const query = interaction.options.getString('query');
+		const member = interaction.member as GuildMember;
 
-		if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
+		if (permissions.member) return interaction.reply({ content: permissions.member, ephemeral: true });
+		if (permissions.client) return interaction.reply({ content: permissions.client, ephemeral: true });
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
 
 		const results = await player!.search(query!);
-
 		if (!results.hasTracks())
 			return interaction.reply({
-				content: `${this.container.client.dev.error} | **No** tracks were found for your query`,
+				content: `${emojis.error} | **No** tracks were found for your query`,
 				ephemeral: true
 			});
 
@@ -83,12 +82,12 @@ export class PlayCommand extends Command {
 			});
 
 			return interaction.editReply({
-				content: `${this.container.client.dev.success} | Successfully enqueued${
+				content: `${emojis.success} | Successfully enqueued${
 					res.track.playlist ? ` **track(s)** from: **${res.track.playlist.title}**` : `: **${res.track.title}**`
 				}`
 			});
 		} catch (error: any) {
-			await interaction.editReply({ content: `${this.container.client.dev.error} | An **error** has occurred` });
+			await interaction.editReply({ content: `${emojis.error} | An **error** has occurred` });
 			return console.log(error);
 		}
 	}

@@ -19,13 +19,14 @@ export class HistoryCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+		const { emojis } = this.container.client.utils;
 		const queue = useQueue(interaction.guild!.id);
 		const history = useHistory(interaction.guild!.id);
 
-		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am **not** in a voice channel`, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
 		if (!history?.tracks)
 			return interaction.reply({
-				content: `${this.container.client.dev.error} | There is **no** queue history to **display**`,
+				content: `${emojis.error} | There is **no** queue history to **display**`,
 				ephemeral: true
 			});
 

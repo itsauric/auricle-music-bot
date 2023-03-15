@@ -18,16 +18,17 @@ export class PreviousCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+		const { emojis, voice } = this.container.client.utils;
 		const queue = useQueue(interaction.guild!.id);
 		const history = useHistory(interaction.guild!.id);
-		const permissions = this.container.client.perms.voice(interaction, this.container.client);
+		const permissions = voice(interaction);
 
-		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am **not** in a voice channel`, ephemeral: true });
-		if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
 
 		if (!history?.previousTrack)
 			return interaction.reply({
-				content: `${this.container.client.dev.error} | There is **no** previous track in the **history**`,
+				content: `${emojis.error} | There is **no** previous track in the **history**`,
 				ephemeral: true
 			});
 

@@ -43,19 +43,24 @@ export class BiquadCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+		const { emojis, voice } = this.container.client.utils;
 		const queue = useQueue(interaction.guild!.id);
-		const permissions = this.container.client.perms.voice(interaction, this.container.client);
+		const permissions = voice(interaction);
+
 		const filter = interaction.options.getString('filter', true) as SupportedBiquadFilters;
 		const dB = interaction.options.getNumber('gain');
 
-		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am **not** in a voice channel`, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
 		if (!queue.currentTrack)
-			return interaction.reply({ content: `${this.container.client.dev.error} | There is no track **currently** playing`, ephemeral: true });
-		if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
+			return interaction.reply({
+				content: `${emojis.error} | There is no track **currently** playing`,
+				ephemeral: true
+			});
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
 
 		if (!queue.filters.biquad)
 			return interaction.reply({
-				content: `${this.container.client.dev.error} | The biquad filter is **not available** to be used in this queue`,
+				content: `${emojis.error} | The biquad filter is **not available** to be used in this queue`,
 				ephemeral: true
 			});
 
@@ -68,7 +73,7 @@ export class BiquadCommand extends Command {
 		}
 
 		return interaction.reply({
-			content: `${this.container.client.dev.success} | **Biquad filter** set to: \`${filter}\``
+			content: `${emojis.success} | **Biquad filter** set to: \`${filter}\``
 		});
 	}
 }

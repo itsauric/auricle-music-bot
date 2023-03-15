@@ -50,19 +50,27 @@ export class SkipToCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+		const { emojis, voice } = this.container.client.utils;
 		const queue = useQueue(interaction.guild!.id);
-		const permissions = this.container.client.perms.voice(interaction, this.container.client);
+		const permissions = voice(interaction);
 
-		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am **not** in a voice channel`, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
 		if (!queue.tracks)
-			return interaction.reply({ content: `${this.container.client.dev.error} | There are **no tracks** to **skip** to`, ephemeral: true });
-		if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
+			return interaction.reply({
+				content: `${emojis.error} | There are **no tracks** to **skip** to`,
+				ephemeral: true
+			});
+
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
 
 		const skip = interaction.options.getInteger('track')! - 1;
 		const trackResolvable = queue.tracks.at(skip!);
 
 		if (!trackResolvable)
-			return interaction.reply({ content: `${this.container.client.dev.error} | The **requested track** doesn't **exist**`, ephemeral: true });
+			return interaction.reply({
+				content: `${emojis.error} | The **requested track** doesn't **exist**`,
+				ephemeral: true
+			});
 
 		queue.node.skipTo(trackResolvable);
 		return interaction.reply({

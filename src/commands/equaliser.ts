@@ -30,18 +30,22 @@ export class EqualizerCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+		const { emojis, voice } = this.container.client.utils;
 		const queue = useQueue(interaction.guild!.id);
-		const permissions = this.container.client.perms.voice(interaction, this.container.client);
+		const permissions = voice(interaction);
 		const preset = interaction.options.getString('preset') as string;
 
-		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am **not** in a voice channel`, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
 		if (!queue.currentTrack)
-			return interaction.reply({ content: `${this.container.client.dev.error} | There is no track **currently** playing`, ephemeral: true });
-		if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
+			return interaction.reply({
+				content: `${emojis.error} | There is no track **currently** playing`,
+				ephemeral: true
+			});
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
 
 		if (!queue.filters.equalizer)
 			return interaction.reply({
-				content: `${this.container.client.dev.error} | The equaliser filter is **not available** to be used in this queue`,
+				content: `${emojis.error} | The equaliser filter is **not available** to be used in this queue`,
 				ephemeral: true
 			});
 
@@ -49,7 +53,7 @@ export class EqualizerCommand extends Command {
 		queue.filters.equalizer.enable();
 
 		return interaction.reply({
-			content: `${this.container.client.dev.success} | **Equaliser** filter has been set to: **\`${preset}\`**`
+			content: `${emojis.success} | **Equaliser** filter has been set to: **\`${preset}\`**`
 		});
 	}
 }

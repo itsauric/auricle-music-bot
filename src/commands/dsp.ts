@@ -30,18 +30,22 @@ export class PulsatorCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
+		const { emojis, voice } = this.container.client.utils;
 		const queue = useQueue(interaction.guild!.id);
-		const permissions = this.container.client.perms.voice(interaction, this.container.client);
+		const permissions = voice(interaction);
 		const filter = interaction.options.getString('filter') as PCMFilters;
 
-		if (!queue) return interaction.reply({ content: `${this.container.client.dev.error} | I am **not** in a voice channel`, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
 		if (!queue.currentTrack)
-			return interaction.reply({ content: `${this.container.client.dev.error} | There is no track **currently** playing`, ephemeral: true });
-		if (permissions.clientToMember()) return interaction.reply({ content: permissions.clientToMember(), ephemeral: true });
+			return interaction.reply({
+				content: `${emojis.error} | There is no track **currently** playing`,
+				ephemeral: true
+			});
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
 
 		if (!queue.filters.filters)
 			return interaction.reply({
-				content: `${this.container.client.dev.error} | The DSP filters are **not available** to be used in this queue`,
+				content: `${emojis.error} | The DSP filters are **not available** to be used in this queue`,
 				ephemeral: true
 			});
 
@@ -55,7 +59,7 @@ export class PulsatorCommand extends Command {
 		queue.filters.filters.setFilters(ff);
 
 		return interaction.reply({
-			content: `${this.container.client.dev.success} | **${filter}** filter has been **${ff.includes(filter) ? 'enabled' : 'disabled'}**`
+			content: `${emojis.success} | **${filter}** filter has been **${ff.includes(filter) ? 'enabled' : 'disabled'}**`
 		});
 	}
 }
