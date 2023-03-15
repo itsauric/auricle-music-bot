@@ -2,13 +2,11 @@ import { BucketScope, LogLevel, SapphireClient } from '@sapphire/framework';
 import { envParseArray } from '@skyra/env-utilities';
 import { Player } from 'discord-player';
 import { GatewayIntentBits } from 'discord.js';
-import Emojis from './emojis';
-import * as Permissions from './lib/perms';
+import * as Utils from './lib/utils';
 
 export class KarasuClient extends SapphireClient {
 	public player: Player;
-	public dev: typeof Emojis;
-	public perms: typeof Permissions;
+	public utils: typeof Utils;
 	public constructor() {
 		super({
 			disableMentionPrefix: true,
@@ -20,11 +18,10 @@ export class KarasuClient extends SapphireClient {
 				limit: 2
 			},
 			logger: {
-				level: LogLevel.Debug
+				level: LogLevel.Info
 			}
 		});
-		this.dev = Emojis;
-		this.perms = Permissions;
+		this.utils = Utils;
 		this.player = Player.singleton(this);
 	}
 }
@@ -32,7 +29,6 @@ export class KarasuClient extends SapphireClient {
 declare module 'discord.js' {
 	interface Client {
 		readonly player: Player;
-		readonly perms: typeof Permissions;
-		readonly dev: typeof Emojis;
+		readonly utils: typeof Utils;
 	}
 }

@@ -9,6 +9,6 @@ export class UserEvent extends Listener {
 	}
 
 	public run() {
-		console.log(`Logged in as ${this.container.client.user?.username}`);
+		this.container.client.logger.info(`Successfully logged in as: ${this.container.client.user?.username}`);
 	}
 }

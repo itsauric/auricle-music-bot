@@ -6,8 +6,7 @@ const client = new KarasuClient();
 const main = async () => {
 	try {
 		client.logger.info('Logging in...');
-		await client.login();
-		client.logger.info('Logged in!');
+		return client.login();
 	} catch (error) {
 		client.logger.fatal(error);
 		client.destroy();
