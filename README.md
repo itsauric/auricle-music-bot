@@ -1,6 +1,7 @@
 # Karasu
 
 This is a music bot created by using the [sapphire framework][sapphire] & [discord-player][discord-player] with this project being written in TypeScript.
+It has also been tested with [bun](https://bun.sh/) which is a new JavaScript runtime, although it works in this project there may be some issues as it is still in beta, alternatively you may use `yarn`.
 
 ## Features
 
@@ -10,12 +11,16 @@ This is a music bot created by using the [sapphire framework][sapphire] & [disco
 - Built-in cooldown system
 - Easy to configure and use
 
-
 ## Forking
 
-This repository may be frequently updated, so how can you keep up-to-date? You should either fork or clone this repository. In a terminal of your choice or any command line, whenever a new commit is made to this repo, you should run the `git pull` command in your forked/cloned version directory. This should automatically pull in any new changes made to `karasu-music-bot` and this should then update your version.
+This repository may be frequently updated, so how can you keep up-to-date? You should either fork or clone this repository. In a terminal of your choice or any command line, whenever a new commit is made to this repo, you should run the `git pull` command in your forked/cloned version directory. This should automatically pull in any new changes made to `karasu` and this should then update your version.
 
 ### Prerequisite
+
+```sh
+bun install
+bun run build
+```
 
 ```sh
 yarn install
@@ -32,7 +37,7 @@ This will automatically generate a slash command in the `src/commands` folder fr
 
 ### Hot Module Reloading
 
-It is advised to firstly build the dist folder and then use `yarn run dev`, this will enable [@sapphire/plugin-hmr][sapphire-hmr] and will actively reload modules when they are updated.
+It is advised to firstly build the dist folder using `bun run build` or `yarn run build` and then use `bun run karasu` or `yarn karasu`, this will enable [@sapphire/plugin-hmr][sapphire-hmr] and will actively reload modules when they are updated.
 
 ## License
 
