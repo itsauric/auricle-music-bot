@@ -1,24 +1,45 @@
 import type { ChatInputCommandSuccessPayload, Command, ContextMenuCommandSuccessPayload, MessageCommandSuccessPayload } from '@sapphire/framework';
 import { container } from '@sapphire/framework';
-import { cyan } from 'colorette';
-import type { APIUser } from 'discord-api-types/v9';
-import { Track, TrackResolvable, useQueue } from 'discord-player';
-import type { Guild, User } from 'discord.js';
+import { Guild, PermissionsBitField, User } from 'discord.js';
+import { getAuthorInfo, getCommandInfo, getGuildInfo, getShardInfo } from './getter';
 
-/**
- * Finds the track by query
- * @param track The query such as a number or string
- */
-export function findTrack(track: TrackResolvable, id) {
-	const queue = useQueue(id);
-	if (track instanceof Number) return queue?.tracks.at(track as number);
-	if (track instanceof Track) {
-		const trackPos = queue?.node.getTrackPosition(track);
-		return queue?.tracks.at(trackPos!);
-	}
+export function voice(interaction) {
+	const functions = {
+		get client() {
+			const resolved = new PermissionsBitField([
+				PermissionsBitField.Flags.Connect,
+				PermissionsBitField.Flags.Speak,
+				PermissionsBitField.Flags.ViewChannel
+			]);
+			const missingPerms = interaction.member.voice.channel.permissionsFor(interaction.guild!.members.me!).missing(resolved);
 
-	return false;
+			if (missingPerms.length)
+				return `${emojis.error} | I am **missing** the required voice channel permissions: \`${missingPerms.join(', ')}\``;
+		},
+
+		get member() {
+			if (!interaction.member.voice.channel) return `${emojis.error} | You **need** to be in a voice channel.`;
+		},
+
+		get clientToMember() {
+			if (
+				interaction.guild?.members.me?.voice.channelId &&
+				interaction.member.voice.channelId !== interaction.guild?.members.me?.voice.channelId
+			)
+				return `${emojis.error} | You are **not** in my voice channel`;
+		}
+	};
+	return functions;
 }
+
+export const emojis = {
+	get success() {
+		return '<:success:1073378190321516635>';
+	},
+	get error() {
+		return '<:error:1073378188048211999>';
+	}
+};
 
 export function logSuccessCommand(payload: ContextMenuCommandSuccessPayload | ChatInputCommandSuccessPayload | MessageCommandSuccessPayload): void {
 	let successLoggerData: ReturnType<typeof getSuccessLoggerData>;
@@ -39,21 +60,4 @@ export function getSuccessLoggerData(guild: Guild | null, user: User, command: C
 	const sentAt = getGuildInfo(guild);
 
 	return { shard, commandName, author, sentAt };
-}
-
-function getShardInfo(id: number) {
-	return `[${cyan(id.toString())}]`;
-}
-
-function getCommandInfo(command: Command) {
-	return cyan(command.name);
-}
-
-function getAuthorInfo(author: User | APIUser) {
-	return `${author.username}[${cyan(author.id)}]`;
-}
-
-function getGuildInfo(guild: Guild | null) {
-	if (guild === null) return 'Direct Messages';
-	return `${guild.name}[${cyan(guild.id)}]`;
 }
