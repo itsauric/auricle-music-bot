@@ -32,14 +32,19 @@ export function voice(interaction) {
 	return functions;
 }
 
-export const emojis = {
-	get success() {
-		return '<:success:1073378190321516635>';
-	},
-	get error() {
-		return '<:error:1073378188048211999>';
-	}
-};
+export function options(interaction) {
+	return {
+		metadata: {
+			channel: interaction.channel,
+			client: interaction.guild?.members.me
+		},
+		leaveOnEmptyCooldown: 300000,
+		leaveOnEmpty: true,
+		leaveOnEnd: false,
+		bufferingTimeout: 0,
+		selfDeaf: true
+	};
+}
 
 export function logSuccessCommand(payload: ContextMenuCommandSuccessPayload | ChatInputCommandSuccessPayload | MessageCommandSuccessPayload): void {
 	let successLoggerData: ReturnType<typeof getSuccessLoggerData>;
@@ -61,3 +66,12 @@ export function getSuccessLoggerData(guild: Guild | null, user: User, command: C
 
 	return { shard, commandName, author, sentAt };
 }
+
+export const emojis = {
+	get success() {
+		return '<:success:1073378190321516635>';
+	},
+	get error() {
+		return '<:error:1073378188048211999>';
+	}
+};

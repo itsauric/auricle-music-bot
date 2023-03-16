@@ -20,7 +20,7 @@ export class DisconnectCommand extends Command {
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		if (interaction.member instanceof GuildMember) {
-			const { emojis, voice } = this.container.client.utils;
+			const { emojis, voice, options } = this.container.client.utils;
 			const permissions = voice(interaction);
 
 			if (permissions.member) return interaction.reply({ content: permissions.member, ephemeral: true });
@@ -34,17 +34,7 @@ export class DisconnectCommand extends Command {
 					ephemeral: true
 				});
 
-			const newQueue = player?.queues.create(interaction.guild!.id, {
-				metadata: {
-					channel: interaction.channel,
-					client: interaction.guild?.members.me
-				},
-				leaveOnEmptyCooldown: 300000,
-				leaveOnEmpty: true,
-				leaveOnEnd: false,
-				bufferingTimeout: 0,
-				selfDeaf: true
-			});
+			const newQueue = player?.queues.create(interaction.guild!.id, options(interaction));
 			await newQueue?.connect(interaction.member.voice.channel!.id);
 			return interaction.reply({
 				content: `${emojis.success} | I have **successfully connected** to the voice channel`

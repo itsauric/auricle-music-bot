@@ -22,12 +22,12 @@ export class PlayCommand extends Command {
 	}
 
 	public override async autocompleteRun(interaction: Command.AutocompleteInteraction) {
-		const player = useMasterPlayer();
+		const player = useMasterPlayer()!;
 		const query = interaction.options.getString('query');
-		const results = await player!.search(query!);
+		const results = await player.search(query!);
 
 		let tracks;
-		tracks = results!.tracks
+		tracks = results.tracks
 			.map((t) => ({
 				name: t.title,
 				value: t.url
@@ -35,7 +35,7 @@ export class PlayCommand extends Command {
 			.slice(0, 5);
 
 		if (results.playlist) {
-			tracks = results!.tracks
+			tracks = results.tracks
 				.map(() => ({
 					name: `${results.playlist!.title} [playlist]`,
 					value: results.playlist!.url
@@ -47,17 +47,17 @@ export class PlayCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		const { emojis, voice } = this.container.client.utils;
-		const player = useMasterPlayer();
+		const { emojis, voice, options } = this.container.client.utils;
+		const player = useMasterPlayer()!;
 		const permissions = voice(interaction);
-		const query = interaction.options.getString('query');
+		const query = interaction.options.getString('query')!;
 		const member = interaction.member as GuildMember;
 
 		if (permissions.member) return interaction.reply({ content: permissions.member, ephemeral: true });
 		if (permissions.client) return interaction.reply({ content: permissions.client, ephemeral: true });
 		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
 
-		const results = await player!.search(query!);
+		const results = await player.search(query);
 		if (!results.hasTracks())
 			return interaction.reply({
 				content: `${emojis.error} | **No** tracks were found for your query`,
@@ -67,20 +67,7 @@ export class PlayCommand extends Command {
 		await interaction.deferReply();
 
 		try {
-			const res = await player!.play(member.voice.channel!.id, results, {
-				nodeOptions: {
-					metadata: {
-						channel: interaction.channel,
-						client: interaction.guild?.members.me
-					},
-					leaveOnEmptyCooldown: 300000,
-					leaveOnEmpty: true,
-					leaveOnEnd: false,
-					bufferingTimeout: 0,
-					selfDeaf: true
-				}
-			});
-
+			const res = await player.play(member.voice.channel!.id, results, { nodeOptions: options(interaction) });
 			return interaction.editReply({
 				content: `${emojis.success} | Successfully enqueued${
 					res.track.playlist ? ` **track(s)** from: **${res.track.playlist.title}**` : `: **${res.track.title}**`
