@@ -1,47 +1,81 @@
 # Karasu
 
 This is a music bot created by using the [sapphire framework][sapphire] & [discord-player][discord-player] with this project being written in TypeScript.
-It has also been tested with [bun](https://bun.sh/) which is a new JavaScript runtime, although it works in this project there may be some issues as it is still in beta, alternatively you may use `yarn`.
 
-## Features
+## Prerequisites
 
-- Music system with slash commands
-- Hot Module Reloading
-- ESlint configuration
-- Built-in cooldown system
-- Easy to configure and use
+Before you get started, you will need the following:
 
-## Forking
-
-This repository may be frequently updated, so how can you keep up-to-date? You should either fork or clone this repository. In a terminal of your choice or any command line, whenever a new commit is made to this repo, you should run the `git pull` command in your forked/cloned version directory. This should automatically pull in any new changes made to `karasu` and this should then update your version.
-
-### Prerequisite
-
-```sh
-bun install
-bun run build
-```
+- Node.js (v18 or higher)
+- Yarn package manager (or a package manager of your choice)
 
 ```sh
 yarn install
-yarn build
+yarn run build
 ```
 
-### How can I generate a command?
+## Features
+
+- A music system built with **slash** commands
+- Hot module reloading to **never** have to restart
+- Built-in **cooldown** system
+- Easy to **configure** and **use**
+
+
+## Keeping your Forked Repository Up to Date
+
+###### You may follow these quick steps:
+
+##### 1. Clone your forked repository to your local machine:
+
+```sql
+git clone git@github.com:<your_username>/<repository_name>.git
+```
+
+##### 2. Add the original repository as a remote upstream:
+
+```sql
+git remote add upstream git@github.com:<original_username>/<repository_name>.git
+```
+
+##### 3. Fetch the latest changes from the upstream repository:
+
+```sql
+git fetch upstream
+```
+
+##### 4. Merge the changes from the upstream repository into your local repository:
+
+###### You may need to resolve merge conflicts if any changes in your forked repository conflict with the changes in the upstream repository.
+
+```sql
+git merge upstream/main
+```
+
+##### 5. Push the updated code to your forked repository on GitHub:
+
+```sql
+git push origin main
+```
+
+## How can I generate a command?
+
+###### Before hand you should have the `sapphire` cli globally or installed in your `devDependencies`
 
 ```sh
 sapphire generate command <name>
 ```
 
-This will automatically generate a slash command in the `src/commands` folder from the template in the `templates` folder
+##### This will automatically generate a slash command in the `src/commands` folder from the template in the `templates` folder
 
-### Hot Module Reloading
+## Hot Module Reloading
 
-It is advised to firstly build the dist folder using `bun run build` or `yarn run build` and then use `bun run karasu` or `yarn karasu`, this will enable [@sapphire/plugin-hmr][sapphire-hmr] and will actively reload modules when they are updated.
+It is advised to firstly build the dist folder using `yarn run build` and then use `yarn run karasu`, this will enable [@sapphire/plugin-hmr][sapphire-hmr] and will actively reload modules when they are updated.
 
-## License
+# License
 
-Dedicated to the public domain via the [Unlicense], courtesy of the Sapphire Community and its contributors - [this license is generated from the Sapphire CLI]
+Dedicated to the public domain via the **Unlicense**
+###### The license can be found in the root named as `LICENSE`
 
 [sapphire]: https://github.com/sapphiredev/framework
 [sapphire-hmr]: https://www.npmjs.com/package/@sapphire/plugin-hmr
