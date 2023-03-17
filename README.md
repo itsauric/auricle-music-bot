@@ -24,39 +24,9 @@ yarn run build
 
 ## Keeping your Forked Repository Up to Date
 
-###### You may follow these quick steps:
+###### This is from a [GitHub Blog][github] and is a straightforward example for updating your forked repository
 
-##### 1. Clone your forked repository to your local machine:
-
-```sql
-git clone git@github.com:<your_username>/<repository_name>.git
-```
-
-##### 2. Add the original repository as a remote upstream:
-
-```sql
-git remote add upstream git@github.com:<original_username>/<repository_name>.git
-```
-
-##### 3. Fetch the latest changes from the upstream repository:
-
-```sql
-git fetch upstream
-```
-
-##### 4. Merge the changes from the upstream repository into your local repository:
-
-###### You may need to resolve merge conflicts if any changes in your forked repository conflict with the changes in the upstream repository.
-
-```sql
-git merge upstream/main
-```
-
-##### 5. Push the updated code to your forked repository on GitHub:
-
-```sql
-git push origin main
-```
+<kbd>![update example](https://i0.wp.com/user-images.githubusercontent.com/7900087/117183982-10df5d80-ad8d-11eb-9570-0a95bc1bf6bb.gif?ssl=1)</kbd>
 
 ## How can I generate a command?
 
@@ -77,6 +47,7 @@ It is advised to firstly build the dist folder using `yarn run build` and then u
 Dedicated to the public domain via the **Unlicense**
 ###### The license can be found in the root named as `LICENSE`
 
+[github]: https://github.blog/changelog/2021-05-06-sync-an-out-of-date-branch-of-a-fork-from-the-web/
 [sapphire]: https://github.com/sapphiredev/framework
 [sapphire-hmr]: https://www.npmjs.com/package/@sapphire/plugin-hmr
 [discord-player]: https://github.com/Androz2091/discord-player/tree/develop
