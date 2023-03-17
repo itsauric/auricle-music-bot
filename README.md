@@ -26,7 +26,7 @@ yarn run build
 
 ###### This is from a [GitHub Blog][github] and is a straightforward example for updating your forked repository
 
-<kbd>![update example](https://i0.wp.com/user-images.githubusercontent.com/7900087/117183982-10df5d80-ad8d-11eb-9570-0a95bc1bf6bb.gif?ssl=1)</kbd>
+![update example](https://i0.wp.com/user-images.githubusercontent.com/7900087/117183982-10df5d80-ad8d-11eb-9570-0a95bc1bf6bb.gif?ssl=1)
 
 ## How can I generate a command?
 
