@@ -3,13 +3,12 @@
 	"compilerOptions": {
 		"rootDir": "src",
 		"outDir": "dist",
-		"skipLibCheck": true,
-		"noImplicitAny": false,
-		"noImplicitReturns": false,
+		"baseUrl": "src",
+		"tsBuildInfoFile": "dist/.tsbuildinfo",
 		"paths": {
 			"#lib/*": ["./lib/*"]
-		}
+		},
+		"noImplicitReturns": false
 	},
 	"include": ["src"]
 }
- 
