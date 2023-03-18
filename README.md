@@ -42,7 +42,7 @@ It is advised to firstly build the dist folder using `yarn run build` and then u
 
 # License
 
-Dedicated to the public domain via the **Unlicense**
+This project is under the **MIT** license
 ###### The license can be found in the root named as `LICENSE`
 
 [github]: https://github.blog/changelog/2021-05-06-sync-an-out-of-date-branch-of-a-fork-from-the-web/

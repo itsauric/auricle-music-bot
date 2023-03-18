@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "author": "username",
-  "license": "UNLICENSE",
+  "license": "MIT",
   "dependencies": {
     "@discord-player/equalizer": "^0.2.1",
     "@discord-player/extractor": "^4.1.2",
