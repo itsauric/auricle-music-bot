@@ -1,5 +1,6 @@
 import { container, Listener } from '@sapphire/framework';
-import { PermissionsBitField } from 'discord.js';
+import type { GuildQueue } from 'discord-player';
+import type { GuildTextBasedChannel } from 'discord.js';
 
 export class PlayerEvent extends Listener {
 	public constructor(context: Listener.Context, options: Listener.Options) {
@@ -10,12 +11,12 @@ export class PlayerEvent extends Listener {
 		});
 	}
 
-	public run(queue) {
-		const resolved = new PermissionsBitField([PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel]);
-		const missingPerms = queue.metadata.channel.permissionsFor(queue.metadata.client).missing(resolved);
-		if (missingPerms.length) return;
+	public run(queue: GuildQueue<{ channel: GuildTextBasedChannel }>) {
+		const { voice } = container.client.utils;
+		const permissions = voice(queue.metadata.channel);
+		if (permissions.events) return;
 
-		queue.metadata.channel
+		return queue.metadata.channel
 			.send('I left the channel after **5 minutes** due to **channel inactivity**')
 			.then((m: { delete: () => void }) => setTimeout(() => m.delete(), 15000));
 	}

@@ -1,10 +1,17 @@
 import type { ChatInputCommandSuccessPayload, Command, ContextMenuCommandSuccessPayload, MessageCommandSuccessPayload } from '@sapphire/framework';
 import { container } from '@sapphire/framework';
-import { Guild, PermissionsBitField, User } from 'discord.js';
+import { GuildQueue, Track, TrackResolvable } from 'discord-player';
+import { Guild, Interaction, PermissionsBitField, User } from 'discord.js';
 import { getAuthorInfo, getCommandInfo, getGuildInfo, getShardInfo } from './getter';
 
+// @ts-ignore Interaction will be provided
 export function voice(interaction) {
 	const functions = {
+		get events() {
+			const resolved = new PermissionsBitField([PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel]);
+			const missingPerms = interaction.permissionsFor(interaction.guild!.members.me!).missing(resolved);
+			return missingPerms.length;
+		},
 		get client() {
 			const resolved = new PermissionsBitField([
 				PermissionsBitField.Flags.Connect,
@@ -16,11 +23,9 @@ export function voice(interaction) {
 			if (missingPerms.length)
 				return `${emojis.error} | I am **missing** the required voice channel permissions: \`${missingPerms.join(', ')}\``;
 		},
-
 		get member() {
 			if (!interaction.member.voice.channel) return `${emojis.error} | You **need** to be in a voice channel.`;
 		},
-
 		get clientToMember() {
 			if (
 				interaction.guild?.members.me?.voice.channelId &&
@@ -32,7 +37,37 @@ export function voice(interaction) {
 	return functions;
 }
 
-export function options(interaction) {
+export function tracks(queue: GuildQueue, trackResolvable: TrackResolvable) {
+	const functions = {
+		get possible() {
+			const result =
+				typeof trackResolvable === 'string'
+					? this.string
+					: typeof trackResolvable === 'number'
+					? this.number
+					: trackResolvable instanceof Track
+					? this.track
+					: false;
+			return result;
+		},
+		get string() {
+			const track = trackResolvable as string;
+			const number = queue.node.getTrackPosition(track);
+			return queue.tracks.at(number);
+		},
+		get number() {
+			return queue.tracks.at(trackResolvable as number);
+		},
+		get track() {
+			const track = trackResolvable as Track;
+			const number = queue.node.getTrackPosition(track);
+			return queue.tracks.at(number);
+		}
+	};
+	return functions;
+}
+
+export function options(interaction: Interaction) {
 	return {
 		metadata: {
 			channel: interaction.channel,

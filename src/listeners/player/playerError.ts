@@ -1,5 +1,6 @@
 import { container, Listener } from '@sapphire/framework';
-import { PermissionsBitField } from 'discord.js';
+import type { GuildQueue, Track } from 'discord-player';
+import type { GuildTextBasedChannel } from 'discord.js';
 
 export class PlayerEvent extends Listener {
 	public constructor(context: Listener.Context, options: Listener.Options) {
@@ -10,15 +11,14 @@ export class PlayerEvent extends Listener {
 		});
 	}
 
-	public run(queue, error, track) {
-		const resolved = new PermissionsBitField([PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel]);
-		const missingPerms = queue.metadata.channel.permissionsFor(queue.metadata.client).missing(resolved);
-		if (missingPerms.length) return;
+	public run(queue: GuildQueue<{ channel: GuildTextBasedChannel }>, error: Error, track: Track) {
+		const { emojis, voice } = container.client.utils;
+		const permissions = voice(queue.metadata.channel);
+		if (permissions.events) return;
 
 		console.log(error);
-
 		return queue.metadata.channel
-			.send(`${queue.metadata.client.dev.error} | There was an error with **${track.title}**`)
+			.send(`${emojis.error} | There was an error with **${track.title}**`)
 			.then((m: { delete: () => void }) => setTimeout(() => m.delete(), 5000));
 	}
 }

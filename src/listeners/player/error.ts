@@ -1,4 +1,5 @@
 import { container, Listener } from '@sapphire/framework';
+import type { GuildQueue } from 'discord-player';
 
 export class PlayerEvent extends Listener {
 	public constructor(context: Listener.Context, options: Listener.Options) {
@@ -9,7 +10,7 @@ export class PlayerEvent extends Listener {
 		});
 	}
 
-	public run(queue, error) {
+	public run(queue: GuildQueue, error: Error) {
 		console.log(`[${queue.guild.name}] Error emitted from the queue: ${error.message}`);
 	}
 }
