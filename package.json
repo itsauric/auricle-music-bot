@@ -17,6 +17,7 @@
     "@sapphire/plugin-logger": "^3.0.1",
     "@skyra/env-utilities": "^1.1.0",
     "colorette": "^2.0.19",
+    "discord-api-types": "^0.37.36",
     "discord-player": "^6.1.1",
     "discord.js": "^14.8.0",
     "ytdl-core": "^4.11.2"
@@ -34,5 +35,6 @@
     "watch": "swc src -d dist -w",
     "start": "node ./dist/index.js",
     "karasu": "run-p watch start"
-  }
+  },
+  "packageManager": "yarn@3.5.0"
 }

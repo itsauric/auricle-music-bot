@@ -1,28 +1,15 @@
 # Ignore a blackhole and the folder for development
 node_modules/
-.vs/
-.idea/
-*.iml
+dist/
 
 # Yarn files
+.pnp.*
 .yarn/*
-!.yarn/cache
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-
-# Other
-.DS_Store
-dist/
-
-# Ignore the config file (contains sensitive information such as tokens)
-config.ts
-
-# Ignore heapsnapshot and log files
-*.heapsnapshot
-*.log
 
 # Environment variables
 .env
