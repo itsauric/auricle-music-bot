@@ -17,7 +17,7 @@ export class PlayerEvent extends Listener {
 		if (permissions.events) return;
 
 		return queue.metadata.channel
-			.send(`▶ | Now playing: **${track.title || 'Unknown Title'}**`)
+			.send(`💿 | Now playing: **${track.title || 'Unknown Title'}**`)
 			.then((m: { delete: () => void }) => setTimeout(() => m.delete(), 5000));
 	}
 }
