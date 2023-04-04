@@ -1,16 +1,45 @@
 import type { ChatInputCommandSuccessPayload, Command, ContextMenuCommandSuccessPayload, MessageCommandSuccessPayload } from '@sapphire/framework';
 import { container } from '@sapphire/framework';
 import { GuildQueue, Track, TrackResolvable } from 'discord-player';
-import { Guild, Interaction, PermissionsBitField, User } from 'discord.js';
+import { Guild, GuildMember, GuildTextBasedChannel, Interaction, PermissionsBitField, User } from 'discord.js';
 import { getAuthorInfo, getCommandInfo, getGuildInfo, getShardInfo } from './getter';
 
-// @ts-ignore Interaction will be provided
-export function voice(interaction) {
-	const functions = {
-		get events() {
-			const resolved = new PermissionsBitField([PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel]);
-			const missingPerms = interaction.permissionsFor(interaction.guild!.members.me!).missing(resolved);
-			return missingPerms.length;
+interface VoiceResult1 {
+  client: string | undefined;
+  member: string | undefined;
+  clientToMember: string | undefined;
+}
+
+interface VoiceResult2 {
+  events: number;
+}
+
+function isGuildTextBasedChannel(
+  interaction: Command.ChatInputCommandInteraction | GuildTextBasedChannel
+): interaction is GuildTextBasedChannel {
+  if ('applicationId' in interaction) return false;
+  return true;
+}
+export function voice(
+  interaction: Command.ChatInputCommandInteraction
+): VoiceResult1;
+export function voice(interaction: GuildTextBasedChannel): VoiceResult2;
+
+export function voice(interaction: Command.ChatInputCommandInteraction | GuildTextBasedChannel) {
+	if (isGuildTextBasedChannel(interaction)) {
+		return {
+			get events() {
+				const resolved = new PermissionsBitField([PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel]);
+				const missingPerms = interaction.permissionsFor(interaction.guild!.members.me!).missing(resolved);
+				return missingPerms.length;
+			},
+		};
+	}
+
+	const interactionMember = interaction.member as GuildMember;
+	return {
+		get member() {
+			if (!interactionMember.voice.channel) return `${emojis.error} | You **need** to be in a voice channel.`;
 		},
 		get client() {
 			const resolved = new PermissionsBitField([
@@ -18,23 +47,19 @@ export function voice(interaction) {
 				PermissionsBitField.Flags.Speak,
 				PermissionsBitField.Flags.ViewChannel
 			]);
-			const missingPerms = interaction.member.voice.channel.permissionsFor(interaction.guild!.members.me!).missing(resolved);
+			const missingPerms = interactionMember.voice.channel!.permissionsFor(interaction.guild!.members.me!).missing(resolved);
 
 			if (missingPerms.length)
 				return `${emojis.error} | I am **missing** the required voice channel permissions: \`${missingPerms.join(', ')}\``;
 		},
-		get member() {
-			if (!interaction.member.voice.channel) return `${emojis.error} | You **need** to be in a voice channel.`;
-		},
 		get clientToMember() {
 			if (
 				interaction.guild?.members.me?.voice.channelId &&
-				interaction.member.voice.channelId !== interaction.guild?.members.me?.voice.channelId
+				interactionMember.voice.channelId !== interaction.guild?.members.me?.voice.channelId
 			)
 				return `${emojis.error} | You are **not** in my voice channel`;
 		}
 	};
-	return functions;
 }
 
 export function tracks(queue: GuildQueue, trackResolvable: TrackResolvable) {
