@@ -5,24 +5,20 @@ import { Guild, GuildMember, GuildTextBasedChannel, Interaction, PermissionsBitF
 import { getAuthorInfo, getCommandInfo, getGuildInfo, getShardInfo } from './getter';
 
 interface VoiceResult1 {
-  client: string | undefined;
-  member: string | undefined;
-  clientToMember: string | undefined;
+	client: string | undefined;
+	member: string | undefined;
+	clientToMember: string | undefined;
 }
 
 interface VoiceResult2 {
-  events: number;
+	events: number;
 }
 
-function isGuildTextBasedChannel(
-  interaction: Command.ChatInputCommandInteraction | GuildTextBasedChannel
-): interaction is GuildTextBasedChannel {
-  if ('applicationId' in interaction) return false;
-  return true;
+function isGuildTextBasedChannel(interaction: Command.ChatInputCommandInteraction | GuildTextBasedChannel): interaction is GuildTextBasedChannel {
+	if ('applicationId' in interaction) return false;
+	return true;
 }
-export function voice(
-  interaction: Command.ChatInputCommandInteraction
-): VoiceResult1;
+export function voice(interaction: Command.ChatInputCommandInteraction): VoiceResult1;
 export function voice(interaction: GuildTextBasedChannel): VoiceResult2;
 
 export function voice(interaction: Command.ChatInputCommandInteraction | GuildTextBasedChannel) {
@@ -32,7 +28,7 @@ export function voice(interaction: Command.ChatInputCommandInteraction | GuildTe
 				const resolved = new PermissionsBitField([PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel]);
 				const missingPerms = interaction.permissionsFor(interaction.guild!.members.me!).missing(resolved);
 				return missingPerms.length;
-			},
+			}
 		};
 	}
 
@@ -60,36 +56,6 @@ export function voice(interaction: Command.ChatInputCommandInteraction | GuildTe
 				return `${emojis.error} | You are **not** in my voice channel`;
 		}
 	};
-}
-
-export function tracks(queue: GuildQueue, trackResolvable: TrackResolvable) {
-	const functions = {
-		get possible() {
-			const result =
-				typeof trackResolvable === 'string'
-					? this.string
-					: typeof trackResolvable === 'number'
-					? this.number
-					: trackResolvable instanceof Track
-					? this.track
-					: false;
-			return result;
-		},
-		get string() {
-			const track = trackResolvable as string;
-			const number = queue.node.getTrackPosition(track);
-			return queue.tracks.at(number);
-		},
-		get number() {
-			return queue.tracks.at(trackResolvable as number);
-		},
-		get track() {
-			const track = trackResolvable as Track;
-			const number = queue.node.getTrackPosition(track);
-			return queue.tracks.at(number);
-		}
-	};
-	return functions;
 }
 
 export function options(interaction: Interaction) {

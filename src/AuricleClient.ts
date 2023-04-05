@@ -4,7 +4,7 @@ import { Player } from 'discord-player';
 import { GatewayIntentBits } from 'discord.js';
 import * as Utils from './lib/utils';
 
-export class KarasuClient extends SapphireClient {
+export class AuricleClient extends SapphireClient {
 	public player: Player;
 	public utils: typeof Utils;
 	public constructor() {

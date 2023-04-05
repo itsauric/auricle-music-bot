@@ -1,4 +1,4 @@
-# Karasu
+# Auricle
 
 This is a music bot created by using the [sapphire framework][sapphire] & [discord-player][discord-player] with this project being written in TypeScript.
 
@@ -38,7 +38,7 @@ sapphire generate command <name>
 
 ## Hot Module Reloading
 
-It is advised to firstly build the dist folder using `yarn run build` and then use `yarn run karasu`, this will enable [@sapphire/plugin-hmr][sapphire-hmr] and will actively reload modules when they are updated.
+It is advised to firstly build the dist folder using `yarn run build` and then use `yarn run auricle`, this will enable [@sapphire/plugin-hmr][sapphire-hmr] and will actively reload modules when they are updated.
 
 # License
 

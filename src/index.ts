@@ -1,7 +1,7 @@
-import { KarasuClient } from './KarasuClient';
+import { AuricleClient } from './AuricleClient';
 import './lib/setup';
 
-const client = new KarasuClient();
+const client = new AuricleClient();
 
 const main = async () => {
 	try {

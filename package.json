@@ -1,5 +1,5 @@
 {
-  "name": "karasu",
+  "name": "auricle",
   "version": "1.0.0",
   "main": "dist/index.js",
   "author": "username",
@@ -34,7 +34,7 @@
     "build": "swc src -d dist",
     "watch": "swc src -d dist -w",
     "start": "node ./dist/index.js",
-    "karasu": "run-p watch start"
+    "auricle": "run-p watch start"
   },
   "packageManager": "yarn@3.5.0"
 }
