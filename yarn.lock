@@ -728,8 +728,8 @@ __metadata:
     discord-player: ^6.1.1
     discord.js: ^14.9.0
     npm-run-all: ^4.1.5
+    play-dl: ^1.9.6
     typescript: ^4.9.5
-    ytdl-core: ^4.11.3
   languageName: unknown
   linkType: soft
 
@@ -2311,7 +2311,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"m3u8stream@npm:^0.8.4, m3u8stream@npm:^0.8.6":
+"m3u8stream@npm:^0.8.4":
   version: 0.8.6
   resolution: "m3u8stream@npm:0.8.6"
   dependencies:
@@ -2918,6 +2918,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"play-audio@npm:^0.5.2":
+  version: 0.5.2
+  resolution: "play-audio@npm:0.5.2"
+  checksum: 5445175ba5d1574ea7d0a8bafcd104f8fb2a4f3123624354e257afef7c43d0ca449ea0384f36c4ac404dd5bc321d3514c012f43914f4408ef6b9e12e5e6cdad5
+  languageName: node
+  linkType: hard
+
+"play-dl@npm:^1.9.6":
+  version: 1.9.6
+  resolution: "play-dl@npm:1.9.6"
+  dependencies:
+    play-audio: ^0.5.2
+  checksum: 4322244db6bb236f42d6819c87e29a8cf09946a9fdb8aed598e3c6f42c6371fd3f02fd8e1fd94909a1277428db820f48611e06950f16adec005e65ef0ef9e1f4
+  languageName: node
+  linkType: hard
+
 "prism-media@npm:^1.3.5":
   version: 1.3.5
   resolution: "prism-media@npm:1.3.5"
@@ -3155,7 +3171,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sax@npm:^1.1.3, sax@npm:^1.2.4":
+"sax@npm:^1.2.4":
   version: 1.2.4
   resolution: "sax@npm:1.2.4"
   checksum: d3df7d32b897a2c2f28e941f732c71ba90e27c24f62ee918bd4d9a8cfb3553f2f81e5493c7f0be94a11c1911b643a9108f231dd6f60df3fa9586b5d2e3e9e1fe
@@ -3821,16 +3837,5 @@ __metadata:
   version: 4.3.4
   resolution: "youtube-sr@npm:4.3.4"
   checksum: e097f2a82ddc51a580e7b8556aba83968ee580ad29a8d035cbfdc497c4a6f227b3e3ef0bf4648c6edaf25aed18b872a0fad8fda0554d270129f7c5e60e4a01ef
-  languageName: node
-  linkType: hard
-
-"ytdl-core@npm:^4.11.3":
-  version: 4.11.3
-  resolution: "ytdl-core@npm:4.11.3"
-  dependencies:
-    m3u8stream: ^0.8.6
-    miniget: ^4.2.2
-    sax: ^1.1.3
-  checksum: 433137a17b8727cfaf674e237d753babb13764d04922b490ee4c5a03b711261fc22b559adc39a2dc4856886c120d8730d2992f922b5e818375ea9d87866c5255
   languageName: node
   linkType: hard
