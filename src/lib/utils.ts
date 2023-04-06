@@ -1,6 +1,5 @@
 import type { ChatInputCommandSuccessPayload, Command, ContextMenuCommandSuccessPayload, MessageCommandSuccessPayload } from '@sapphire/framework';
 import { container } from '@sapphire/framework';
-import { GuildQueue, Track, TrackResolvable } from 'discord-player';
 import { Guild, GuildMember, GuildTextBasedChannel, Interaction, PermissionsBitField, User } from 'discord.js';
 import { getAuthorInfo, getCommandInfo, getGuildInfo, getShardInfo } from './getter';
 
