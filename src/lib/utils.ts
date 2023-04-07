@@ -1,7 +1,7 @@
 import type { ChatInputCommandSuccessPayload, Command, ContextMenuCommandSuccessPayload, MessageCommandSuccessPayload } from '@sapphire/framework';
 import { container } from '@sapphire/framework';
+import { cyan } from 'colorette';
 import { Guild, GuildMember, GuildTextBasedChannel, Interaction, PermissionsBitField, User } from 'discord.js';
-import { getAuthorInfo, getCommandInfo, getGuildInfo, getShardInfo } from './getter';
 
 interface VoiceResult1 {
 	client: string | undefined;
@@ -71,6 +71,15 @@ export function options(interaction: Interaction) {
 	};
 }
 
+export const emojis = {
+	get success() {
+		return '<:success:1073378190321516635>';
+	},
+	get error() {
+		return '<:error:1073378188048211999>';
+	}
+};
+
 export function logSuccessCommand(payload: ContextMenuCommandSuccessPayload | ChatInputCommandSuccessPayload | MessageCommandSuccessPayload): void {
 	let successLoggerData: ReturnType<typeof getSuccessLoggerData>;
 
@@ -83,20 +92,11 @@ export function logSuccessCommand(payload: ContextMenuCommandSuccessPayload | Ch
 	container.logger.debug(`${successLoggerData.shard} - ${successLoggerData.commandName} ${successLoggerData.author} ${successLoggerData.sentAt}`);
 }
 
-export function getSuccessLoggerData(guild: Guild | null, user: User, command: Command) {
-	const shard = getShardInfo(guild?.shardId ?? 0);
-	const commandName = getCommandInfo(command);
-	const author = getAuthorInfo(user);
-	const sentAt = getGuildInfo(guild);
+function getSuccessLoggerData(guild: Guild | null, user: User, command: Command) {
+	const shard = `[${cyan(guild?.shardId || 0).toString()}]`;
+	const commandName = cyan(command.name);
+	const author = `${user.username}[${cyan(user.id)}]`;
+	const sentAt = guild ? `${guild.name}[${cyan(guild.id)}]` : 'Direct Messages';
 
 	return { shard, commandName, author, sentAt };
 }
-
-export const emojis = {
-	get success() {
-		return '<:success:1073378190321516635>';
-	},
-	get error() {
-		return '<:error:1073378188048211999>';
-	}
-};
