@@ -6,7 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "@discord-player/equalizer": "^0.2.1",
-    "@discord-player/extractor": "^4.2.0",
+    "@discord-player/extractor": "^4.2.1",
     "@discord-player/utils": "^0.2.1",
     "@discordjs/opus": "^0.9.0",
     "@sapphire/discord.js-utilities": "^6.0.6",
@@ -18,7 +18,7 @@
     "@skyra/env-utilities": "^1.2.0",
     "colorette": "^2.0.20",
     "discord-api-types": "^0.37.39",
-    "discord-player": "^6.2.0",
+    "discord-player": "^6.2.1",
     "discord.js": "^14.9.0",
     "play-dl": "^1.9.6"
   },
