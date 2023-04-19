@@ -12,9 +12,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discord-player/extractor@npm:^4.1.2":
-  version: 4.1.2
-  resolution: "@discord-player/extractor@npm:4.1.2"
+"@discord-player/extractor@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "@discord-player/extractor@npm:4.2.0"
   dependencies:
     file-type: ^16.5.4
     genius-lyrics: ^4.4.2
@@ -23,10 +23,7 @@ __metadata:
     soundcloud-scraper: ^5.0.3
     spotify-url-info: ^3.2.3
     youtube-sr: ^4.3.4
-  peerDependencies:
-    play-dl: 1.x
-    ytdl-core: 4.x
-  checksum: eb8c33c67a1f500683bb2e4716344b00932ab75a04a5a8c6e8bf2043bc4f97b211ff924fd7fd8331c20fcaaccb6db4c867d1d71c17934853be9a7b9ddeaff629
+  checksum: 3dd307dfb7a00447fafb4ff40671118fa41d7523f6d15dd807974af918c0f1f61499c6e3d346ef8b170868665d47ea445951cdbfeb7b28d85060e4e4f1929d2e
   languageName: node
   linkType: hard
 
@@ -221,7 +218,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord.js-utilities@npm:6.0.5, @sapphire/discord.js-utilities@npm:^6.0.5":
+"@sapphire/discord.js-utilities@npm:6.0.5":
   version: 6.0.5
   resolution: "@sapphire/discord.js-utilities@npm:6.0.5"
   dependencies:
@@ -233,6 +230,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/discord.js-utilities@npm:^6.0.6":
+  version: 6.0.6
+  resolution: "@sapphire/discord.js-utilities@npm:6.0.6"
+  dependencies:
+    "@sapphire/discord-utilities": ^3.0.2
+    "@sapphire/duration": ^1.1.0
+    "@sapphire/utilities": ^3.11.1
+    tslib: ^2.5.0
+  checksum: b245fc63fa23e664c046419c847398287ef1ca98900a845c486fe2a1c2349b74a196483a04c419f158ec5eead6735e48d37ceba089fa452cc4b38f304708a314
+  languageName: node
+  linkType: hard
+
 "@sapphire/duration@npm:^1.1.0":
   version: 1.1.0
   resolution: "@sapphire/duration@npm:1.1.0"
@@ -240,9 +249,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/framework@npm:^4.4.0":
-  version: 4.4.0
-  resolution: "@sapphire/framework@npm:4.4.0"
+"@sapphire/framework@npm:^4.4.1":
+  version: 4.4.1
+  resolution: "@sapphire/framework@npm:4.4.1"
   dependencies:
     "@discordjs/builders": ^1.6.1
     "@sapphire/discord-utilities": ^3.0.2
@@ -253,7 +262,7 @@ __metadata:
     "@sapphire/result": ^2.6.1
     "@sapphire/stopwatch": ^1.5.0
     "@sapphire/utilities": ^3.11.1
-  checksum: 9a1e31582f9be638121a6b94deaab9c22fce0c9b4bf9a777b769cb01285bebcbac169450911bf95c4354eab8ec7031e2764cb52c2694f757fde6fa33aaf43bac
+  checksum: e7a92461b97f03d55ffc5330430f22803f33616d4b923d36658e2115c13afa3afc226842d549b8625397adb9f06af81943250bff27b68d398a43ced3ef67ba57
   languageName: node
   linkType: hard
 
@@ -715,12 +724,12 @@ __metadata:
   resolution: "auricle@workspace:."
   dependencies:
     "@discord-player/equalizer": ^0.2.1
-    "@discord-player/extractor": ^4.1.2
+    "@discord-player/extractor": ^4.2.0
     "@discord-player/utils": ^0.2.1
     "@discordjs/opus": ^0.9.0
-    "@sapphire/discord.js-utilities": ^6.0.5
+    "@sapphire/discord.js-utilities": ^6.0.6
     "@sapphire/duration": ^1.1.0
-    "@sapphire/framework": ^4.4.0
+    "@sapphire/framework": ^4.4.1
     "@sapphire/plugin-api": ^5.0.3
     "@sapphire/plugin-hmr": ^2.0.1
     "@sapphire/plugin-logger": ^3.0.3
@@ -730,8 +739,8 @@ __metadata:
     "@types/node": ^18.15.11
     "@types/ws": ^8.5.4
     colorette: ^2.0.20
-    discord-api-types: ^0.37.38
-    discord-player: ^6.1.1
+    discord-api-types: ^0.37.39
+    discord-player: ^6.2.0
     discord.js: ^14.9.0
     npm-run-all: ^4.1.5
     play-dl: ^1.9.6
@@ -1151,16 +1160,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.37.37, discord-api-types@npm:^0.37.38":
-  version: 0.37.38
-  resolution: "discord-api-types@npm:0.37.38"
-  checksum: 58972778639234307ae6c0ce5b841a8a3a29c38116aa9f96051e65a88f6bbc4f1df671c5a985712d816764507308f8ebc97b1c98dad8de7bf756e05819db84ca
+"discord-api-types@npm:^0.37.37, discord-api-types@npm:^0.37.38, discord-api-types@npm:^0.37.39":
+  version: 0.37.39
+  resolution: "discord-api-types@npm:0.37.39"
+  checksum: 21346afd1e9987bba9b8e93c51b4a4279c10ffd3251806800385b19631c9f258f26524857b6f88da995285f35f0d956b3dde2e1ed6eb5233e5b2122754fbaee7
   languageName: node
   linkType: hard
 
-"discord-player@npm:^6.1.1":
-  version: 6.1.1
-  resolution: "discord-player@npm:6.1.1"
+"discord-player@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "discord-player@npm:6.2.0"
   dependencies:
     "@discord-player/equalizer": "*"
     "@discord-player/utils": "*"
@@ -1170,7 +1179,7 @@ __metadata:
     "@discord-player/extractor": "*"
     discord.js: 14.x
     youtube-sr: 4.x
-  checksum: ed8209f37c65d018959effcad70e5cd2a38c41e5b7fa67333dacd0734dbace7aa89c50d0ba55d429d603c585a1883785db6e7771febce76f26c504b4b742df77
+  checksum: ac91d60ed01ec1fa12a0e9ea73fc0171e8ea7c755e56b3ce59057562659ea90b6c3bd88fb3711c263efb99990d6be309673ac04c00c2058abe2baa295e8cad87
   languageName: node
   linkType: hard
 
