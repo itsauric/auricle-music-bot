@@ -12,9 +12,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discord-player/extractor@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "@discord-player/extractor@npm:4.2.0"
+"@discord-player/extractor@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "@discord-player/extractor@npm:4.2.1"
   dependencies:
     file-type: ^16.5.4
     genius-lyrics: ^4.4.2
@@ -23,7 +23,7 @@ __metadata:
     soundcloud-scraper: ^5.0.3
     spotify-url-info: ^3.2.3
     youtube-sr: ^4.3.4
-  checksum: 3dd307dfb7a00447fafb4ff40671118fa41d7523f6d15dd807974af918c0f1f61499c6e3d346ef8b170868665d47ea445951cdbfeb7b28d85060e4e4f1929d2e
+  checksum: aba5f151949dd00a17d93d73e165df78e2975dcdf9b771f21871f8808c1d33300505e944356ca8fa5e8f36f7419f3c58b18833d2c658e01118d054dcefe03fa7
   languageName: node
   linkType: hard
 
@@ -724,7 +724,7 @@ __metadata:
   resolution: "auricle@workspace:."
   dependencies:
     "@discord-player/equalizer": ^0.2.1
-    "@discord-player/extractor": ^4.2.0
+    "@discord-player/extractor": ^4.2.1
     "@discord-player/utils": ^0.2.1
     "@discordjs/opus": ^0.9.0
     "@sapphire/discord.js-utilities": ^6.0.6
@@ -740,7 +740,7 @@ __metadata:
     "@types/ws": ^8.5.4
     colorette: ^2.0.20
     discord-api-types: ^0.37.39
-    discord-player: ^6.2.0
+    discord-player: ^6.2.1
     discord.js: ^14.9.0
     npm-run-all: ^4.1.5
     play-dl: ^1.9.6
@@ -1167,9 +1167,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-player@npm:^6.2.0":
-  version: 6.2.0
-  resolution: "discord-player@npm:6.2.0"
+"discord-player@npm:^6.2.1":
+  version: 6.2.1
+  resolution: "discord-player@npm:6.2.1"
   dependencies:
     "@discord-player/equalizer": "*"
     "@discord-player/utils": "*"
@@ -1179,7 +1179,7 @@ __metadata:
     "@discord-player/extractor": "*"
     discord.js: 14.x
     youtube-sr: 4.x
-  checksum: ac91d60ed01ec1fa12a0e9ea73fc0171e8ea7c755e56b3ce59057562659ea90b6c3bd88fb3711c263efb99990d6be309673ac04c00c2058abe2baa295e8cad87
+  checksum: 8fa858de5757528fbd8bc0ad1ece3b3609014b5eff763a32ad337b2adbe644c0b7e995fd73b44e55c6cc1d4e122a51e6254dd8a367cef8bb779a89278e648864
   languageName: node
   linkType: hard
 
