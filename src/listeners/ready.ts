@@ -8,7 +8,8 @@ export class UserEvent extends Listener {
 		});
 	}
 
-	public run() {
-		this.container.client.logger.info(`Successfully logged in as: ${this.container.client.user?.username}`);
+	public async run() {
+		await this.container.client.player.extractors.loadDefault();
+		return this.container.client.logger.info(`Successfully logged in as: ${this.container.client.user?.username}`);
 	}
 }

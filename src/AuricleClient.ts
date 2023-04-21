@@ -22,7 +22,9 @@ export class AuricleClient extends SapphireClient {
 			}
 		});
 		this.utils = Utils;
-		this.player = Player.singleton(this);
+		this.player = new Player(this, {
+			autoRegisterExtractor: false // This is to prevent the Deprecation Warning
+		});
 	}
 }
 

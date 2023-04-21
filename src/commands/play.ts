@@ -22,9 +22,9 @@ export class PlayCommand extends Command {
 	}
 
 	public override async autocompleteRun(interaction: Command.AutocompleteInteraction) {
-		const player = useMasterPlayer()!;
-		const query = interaction.options.getString('query');
-		const results = await player.search(query!);
+		const query = interaction.options.getString('query') || [];
+		const player = useMasterPlayer();
+		const results = await player!.search(query!);
 
 		let tracks;
 		tracks = results.tracks
@@ -43,7 +43,7 @@ export class PlayCommand extends Command {
 				.slice(0, 1);
 		}
 
-		return interaction.respond(tracks);
+		return interaction.respond(tracks).catch(() => null);
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
