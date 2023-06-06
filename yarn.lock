@@ -756,7 +756,7 @@ __metadata:
     "@types/ws": ^8.5.4
     colorette: ^2.0.20
     discord-api-types: ^0.37.43
-    discord-player: ^6.3.0
+    discord-player: ^6.3.1
     discord.js: ^14.11.0
     npm-run-all: ^4.1.5
     play-dl: ^1.9.6
@@ -1183,19 +1183,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-player@npm:^6.3.0":
-  version: 6.3.0
-  resolution: "discord-player@npm:6.3.0"
+"discord-player@npm:^6.3.1":
+  version: 6.3.1
+  resolution: "discord-player@npm:6.3.1"
   dependencies:
     "@discord-player/equalizer": ^0.2.1
     "@discord-player/utils": ^0.2.1
     "@discordjs/voice": latest
     libsodium-wrappers: ^0.7.10
   peerDependencies:
-    "@discord-player/extractor": ^4.2.1
+    "@discord-player/extractor": ^4.2.2
     discord.js: 14.x
     youtube-sr: 4.x
-  checksum: 33671051bc4c9e7a3de7541d01bd284f97fd665cb145010f4ac42e65ea2164431cb5e64496decbe265ffe6eca5f7554074720a4d74b055269345549ffa7e856a
+  checksum: fd934f75894aea14fdcbf57ff7dec04d80e71ab15256a5d40a0780d40afea6cce59f26006eaba69dadb44c2d70a090fc7bc65d7338b21c9acd1419df7d4c2866
   languageName: node
   linkType: hard
 
