@@ -12,18 +12,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discord-player/extractor@npm:^4.2.2":
-  version: 4.2.2
-  resolution: "@discord-player/extractor@npm:4.2.2"
+"@discord-player/extractor@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "@discord-player/extractor@npm:4.3.0"
   dependencies:
     file-type: ^16.5.4
-    genius-lyrics: ^4.4.2
+    genius-lyrics: ^4.4.3
     node-html-parser: ^6.1.4
     reverbnation-scraper: ^2.0.0
-    soundcloud-scraper: ^5.0.3
-    spotify-url-info: ^3.2.3
+    soundcloud.ts: ^0.5.0
+    spotify-url-info: ^3.2.5
     youtube-sr: ^4.3.4
-  checksum: 734e5fc3712c720836d51905d7f4d0ef1fb814a6aca15bfd246f0dd787a5c9baf3770c835398cde1340abe7c0fbf8dad8a93e58bf040c56de341d5b98604f39d
+  checksum: 0a87adf71138149ad2c5503f262eddae98863c1f2c3789e831891a5f804b0e57eedfbf77cda9c5aa9e11107458ed3f7a81cef0efe4e762f3e903055d0a6cbb67
   languageName: node
   linkType: hard
 
@@ -596,10 +596,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.16.16":
-  version: 18.16.16
-  resolution: "@types/node@npm:18.16.16"
-  checksum: 0efad726dd1e0bef71c392c708fc5d78c5b39c46b0ac5186fee74de4ccb1b2e847b3fa468da67d62812f56569da721b15bf31bdc795e6c69b56c73a45079ed2d
+"@types/node@npm:*, @types/node@npm:^18.16.17":
+  version: 18.16.17
+  resolution: "@types/node@npm:18.16.17"
+  checksum: 2f7e3a552d525ef4b7a2620ef5ef59b3fdfb1d8ab20627b537e090732b35c2bd103944933d347a319cc7d478b3866b0d1bc3d629ee5899ca663a4547ca078cee
   languageName: node
   linkType: hard
 
@@ -612,12 +612,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ws@npm:^8.5.4":
-  version: 8.5.4
-  resolution: "@types/ws@npm:8.5.4"
+"@types/ws@npm:^8.5.4, @types/ws@npm:^8.5.5":
+  version: 8.5.5
+  resolution: "@types/ws@npm:8.5.5"
   dependencies:
     "@types/node": "*"
-  checksum: fefbad20d211929bb996285c4e6f699b12192548afedbe4930ab4384f8a94577c9cd421acaad163cacd36b88649509970a05a0b8f20615b30c501ed5269038d1
+  checksum: d00bf8070e6938e3ccf933010921c6ce78ac3606696ce37a393b27a9a603f7bd93ea64f3c5fa295a2f743575ba9c9a9fdb904af0f5fe2229bf2adf0630386e4a
   languageName: node
   linkType: hard
 
@@ -740,7 +740,7 @@ __metadata:
   resolution: "auricle@workspace:."
   dependencies:
     "@discord-player/equalizer": ^0.2.1
-    "@discord-player/extractor": ^4.2.2
+    "@discord-player/extractor": ^4.3.0
     "@discord-player/utils": ^0.2.1
     "@discordjs/opus": ^0.9.0
     "@sapphire/discord.js-utilities": ^7.0.0
@@ -752,11 +752,11 @@ __metadata:
     "@skyra/env-utilities": ^1.2.0
     "@swc/cli": ^0.1.62
     "@swc/core": ^1.3.62
-    "@types/node": ^18.16.16
-    "@types/ws": ^8.5.4
+    "@types/node": ^18.16.17
+    "@types/ws": ^8.5.5
     colorette: ^2.0.20
     discord-api-types: ^0.37.43
-    discord-player: ^6.3.1
+    discord-player: ^6.4.0
     discord.js: ^14.11.0
     npm-run-all: ^4.1.5
     play-dl: ^1.9.6
@@ -943,7 +943,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cheerio@npm:^1.0.0-rc.10, cheerio@npm:^1.0.0-rc.9":
+"cheerio@npm:^1.0.0-rc.9":
   version: 1.0.0-rc.12
   resolution: "cheerio@npm:1.0.0-rc.12"
   dependencies:
@@ -1183,19 +1183,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-player@npm:^6.3.1":
-  version: 6.3.1
-  resolution: "discord-player@npm:6.3.1"
+"discord-player@npm:^6.4.0":
+  version: 6.4.0
+  resolution: "discord-player@npm:6.4.0"
   dependencies:
     "@discord-player/equalizer": ^0.2.1
     "@discord-player/utils": ^0.2.1
     "@discordjs/voice": latest
     libsodium-wrappers: ^0.7.10
   peerDependencies:
-    "@discord-player/extractor": ^4.2.2
+    "@discord-player/extractor": ^4.3.0
     discord.js: 14.x
     youtube-sr: 4.x
-  checksum: fd934f75894aea14fdcbf57ff7dec04d80e71ab15256a5d40a0780d40afea6cce59f26006eaba69dadb44c2d70a090fc7bc65d7338b21c9acd1419df7d4c2866
+  checksum: e9dfc4b736cdaf94812e75c4699a58ddb7e5cccecc58b510264fe53e42f209742a2676fbf8b6ffe24a501b36dd1539a032f737ce52318736e4f442d2afe7a97e
   languageName: node
   linkType: hard
 
@@ -1667,7 +1667,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"genius-lyrics@npm:^4.4.2":
+"genius-lyrics@npm:^4.4.3":
   version: 4.4.3
   resolution: "genius-lyrics@npm:4.4.3"
   dependencies:
@@ -2333,16 +2333,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"m3u8stream@npm:^0.8.4":
-  version: 0.8.6
-  resolution: "m3u8stream@npm:0.8.6"
-  dependencies:
-    miniget: ^4.2.2
-    sax: ^1.2.4
-  checksum: b8f61c1101dd3ad873ff2f3d0e9e6a5139ad17e20990b89ae67f2585043bc2b727151ed85f3e58aabc8a1a95af28e1ee26f69af6ac9e8841ff68129eae2f5ac5
-  languageName: node
-  linkType: hard
-
 "make-dir@npm:^3.1.0":
   version: 3.1.0
   resolution: "make-dir@npm:3.1.0"
@@ -2432,13 +2422,6 @@ __metadata:
   version: 3.1.0
   resolution: "mimic-response@npm:3.1.0"
   checksum: 25739fee32c17f433626bf19f016df9036b75b3d84a3046c7d156e72ec963dd29d7fc8a302f55a3d6c5a4ff24259676b15d915aad6480815a969ff2ec0836867
-  languageName: node
-  linkType: hard
-
-"miniget@npm:^4.2.2":
-  version: 4.2.2
-  resolution: "miniget@npm:4.2.2"
-  checksum: 577a7826cbf521b8ecb31906b3dce55c61b35398318a461f3484681572287208b7ec5a40de7b0bf0b7738f21630d015cc39ba3edcfb69146565f1528ff957612
   languageName: node
   linkType: hard
 
@@ -2583,7 +2566,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.0, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.7":
+"node-fetch@npm:^2.6.0, node-fetch@npm:^2.6.7":
   version: 2.6.9
   resolution: "node-fetch@npm:2.6.9"
   dependencies:
@@ -3186,13 +3169,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sax@npm:^1.2.4":
-  version: 1.2.4
-  resolution: "sax@npm:1.2.4"
-  checksum: d3df7d32b897a2c2f28e941f732c71ba90e27c24f62ee918bd4d9a8cfb3553f2f81e5493c7f0be94a11c1911b643a9108f231dd6f60df3fa9586b5d2e3e9e1fe
-  languageName: node
-  linkType: hard
-
 "semver-regex@npm:^4.0.5":
   version: 4.0.5
   resolution: "semver-regex@npm:4.0.5"
@@ -3355,14 +3331,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"soundcloud-scraper@npm:^5.0.3":
-  version: 5.0.3
-  resolution: "soundcloud-scraper@npm:5.0.3"
+"soundcloud.ts@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "soundcloud.ts@npm:0.5.0"
   dependencies:
-    cheerio: ^1.0.0-rc.10
-    m3u8stream: ^0.8.4
-    node-fetch: ^2.6.1
-  checksum: 1acdb5bb3b9d18b1d19ae1f7a5ddd6fc9d676a552570f9bc8023aa12903e97845800db7d13c3fa3f906a56c12c650b1a34fc09e53da054d39f7c6c11b52e8651
+    undici: ^5.21.2
+  checksum: aa2d68f46bd297be96d54f8712d50f260dabce13e43c56af0115c5bcd77c13ddaf50136018dac32cb993c5388a3ea8d5cb2a4c9daf972cecfae2115db4d849f6
   languageName: node
   linkType: hard
 
@@ -3414,13 +3388,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"spotify-url-info@npm:^3.2.3":
-  version: 3.2.3
-  resolution: "spotify-url-info@npm:3.2.3"
+"spotify-url-info@npm:^3.2.5":
+  version: 3.2.5
+  resolution: "spotify-url-info@npm:3.2.5"
   dependencies:
     himalaya: ~1.1.0
     spotify-uri: ~3.0.3
-  checksum: 0421c71f042d79fc1fe84bd2a37d8b8cc16479ac8f245a13b8a19c217ca754929776112d45297c3296f7680c7967b807cd970fab88c08021dd56a078e9166b25
+  checksum: 14da61cbb5d0bf91c3210eefa8853d67ca94d225fd0c6d5c8b3ca5d8112edc72e54b6b5aa0e1faf2918e08129bed78668e060192b707a28f2e9c239e8314e320
   languageName: node
   linkType: hard
 
@@ -3711,12 +3685,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici@npm:^5.22.0, undici@npm:^5.8.2":
-  version: 5.22.0
-  resolution: "undici@npm:5.22.0"
+"undici@npm:^5.21.2, undici@npm:^5.22.0, undici@npm:^5.8.2":
+  version: 5.22.1
+  resolution: "undici@npm:5.22.1"
   dependencies:
     busboy: ^1.6.0
-  checksum: 8dc55240a60ae7680798df344e8f46ad0f872ed0fa434fb94cc4fd2b5b2f8053bdf11994d15902999d3880f9bf7cd875a2e90883d2702bf0f366dacd9cbf3fc6
+  checksum: 048a3365f622be44fb319316cedfaa241c59cf7f3368ae7667a12323447e1822e8cc3d00f6956c852d1478a6fde1cbbe753f49e05f2fdaed229693e716ebaf35
   languageName: node
   linkType: hard
 
