@@ -5,26 +5,26 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@discord-player/equalizer@npm:^0.2.2":
-  version: 0.2.2
-  resolution: "@discord-player/equalizer@npm:0.2.2"
-  checksum: 33b9991a840d6f87cea7e5f5d9c8e4e3cb73e90152c3797f44545916899794cf4e0efa0c6c595cdfdddf0ac7619cf23a3f51b508f2439870a2fbd7d4dfe59c05
+"@discord-player/equalizer@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "@discord-player/equalizer@npm:0.2.3"
+  checksum: 6f60c41b483253c647d79d18a4b94ed413281aa38af190b62fc8cd4c11feb1ea84a6662dbb08922cdb9000e32dee78ac5cb13c4f9a47711890e5a9ebb24e9f08
   languageName: node
   linkType: hard
 
-"@discord-player/extractor@npm:^4.4.2":
-  version: 4.4.2
-  resolution: "@discord-player/extractor@npm:4.4.2"
+"@discord-player/extractor@npm:^4.4.4":
+  version: 4.4.4
+  resolution: "@discord-player/extractor@npm:4.4.4"
   dependencies:
     file-type: ^16.5.4
-    genius-lyrics: ^4.4.3
+    genius-lyrics: ^4.4.6
     isomorphic-unfetch: ^4.0.2
     node-html-parser: ^6.1.4
     reverbnation-scraper: ^2.0.0
-    soundcloud.ts: ^0.5.0
+    soundcloud.ts: ^0.5.2
     spotify-url-info: ^3.2.6
     youtube-sr: ^4.3.4
-  checksum: 9009c5d1d9be3f4eeda850d4dff580612678e25d7034de64fc85ed3756889f03b23655e1f510a3057c955292fe8857cb938cd950924061decee8c9a7ed31657e
+  checksum: 1a12c735766404baa42b6a06f1eda0d5d264dd66b021e10ee97d688dbaa39165c3b73d02b7f2c8ca02ce4a198fa639a30df2197cf6143acec69ff57213babd0f
   languageName: node
   linkType: hard
 
@@ -420,91 +420,92 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.3.83":
-  version: 1.3.83
-  resolution: "@swc/core-darwin-arm64@npm:1.3.83"
+"@swc/core-darwin-arm64@npm:1.3.88":
+  version: 1.3.88
+  resolution: "@swc/core-darwin-arm64@npm:1.3.88"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.3.83":
-  version: 1.3.83
-  resolution: "@swc/core-darwin-x64@npm:1.3.83"
+"@swc/core-darwin-x64@npm:1.3.88":
+  version: 1.3.88
+  resolution: "@swc/core-darwin-x64@npm:1.3.88"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.3.83":
-  version: 1.3.83
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.83"
+"@swc/core-linux-arm-gnueabihf@npm:1.3.88":
+  version: 1.3.88
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.88"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.3.83":
-  version: 1.3.83
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.83"
+"@swc/core-linux-arm64-gnu@npm:1.3.88":
+  version: 1.3.88
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.88"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.3.83":
-  version: 1.3.83
-  resolution: "@swc/core-linux-arm64-musl@npm:1.3.83"
+"@swc/core-linux-arm64-musl@npm:1.3.88":
+  version: 1.3.88
+  resolution: "@swc/core-linux-arm64-musl@npm:1.3.88"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.3.83":
-  version: 1.3.83
-  resolution: "@swc/core-linux-x64-gnu@npm:1.3.83"
+"@swc/core-linux-x64-gnu@npm:1.3.88":
+  version: 1.3.88
+  resolution: "@swc/core-linux-x64-gnu@npm:1.3.88"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.3.83":
-  version: 1.3.83
-  resolution: "@swc/core-linux-x64-musl@npm:1.3.83"
+"@swc/core-linux-x64-musl@npm:1.3.88":
+  version: 1.3.88
+  resolution: "@swc/core-linux-x64-musl@npm:1.3.88"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.3.83":
-  version: 1.3.83
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.83"
+"@swc/core-win32-arm64-msvc@npm:1.3.88":
+  version: 1.3.88
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.88"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.3.83":
-  version: 1.3.83
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.83"
+"@swc/core-win32-ia32-msvc@npm:1.3.88":
+  version: 1.3.88
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.88"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.3.83":
-  version: 1.3.83
-  resolution: "@swc/core-win32-x64-msvc@npm:1.3.83"
+"@swc/core-win32-x64-msvc@npm:1.3.88":
+  version: 1.3.88
+  resolution: "@swc/core-win32-x64-msvc@npm:1.3.88"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.3.83":
-  version: 1.3.83
-  resolution: "@swc/core@npm:1.3.83"
+"@swc/core@npm:^1.3.88":
+  version: 1.3.88
+  resolution: "@swc/core@npm:1.3.88"
   dependencies:
-    "@swc/core-darwin-arm64": 1.3.83
-    "@swc/core-darwin-x64": 1.3.83
-    "@swc/core-linux-arm-gnueabihf": 1.3.83
-    "@swc/core-linux-arm64-gnu": 1.3.83
-    "@swc/core-linux-arm64-musl": 1.3.83
-    "@swc/core-linux-x64-gnu": 1.3.83
-    "@swc/core-linux-x64-musl": 1.3.83
-    "@swc/core-win32-arm64-msvc": 1.3.83
-    "@swc/core-win32-ia32-msvc": 1.3.83
-    "@swc/core-win32-x64-msvc": 1.3.83
-    "@swc/types": ^0.1.4
+    "@swc/core-darwin-arm64": 1.3.88
+    "@swc/core-darwin-x64": 1.3.88
+    "@swc/core-linux-arm-gnueabihf": 1.3.88
+    "@swc/core-linux-arm64-gnu": 1.3.88
+    "@swc/core-linux-arm64-musl": 1.3.88
+    "@swc/core-linux-x64-gnu": 1.3.88
+    "@swc/core-linux-x64-musl": 1.3.88
+    "@swc/core-win32-arm64-msvc": 1.3.88
+    "@swc/core-win32-ia32-msvc": 1.3.88
+    "@swc/core-win32-x64-msvc": 1.3.88
+    "@swc/counter": ^0.1.1
+    "@swc/types": ^0.1.5
   peerDependencies:
     "@swc/helpers": ^0.5.0
   dependenciesMeta:
@@ -531,14 +532,21 @@ __metadata:
   peerDependenciesMeta:
     "@swc/helpers":
       optional: true
-  checksum: 39849d78f16e0aab168d3563245a0995164c07b195626f124651af00c922d166fc714467f85eed1e111377d68078fc726dbb13002516f64fecb729437538911b
+  checksum: caaf06fc1f4d472b20d825cf84139306777d03d599b6a2a7cddc01e2edc176479992166acb94034989222a8f662662f05ec48bb16d6262a471b9be45c1a7d9cd
   languageName: node
   linkType: hard
 
-"@swc/types@npm:^0.1.4":
-  version: 0.1.4
-  resolution: "@swc/types@npm:0.1.4"
-  checksum: 9b09de7dca8e4b19bfb43f9e332c771855158cb761d26000807fe858447ecbc5342a6c257b26d9aa5497f7138fc58913693e2bee222e5042e0e8f57c2979ae66
+"@swc/counter@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@swc/counter@npm:0.1.1"
+  checksum: bb974babd493ba01c0d4a95ab610c3fc15fbf609c08cb0342798e485f57ecc0950abbf84e07124e63c5fe610b492d9a8dd03701d3b9ef7329d9e8bf3cc44980f
+  languageName: node
+  linkType: hard
+
+"@swc/types@npm:^0.1.5":
+  version: 0.1.5
+  resolution: "@swc/types@npm:0.1.5"
+  checksum: 6aee11f62d3d805a64848e0bd5f0e0e615f958e327a9e1260056c368d7d28764d89e38bd8005a536c9bf18afbcd303edd84099d60df34a2975d62540f61df13b
   languageName: node
   linkType: hard
 
@@ -593,10 +601,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^18.17.15":
-  version: 18.17.15
-  resolution: "@types/node@npm:18.17.15"
-  checksum: eed11d4398ccdb999a4c65658ee75de621a4ad57aece48ed2fb8803b1e2711fadf58d8aefbdb0a447d69cf3cba602ca32fe0fc92077575950a796e1dc13baa0f
+"@types/node@npm:*, @types/node@npm:^18.17.19":
+  version: 18.17.19
+  resolution: "@types/node@npm:18.17.19"
+  checksum: 6ab47127cd7534511aa199550659d56b44e5a6dbec9df054d0cde279926b4d43f0e6438f92c8392b039ab4e2a85aa0f698b95926430aff860e23bfc36c96576c
   languageName: node
   linkType: hard
 
@@ -736,8 +744,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "auricle@workspace:."
   dependencies:
-    "@discord-player/equalizer": ^0.2.2
-    "@discord-player/extractor": ^4.4.2
+    "@discord-player/equalizer": ^0.2.3
+    "@discord-player/extractor": ^4.4.4
     "@discord-player/utils": ^0.2.2
     "@discordjs/opus": ^0.9.0
     "@sapphire/discord.js-utilities": ^7.0.2
@@ -748,15 +756,15 @@ __metadata:
     "@sapphire/plugin-logger": ^3.0.6
     "@skyra/env-utilities": ^1.2.1
     "@swc/cli": ^0.1.62
-    "@swc/core": ^1.3.83
-    "@types/node": ^18.17.15
+    "@swc/core": ^1.3.88
+    "@types/node": ^18.17.19
     "@types/ws": ^8.5.5
     colorette: ^2.0.20
-    discord-api-types: ^0.37.56
-    discord-player: ^6.6.3
+    discord-api-types: ^0.37.57
+    discord-player: ^6.6.4
     discord.js: ^14.13.0
     npm-run-all: ^4.1.5
-    play-dl: ^1.9.6
+    play-dl: ^1.9.7
     typescript: ^5.2.2
   languageName: unknown
   linkType: soft
@@ -923,35 +931,6 @@ __metadata:
     escape-string-regexp: ^1.0.5
     supports-color: ^5.3.0
   checksum: ec3661d38fe77f681200f878edbd9448821924e0f93a9cefc0e26a33b145f1027a2084bf19967160d11e1f03bfe4eaffcabf5493b89098b2782c3fe0b03d80c2
-  languageName: node
-  linkType: hard
-
-"cheerio-select@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "cheerio-select@npm:2.1.0"
-  dependencies:
-    boolbase: ^1.0.0
-    css-select: ^5.1.0
-    css-what: ^6.1.0
-    domelementtype: ^2.3.0
-    domhandler: ^5.0.3
-    domutils: ^3.0.1
-  checksum: 843d6d479922f28a6c5342c935aff1347491156814de63c585a6eb73baf7bb4185c1b4383a1195dca0f12e3946d737c7763bcef0b9544c515d905c5c44c5308b
-  languageName: node
-  linkType: hard
-
-"cheerio@npm:^1.0.0-rc.9":
-  version: 1.0.0-rc.12
-  resolution: "cheerio@npm:1.0.0-rc.12"
-  dependencies:
-    cheerio-select: ^2.1.0
-    dom-serializer: ^2.0.0
-    domhandler: ^5.0.3
-    domutils: ^3.0.1
-    htmlparser2: ^8.0.1
-    parse5: ^7.0.0
-    parse5-htmlparser2-tree-adapter: ^7.0.0
-  checksum: 5d4c1b7a53cf22d3a2eddc0aff70cf23cbb30d01a4c79013e703a012475c02461aa1fcd99127e8d83a02216386ed6942b2c8103845fd0812300dd199e6e7e054
   languageName: node
   linkType: hard
 
@@ -1187,28 +1166,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.37.50, discord-api-types@npm:^0.37.55, discord-api-types@npm:^0.37.56":
-  version: 0.37.56
-  resolution: "discord-api-types@npm:0.37.56"
-  checksum: 797be690af70a846422f955d918a5713a2c8c37bea646e2120996522afbb47fc5893122c1ddcb8f57a285ace6e1fb0237d1e63105444ae52534f0570a2f87f34
+"discord-api-types@npm:^0.37.50, discord-api-types@npm:^0.37.55, discord-api-types@npm:^0.37.57":
+  version: 0.37.57
+  resolution: "discord-api-types@npm:0.37.57"
+  checksum: c83c66bfc63c24bb17827a6e4c6516988b22472d99a8b0c9216bc5e826bdfec4d7b6a79efd934a587809f90bc7ee6f989fbfcbb7d825441676e544908dd18959
   languageName: node
   linkType: hard
 
-"discord-player@npm:^6.6.3":
-  version: 6.6.3
-  resolution: "discord-player@npm:6.6.3"
+"discord-player@npm:^6.6.4":
+  version: 6.6.4
+  resolution: "discord-player@npm:6.6.4"
   dependencies:
-    "@discord-player/equalizer": ^0.2.2
+    "@discord-player/equalizer": ^0.2.3
     "@discord-player/ffmpeg": ^0.1.0
     "@discord-player/utils": ^0.2.2
     discord-voip: ^0.1.3
     ip: ^1.1.8
     libsodium-wrappers: ^0.7.10
   peerDependencies:
-    "@discord-player/extractor": ^4.4.2
+    "@discord-player/extractor": ^4.4.4
     discord.js: 14.x
     youtube-sr: 4.x
-  checksum: c98d8539805bf09359a4966ce9af46581839d7dbfd659eb0e992a3834962ba4b9a4a3f582f17f34d847516903a86748ebc314f181e76304f863ad700e215da9d
+  checksum: 91e613faef9145e833f181799337169dd84abdf425a82c19735274721d821d23aec749cb88453fb45cf4ec24fe7257087f43148d843e69327bfb58de5401dc7f
   languageName: node
   linkType: hard
 
@@ -1267,7 +1246,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"domhandler@npm:^5.0.1, domhandler@npm:^5.0.2, domhandler@npm:^5.0.3":
+"domhandler@npm:^5.0.1, domhandler@npm:^5.0.2":
   version: 5.0.3
   resolution: "domhandler@npm:5.0.3"
   dependencies:
@@ -1326,7 +1305,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"entities@npm:^4.2.0, entities@npm:^4.4.0":
+"entities@npm:^4.2.0":
   version: 4.4.0
   resolution: "entities@npm:4.4.0"
   checksum: 84d250329f4b56b40fa93ed067b194db21e8815e4eb9b59f43a086f0ecd342814f6bc483de8a77da5d64e0f626033192b1b4f1792232a7ea6b970ebe0f3187c2
@@ -1703,13 +1682,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"genius-lyrics@npm:^4.4.3":
-  version: 4.4.3
-  resolution: "genius-lyrics@npm:4.4.3"
+"genius-lyrics@npm:^4.4.6":
+  version: 4.4.6
+  resolution: "genius-lyrics@npm:4.4.6"
   dependencies:
-    cheerio: ^1.0.0-rc.9
-    undici: ^5.8.2
-  checksum: 5612f4b97503a5e1fab912ccd46c3dfe95495e2f0b90179a718a4454422fbd0370690734dad5d79e0c043e533ee4e3bd90540de0e6ab6668875b3cb0947a0391
+    node-html-parser: ^6.1.9
+    undici: ^5.24.0
+  checksum: 05a7420c7548badce414cd3cb45f4ba9822d951f8b7ed0d9b1b546cf5117847f9e17d8453db883d56e6cba745401da3d7de81cc6a625d54b313cef95e5f0c259
   languageName: node
   linkType: hard
 
@@ -1919,18 +1898,6 @@ __metadata:
   version: 2.8.9
   resolution: "hosted-git-info@npm:2.8.9"
   checksum: c955394bdab888a1e9bb10eb33029e0f7ce5a2ac7b3f158099dc8c486c99e73809dca609f5694b223920ca2174db33d32b12f9a2a47141dc59607c29da5a62dd
-  languageName: node
-  linkType: hard
-
-"htmlparser2@npm:^8.0.1":
-  version: 8.0.2
-  resolution: "htmlparser2@npm:8.0.2"
-  dependencies:
-    domelementtype: ^2.3.0
-    domhandler: ^5.0.3
-    domutils: ^3.0.1
-    entities: ^4.4.0
-  checksum: 29167a0f9282f181da8a6d0311b76820c8a59bc9e3c87009e21968264c2987d2723d6fde5a964d4b7b6cba663fca96ffb373c06d8223a85f52a6089ced942700
   languageName: node
   linkType: hard
 
@@ -2678,13 +2645,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-html-parser@npm:^6.1.4":
-  version: 6.1.5
-  resolution: "node-html-parser@npm:6.1.5"
+"node-html-parser@npm:^6.1.4, node-html-parser@npm:^6.1.9":
+  version: 6.1.10
+  resolution: "node-html-parser@npm:6.1.10"
   dependencies:
     css-select: ^5.1.0
     he: 1.2.0
-  checksum: b54257b31954be17d473c86a2fede53d5e238708f3d88577c98881c28ab66013fd37044903f6f3cd662b56d882681fb511bca75a80a80b62f7111b32b39eebae
+  checksum: 927f6a38b3b1cbc042bce609e24fb594d3b1e0f1067ffb416a925fa5a699e907be31980f349e094d55bab706dc16a71958b08f8dcdab62faf7b12013f29442bc
   languageName: node
   linkType: hard
 
@@ -2901,25 +2868,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse5-htmlparser2-tree-adapter@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "parse5-htmlparser2-tree-adapter@npm:7.0.0"
-  dependencies:
-    domhandler: ^5.0.2
-    parse5: ^7.0.0
-  checksum: fc5d01e07733142a1baf81de5c2a9c41426c04b7ab29dd218acb80cd34a63177c90aff4a4aee66cf9f1d0aeecff1389adb7452ad6f8af0a5888e3e9ad6ef733d
-  languageName: node
-  linkType: hard
-
-"parse5@npm:^7.0.0":
-  version: 7.1.2
-  resolution: "parse5@npm:7.1.2"
-  dependencies:
-    entities: ^4.4.0
-  checksum: 59465dd05eb4c5ec87b76173d1c596e152a10e290b7abcda1aecf0f33be49646ea74840c69af975d7887543ea45564801736356c568d6b5e71792fd0f4055713
-  languageName: node
-  linkType: hard
-
 "path-is-absolute@npm:^1.0.0":
   version: 1.0.1
   resolution: "path-is-absolute@npm:1.0.1"
@@ -3008,12 +2956,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"play-dl@npm:^1.9.6":
-  version: 1.9.6
-  resolution: "play-dl@npm:1.9.6"
+"play-dl@npm:^1.9.7":
+  version: 1.9.7
+  resolution: "play-dl@npm:1.9.7"
   dependencies:
     play-audio: ^0.5.2
-  checksum: 4322244db6bb236f42d6819c87e29a8cf09946a9fdb8aed598e3c6f42c6371fd3f02fd8e1fd94909a1277428db820f48611e06950f16adec005e65ef0ef9e1f4
+  checksum: d626de7fa9231223c1f0480f01eabeb4f50e85d4412501da31049aaf5ebb532032f525b6111f088221cfd29ba8cf5c5c6e85527275c06d7841263c2a306838ee
   languageName: node
   linkType: hard
 
@@ -3409,12 +3357,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"soundcloud.ts@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "soundcloud.ts@npm:0.5.0"
+"soundcloud.ts@npm:^0.5.2":
+  version: 0.5.2
+  resolution: "soundcloud.ts@npm:0.5.2"
   dependencies:
-    undici: ^5.21.2
-  checksum: aa2d68f46bd297be96d54f8712d50f260dabce13e43c56af0115c5bcd77c13ddaf50136018dac32cb993c5388a3ea8d5cb2a4c9daf972cecfae2115db4d849f6
+    undici: ^5.22.1
+  checksum: 6abd85b629625b9d80adbf628b8c302ddb4fdfdef97ee5de951bc565cc0bbeb10133b645eb38ffdd55f320d6b8fa347e26c3e2457485c5d4816c072dbde61c66
   languageName: node
   linkType: hard
 
@@ -3772,12 +3720,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici@npm:^5.21.2, undici@npm:^5.23.0, undici@npm:^5.8.2":
-  version: 5.23.0
-  resolution: "undici@npm:5.23.0"
+"undici@npm:^5.22.1, undici@npm:^5.23.0, undici@npm:^5.24.0":
+  version: 5.25.2
+  resolution: "undici@npm:5.25.2"
   dependencies:
     busboy: ^1.6.0
-  checksum: 906ca4fb1d47163d2cee2ecbbc664a1d92508a2cdf1558146621109f525c983a83597910b36e6ba468240e95259be5939cea6babc99fc0c36360b16630f66784
+  checksum: 1177a9c4fc9a1ddb765508d0f69ae61c166559badce8d797aaa92beef70ec5ac8fdc420b643f5d8d40b9a37891ba5536e2070d86a9c54a128aec67ad0c862d06
   languageName: node
   linkType: hard
 
