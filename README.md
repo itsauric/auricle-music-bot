@@ -22,7 +22,7 @@ yarn run build
 - Easy to **configure** and **use**
 
 
-## Keeping your Forked Repository Up to Date
+## Keeping up to date
 
 ###### This is from [GitHub Blog][github] and is a straightforward example for updating your forked repository
 
@@ -36,7 +36,7 @@ sapphire generate command <name>
 
 ##### This will automatically generate a slash command in the `src/commands` folder from the template in the `templates` folder
 
-## Hot Module Reloading
+## Hot module reloading
 
 It is advised to firstly build the dist folder using `yarn run build` and then use `yarn run auricle`, this will enable [@sapphire/plugin-hmr][sapphire-hmr] and will actively reload modules when they are updated.
 
