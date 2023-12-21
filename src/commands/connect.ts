@@ -1,5 +1,5 @@
 import { Command } from '@sapphire/framework';
-import { useMasterPlayer, useQueue } from 'discord-player';
+import { useMainPlayer, useQueue } from 'discord-player';
 import { GuildMember } from 'discord.js';
 
 export class DisconnectCommand extends Command {
@@ -26,7 +26,7 @@ export class DisconnectCommand extends Command {
 			if (permissions.member) return interaction.reply({ content: permissions.member, ephemeral: true });
 			if (permissions.client) return interaction.reply({ content: permissions.client, ephemeral: true });
 			const queue = useQueue(interaction.guild!.id);
-			const player = useMasterPlayer();
+			const player = useMainPlayer();
 
 			if (queue)
 				return interaction.reply({

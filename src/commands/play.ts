@@ -1,5 +1,5 @@
 import { Command } from '@sapphire/framework';
-import { useMasterPlayer } from 'discord-player';
+import { useMainPlayer } from 'discord-player';
 import type { GuildMember } from 'discord.js';
 
 export class PlayCommand extends Command {
@@ -23,7 +23,7 @@ export class PlayCommand extends Command {
 
 	public override async autocompleteRun(interaction: Command.AutocompleteInteraction) {
 		const query = interaction.options.getString('query') || [];
-		const player = useMasterPlayer();
+		const player = useMainPlayer();
 		const results = await player!.search(query!);
 
 		let tracks;
@@ -48,7 +48,7 @@ export class PlayCommand extends Command {
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		const { emojis, voice, options } = this.container.client.utils;
-		const player = useMasterPlayer()!;
+		const player = useMainPlayer()!;
 		const permissions = voice(interaction);
 		const query = interaction.options.getString('query')!;
 		const member = interaction.member as GuildMember;
