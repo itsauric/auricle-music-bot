@@ -257,7 +257,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord-utilities@npm:^3.2.0, @sapphire/discord-utilities@npm:^3.2.1":
+"@sapphire/discord-utilities@npm:^3.2.1":
   version: 3.2.1
   resolution: "@sapphire/discord-utilities@npm:3.2.1"
   dependencies:
@@ -266,7 +266,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord.js-utilities@npm:^7.1.2, @sapphire/discord.js-utilities@npm:^7.1.5":
+"@sapphire/discord.js-utilities@npm:^7.1.5":
   version: 7.1.5
   resolution: "@sapphire/discord.js-utilities@npm:7.1.5"
   dependencies:
@@ -285,40 +285,40 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/framework@npm:^4.8.5":
-  version: 4.8.5
-  resolution: "@sapphire/framework@npm:4.8.5"
+"@sapphire/framework@npm:^5.0.5":
+  version: 5.0.5
+  resolution: "@sapphire/framework@npm:5.0.5"
   dependencies:
     "@discordjs/builders": "npm:^1.7.0"
-    "@sapphire/discord-utilities": "npm:^3.2.0"
-    "@sapphire/discord.js-utilities": "npm:^7.1.2"
-    "@sapphire/lexure": "npm:^1.1.5"
-    "@sapphire/pieces": "npm:^3.10.0"
-    "@sapphire/ratelimits": "npm:^2.4.7"
-    "@sapphire/result": "npm:^2.6.4"
-    "@sapphire/stopwatch": "npm:^1.5.0"
-    "@sapphire/utilities": "npm:^3.13.0"
-  checksum: d51fb2b6e5c17551011b623141d5d1b6abe40521420594ab13b17c5f1403a7a8482a4a681c4cdad703c1db400af370aad6a80a59e4a919663c1574ba4d21c1c2
+    "@sapphire/discord-utilities": "npm:^3.2.1"
+    "@sapphire/discord.js-utilities": "npm:^7.1.5"
+    "@sapphire/lexure": "npm:^1.1.6"
+    "@sapphire/pieces": "npm:^4.2.0"
+    "@sapphire/ratelimits": "npm:^2.4.8"
+    "@sapphire/result": "npm:^2.6.5"
+    "@sapphire/stopwatch": "npm:^1.5.1"
+    "@sapphire/utilities": "npm:^3.14.0"
+  checksum: fab811a9a7b760b17b6771c0e5814ea2fe7cc27c4ce91cf0655a4a86131d66ecfa82637adbabce767e0837065554b980c9bd542af2107069bd2fcd2050d49785
   languageName: node
   linkType: hard
 
-"@sapphire/lexure@npm:^1.1.5":
-  version: 1.1.5
-  resolution: "@sapphire/lexure@npm:1.1.5"
+"@sapphire/lexure@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "@sapphire/lexure@npm:1.1.6"
   dependencies:
-    "@sapphire/result": "npm:^2.6.4"
-  checksum: 769c655f6ca952e227c17dea8bd9227580273f4f4fc713921893ddc43c5d30d3586387b79072d6fc6d5919eb979b976e368f7de09eb6b63acacd9e206335fa4e
+    "@sapphire/result": "npm:^2.6.5"
+  checksum: b5e097bf1abd6037dd7498492bb7f1074bbc3b99353d3ddf637ef2d546b596fb6abed37a8bbadd62a01863a322cf579f8246312c9137a9c6728d3c8af8cd195b
   languageName: node
   linkType: hard
 
-"@sapphire/pieces@npm:^3.10.0":
-  version: 3.10.0
-  resolution: "@sapphire/pieces@npm:3.10.0"
+"@sapphire/pieces@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "@sapphire/pieces@npm:4.2.0"
   dependencies:
     "@discordjs/collection": "npm:^1.5.3"
-    "@sapphire/utilities": "npm:^3.13.0"
+    "@sapphire/utilities": "npm:^3.14.0"
     tslib: "npm:^2.6.2"
-  checksum: ce29aa1b91a2ca843271792107655f9a79176d2c53927cbe9902994390035094b29ccb1a52891304daf87d2d74243fda45279e5e933a02a61cfc3fbbf37feec4
+  checksum: cb04d2d5da3a31b7cb44049e407c4ee47efc843acd3b7cddcd6741b0775de9c01cd7e2f3a0168f43b3b164b696ef5bfb9b0a057002b37dc71ee769976a473388
   languageName: node
   linkType: hard
 
@@ -353,17 +353,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/ratelimits@npm:^2.4.7":
-  version: 2.4.7
-  resolution: "@sapphire/ratelimits@npm:2.4.7"
-  checksum: d773792824c1f19fac60d5ff1f96432ccc13907fee78e3ff6c22148d81444dbe1534bdf75b15739920488920b164785565a742e3b0ca78a51600c8c4851014a7
+"@sapphire/ratelimits@npm:^2.4.8":
+  version: 2.4.8
+  resolution: "@sapphire/ratelimits@npm:2.4.8"
+  checksum: eea81bd840f52552fde03538b57bcb44143cb2ed967032cb3af93251c4e82bdce8130cb80ba1203ff4193a8cf71634cc148ac37b5cfa9e6bca1b669cd2dedf23
   languageName: node
   linkType: hard
 
-"@sapphire/result@npm:^2.6.4":
-  version: 2.6.4
-  resolution: "@sapphire/result@npm:2.6.4"
-  checksum: 0cdd5200f261d272d6dc6c298d083b860fd57e02034ff00e9ee27d56bfa926c3d745b46d0ce2ffac987c6da48c91d1fd5a7d9eb178fafb64a6179c6756f70fe7
+"@sapphire/result@npm:^2.6.5":
+  version: 2.6.5
+  resolution: "@sapphire/result@npm:2.6.5"
+  checksum: fb4dd3ea26d3bfbbc2da045e77d2c432df0037555956ac8343eb528b8722e8724ee368be5fa9e906c3c9bf158a16e3c8e8b11f725afa9e1b604e77e493d2fa3a
   languageName: node
   linkType: hard
 
@@ -384,12 +384,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/stopwatch@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "@sapphire/stopwatch@npm:1.5.0"
+"@sapphire/stopwatch@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "@sapphire/stopwatch@npm:1.5.1"
   dependencies:
-    tslib: "npm:^2.4.0"
-  checksum: 666ad41221330fc4a349fb7dcff8774558531fc066950ca39f0940778dba536792a02dcdde021b34f732d4ba240720921e59ddf78b828a56be4104ad5dd671c5
+    tslib: "npm:^2.6.2"
+  checksum: 24d95b389ad7afdb71995c3ce2b3154f63385f92f5df84de81e2481f57745edd640c5961cd55a41c5b4d57751033e4f2da4b83ccf9ec9f707d0b0a09f5cf348a
   languageName: node
   linkType: hard
 
@@ -400,7 +400,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/utilities@npm:^3.13.0, @sapphire/utilities@npm:^3.14.0":
+"@sapphire/utilities@npm:^3.14.0":
   version: 3.15.1
   resolution: "@sapphire/utilities@npm:3.15.1"
   checksum: 9b14eff94e1d879f69c425b47662b7732c46a14c26bb12cd7c51cbc028693ef1a4a1dc676da64abd09df5a4c3151f25ab6f6bc8da7fd62bce4129e2f36a519f7
@@ -799,7 +799,7 @@ __metadata:
     "@distube/ytdl-core": "npm:^4.13.3"
     "@sapphire/discord.js-utilities": "npm:^7.1.5"
     "@sapphire/duration": "npm:^1.1.1"
-    "@sapphire/framework": "npm:^4.8.5"
+    "@sapphire/framework": "npm:^5.0.5"
     "@sapphire/plugin-api": "npm:^5.2.0"
     "@sapphire/plugin-hmr": "npm:^2.0.3"
     "@sapphire/plugin-logger": "npm:^3.0.7"
@@ -3782,7 +3782,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:2.6.2, tslib@npm:^2.4.0, tslib@npm:^2.6.1, tslib@npm:^2.6.2":
+"tslib@npm:2.6.2, tslib@npm:^2.6.1, tslib@npm:^2.6.2":
   version: 2.6.2
   resolution: "tslib@npm:2.6.2"
   checksum: e03a8a4271152c8b26604ed45535954c0a45296e32445b4b87f8a5abdb2421f40b59b4ca437c4346af0f28179780d604094eb64546bee2019d903d01c6c19bdb
