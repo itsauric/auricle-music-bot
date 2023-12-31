@@ -12,7 +12,7 @@
     "@distube/ytdl-core": "^4.13.3",
     "@sapphire/discord.js-utilities": "^7.1.5",
     "@sapphire/duration": "^1.1.1",
-    "@sapphire/framework": "^4.8.5",
+    "@sapphire/framework": "^5.0.5",
     "@sapphire/plugin-api": "^5.2.0",
     "@sapphire/plugin-hmr": "^2.0.3",
     "@sapphire/plugin-logger": "^3.0.7",
