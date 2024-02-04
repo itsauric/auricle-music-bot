@@ -424,9 +424,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/cli@npm:^0.3.5":
-  version: 0.3.5
-  resolution: "@swc/cli@npm:0.3.5"
+"@swc/cli@npm:^0.3.6":
+  version: 0.3.6
+  resolution: "@swc/cli@npm:0.3.6"
   dependencies:
     "@mole-inc/bin-wrapper": "npm:^8.0.1"
     commander: "npm:^7.1.0"
@@ -446,7 +446,7 @@ __metadata:
     spack: bin/spack.js
     swc: bin/swc.js
     swcx: bin/swcx.js
-  checksum: 10c0/af4355209e3c8abe1c32df30ce41325ed4fb725cfc73c36ce78fb915c5656374dfad255e991b0997f1ffc882da03370372f8b2310bba063f04e88e302f0593b8
+  checksum: 10c0/33540f1b62ba7e8a6a0257874f8315dfa480a02ed332bcb7f010c1bc4074ffcbc1eb79145682ae3636b0dc5abb3514b68eb3bb8aeda1bc7c6a39d8c80ca5ca64
   languageName: node
   linkType: hard
 
@@ -631,12 +631,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.11.11":
-  version: 20.11.11
-  resolution: "@types/node@npm:20.11.11"
+"@types/node@npm:*, @types/node@npm:^20.11.16":
+  version: 20.11.16
+  resolution: "@types/node@npm:20.11.16"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10c0/9df522ba278c34d7b37329f474369d485b93f0ef5c70be4ccdfce6c49cf61f4a9d39166c66ee5e7f550abda7b211bc4446df98a16ac2cf9f8aa13eae8d1def1b
+  checksum: 10c0/4886b90278e9c877a84efd3edd4667cd990e032d77268d2a798b99ebc1901ea336fa7dfbe9eaf4ad6ad1da9ce2ec31baf300038a3905838692362eb19904ebde
   languageName: node
   linkType: hard
 
@@ -806,9 +806,9 @@ __metadata:
     "@sapphire/plugin-hmr": "npm:^3.0.1"
     "@sapphire/plugin-logger": "npm:^4.0.2"
     "@skyra/env-utilities": "npm:^1.3.0"
-    "@swc/cli": "npm:^0.3.5"
+    "@swc/cli": "npm:^0.3.6"
     "@swc/core": "npm:^1.3.107"
-    "@types/node": "npm:^20.11.11"
+    "@types/node": "npm:^20.11.16"
     "@types/ws": "npm:^8.5.10"
     colorette: "npm:^2.0.20"
     discord-api-types: "npm:^0.37.67"
