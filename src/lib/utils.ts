@@ -73,10 +73,10 @@ export function options(interaction: Interaction) {
 
 export const emojis = {
 	get success() {
-		return '<:success:1073378190321516635>';
+		return '<:success:1241601792949878887>';
 	},
 	get error() {
-		return '<:error:1073378188048211999>';
+		return '<:error:1241601791804575755>';
 	}
 };
 
