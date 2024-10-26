@@ -61,3 +61,5 @@ This project is under the **MIT** license. You can find the license details in t
 
 [repo]: https://github.com/itsauric/auricle-music-bot
 [github]: https://github.blog/changelog/2021-05-06-sync-an-out-of-date-branch-of-a-fork-from-the-web/
+[sapphire]: https://github.com/sapphiredev/framework
+[discord-player]: https://github.com/Androz2091/discord-player/tree/develop
