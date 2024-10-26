@@ -1,53 +1,63 @@
 [![Sponsor itsauric](https://img.shields.io/badge/Sponsor-itsauric-pink?style=for-the-badge&logo=github)](https://github.com/sponsors/itsauric)
 
-# Auricle
+# 🎶 Auricle
 
 This is a music bot created by using the [sapphire framework][sapphire] & [discord-player][discord-player] with this project being written in TypeScript.
 
-## Prerequisites
+## 🚀 Features
+- **Slash Commands**: Intuitive commands for playing music, skipping tracks, and managing playlists
+- **Hot Module Reloading**: Make changes in real-time without restarting the bot
+- **Built-in Cooldown System**: Helps manage command usage and prevents spamming
+- **Easy Setup**: Simple installation and configuration process for seamless integration
 
-Before you get started, you will need the following:
+## 📦 Installation
 
-- Node.js (v18 or higher)
-- Yarn package manager (or a package manager of your choice)
+### Prerequisites
+- **Node.js** (v18 or higher)
+- **Yarn package manager** (or a package manager of your choice)
 
-```sh
+### Installation steps
+```bash
+git clone https://github.com/itsauric/auricle-music-bot.git
+cd auricle-music-bot
+```
+```bash
 yarn install
 yarn run build
 ```
 
-## Features
-
-- A music system built with **slash** commands
-- Hot module reloading to **never** have to restart
-- Built-in **cooldown** system
-- Easy to **configure** and **use**
-
-
-## Keeping up to date
-
-###### This is from [GitHub Blog][github] and is a straightforward example for updating your forked repository
-
-## How can I generate a command?
-
-###### Before hand you should have the `sapphire` cli globally or installed in your `devDependencies`
-
-```sh
-sapphire generate command <name>
+### Getting Started
+```bash
+yarn run auricle
 ```
 
-##### This will automatically generate a slash command in the `src/commands` folder from the template in the `templates` folder
+## ⚙️ Generating Commands
 
-## Hot module reloading
+###### Before hand you should have the `sapphire` cli globally or installed in your `devDependencies`
+```bash
+sapphire generate command <name>
+```
+This will automatically generate a slash command in the `src/commands` folder from the template in the `templates` folder.
 
-It is advised to firstly build the dist folder using `yarn run build` and then use `yarn run auricle`, this will enable [@sapphire/plugin-hmr][sapphire-hmr] and will actively reload modules when they are updated.
+## 🔄 Keeping Up to Date
 
-# License
+This is from the [GitHub Blog][github] and is a straightforward example for updating your forked repository.
 
-This project is under the **MIT** license
-###### The license can be found in the root named as `LICENSE`
+## 🤝 Contribution
 
+Anyone can contribute, please open a pull request on the [repository](repo)
+
+## 💬 Feedback and Support
+
+For any issues, questions, or suggestions, please open an issue on the [repository](repo
+
+## 📄 Acknowledgements
+
+Thanks to all contributors and supporters of this project.
+
+## 📜 License
+
+This project is under the **MIT** license. You can find the license details in the root of the repository as `LICENSE`.
+
+[repo]: https://github.com/itsauric/auricle-music-bot
 [github]: https://github.blog/changelog/2021-05-06-sync-an-out-of-date-branch-of-a-fork-from-the-web/
-[sapphire]: https://github.com/sapphiredev/framework
-[sapphire-hmr]: https://www.npmjs.com/package/@sapphire/plugin-hmr
-[discord-player]: https://github.com/Androz2091/discord-player/tree/develop
