@@ -29,7 +29,7 @@
     "@swc/core": "^1.7.40",
     "@types/node": "^20.17.1",
     "@types/ws": "^8.5.12",
-    "npm-run-all2": "^6.2.6",
+    "npm-run-all2": "^7.0.1",
     "typescript": "^5.4.5"
   },
   "scripts": {
