@@ -1,3 +1,5 @@
+[![Sponsor itsauric](https://img.shields.io/badge/Sponsor-itsauric-pink?style=for-the-badge&logo=github)](https://github.com/sponsors/itsauric)
+
 # Auricle
 
 This is a music bot created by using the [sapphire framework][sapphire] & [discord-player][discord-player] with this project being written in TypeScript.
