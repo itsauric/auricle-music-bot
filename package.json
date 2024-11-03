@@ -13,7 +13,7 @@
     "@sapphire/discord.js-utilities": "^7.3.0",
     "@sapphire/duration": "^1.1.2",
     "@sapphire/framework": "^5.2.1",
-    "@sapphire/plugin-api": "^6.1.1",
+    "@sapphire/plugin-api": "^7.0.0",
     "@sapphire/plugin-hmr": "^3.0.1",
     "@sapphire/plugin-logger": "^4.0.2",
     "@skyra/env-utilities": "^1.3.0",
