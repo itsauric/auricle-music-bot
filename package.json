@@ -27,7 +27,7 @@
   "devDependencies": {
     "@swc/cli": "^0.4.0",
     "@swc/core": "^1.7.40",
-    "@types/node": "^20.17.1",
+    "@types/node": "^22.8.7",
     "@types/ws": "^8.5.12",
     "npm-run-all2": "^7.0.1",
     "typescript": "^5.4.5"
