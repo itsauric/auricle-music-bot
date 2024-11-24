@@ -25,9 +25,9 @@
     "play-dl": "^1.9.7"
   },
   "devDependencies": {
-    "@swc/cli": "^0.5.0",
-    "@swc/core": "^1.9.2",
-    "@types/node": "^22.9.0",
+    "@swc/cli": "^0.5.1",
+    "@swc/core": "^1.9.3",
+    "@types/node": "^22.9.3",
     "@types/ws": "^8.5.13",
     "npm-run-all2": "^7.0.1",
     "typescript": "^5.4.5"
@@ -38,5 +38,5 @@
     "start": "node ./dist/index.js",
     "auricle": "run-p watch start"
   },
-  "packageManager": "yarn@4.5.1"
+  "packageManager": "yarn@4.5.2"
 }
