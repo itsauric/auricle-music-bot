@@ -475,16 +475,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/plugin-api@npm:^7.0.3":
-  version: 7.0.3
-  resolution: "@sapphire/plugin-api@npm:7.0.3"
+"@sapphire/plugin-api@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "@sapphire/plugin-api@npm:8.0.0"
   dependencies:
     "@types/ws": "npm:^8.5.13"
     "@vladfrangu/async_event_emitter": "npm:2.4.6"
     cookie-es: "npm:^1.2.2"
-    tldts: "npm:^6.1.58"
-    undici: "npm:^6.20.1"
-  checksum: 10c0/abc3e607079285f686b09e8b4c6feb3b3297c4cc47fe74a059532f6b97bec167780dd74d738404b755bbd331f645e574fb36f0a3bdd13fe111fb9208f92a97e4
+    tldts: "npm:^6.1.70"
+    undici: "npm:^7.2.0"
+  checksum: 10c0/2e70e7e5d2758e246e2190c204590a68f9f175fa45145e276463e2df4352ca71dfb0b22aa4b0357393a0dbaa2a8083d9f11ae185efbfa21b139b3a1c74439384
   languageName: node
   linkType: hard
 
@@ -1030,7 +1030,7 @@ __metadata:
     "@sapphire/discord.js-utilities": "npm:^7.3.1"
     "@sapphire/duration": "npm:^1.1.4"
     "@sapphire/framework": "npm:^5.3.1"
-    "@sapphire/plugin-api": "npm:^7.0.3"
+    "@sapphire/plugin-api": "npm:^8.0.0"
     "@sapphire/plugin-hmr": "npm:^3.0.2"
     "@sapphire/plugin-logger": "npm:^4.0.2"
     "@skyra/env-utilities": "npm:^1.3.0"
@@ -3201,21 +3201,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tldts-core@npm:^6.1.58":
-  version: 6.1.58
-  resolution: "tldts-core@npm:6.1.58"
-  checksum: 10c0/aadb37cad88c8ab59042471f6de7c269f9e4db4fc0b644787176ddc7ed1c95ebd486071836a3fc6e09c59421040a7002cc61b36c983eb66938630536aa042299
+"tldts-core@npm:^6.1.70":
+  version: 6.1.70
+  resolution: "tldts-core@npm:6.1.70"
+  checksum: 10c0/befad5eb9888e7b05db6cbe22d43750ec01615a9a26253b76400c367614429f860d0a49e752e257e9b2583f647413ac0599c27923f5b8d4d91af78bba0d6f984
   languageName: node
   linkType: hard
 
-"tldts@npm:^6.1.58":
-  version: 6.1.58
-  resolution: "tldts@npm:6.1.58"
+"tldts@npm:^6.1.70":
+  version: 6.1.70
+  resolution: "tldts@npm:6.1.70"
   dependencies:
-    tldts-core: "npm:^6.1.58"
+    tldts-core: "npm:^6.1.70"
   bin:
     tldts: bin/cli.js
-  checksum: 10c0/dc2c95cf84e9bde5a86b37d3fd0e2d37cd3c1a9057cb122663899368ee45fa2b12a9d4848cb67785bf3a9a2bf9323bfac4c2ffadb815e1a6948b3e053c06f848
+  checksum: 10c0/acfa49cab55242fe55ccb995e0a31d6bbed3cc1d52b0acd18c5ea0520fd44b3e85b850455dea566fbfca65cd9bce667f4922e827fbc216e4cd53585bcf633665
   languageName: node
   linkType: hard
 
@@ -3341,10 +3341,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici@npm:^6.20.1":
-  version: 6.20.1
-  resolution: "undici@npm:6.20.1"
-  checksum: 10c0/b2c8d5adcd226c53d02f9270e4cac277256a7147cf310af319369ec6f87651ca46b2960366cb1339a6dac84d937e01e8cdbec5cb468f1f1ce5e9490e438d7222
+"undici@npm:^7.2.0":
+  version: 7.2.0
+  resolution: "undici@npm:7.2.0"
+  checksum: 10c0/97b8452bae99304b697f79e9b8c094a2c28e6b805f720187af3a01cae2d297788d7ab6fe883577ba94e48fc20f1fbf04ab4fb050c23527bf32f8ada79a26dcb2
   languageName: node
   linkType: hard
 
