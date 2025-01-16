@@ -12,6 +12,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@discord-player/equalizer@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "@discord-player/equalizer@npm:7.1.0"
+  checksum: 10c0/b211ae77e70d317235f2d6f503c6faf519345544488e8cc5e82c8ac091bc7d57123b59f9e774e76644ff3657adf19f976c254e395630043cdb090958424fcd13
+  languageName: node
+  linkType: hard
+
 "@discord-player/extractor@npm:^4.5.1":
   version: 4.5.1
   resolution: "@discord-player/extractor@npm:4.5.1"
@@ -1022,7 +1029,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "auricle@workspace:."
   dependencies:
-    "@discord-player/equalizer": "npm:^0.2.3"
+    "@discord-player/equalizer": "npm:^7.1.0"
     "@discord-player/extractor": "npm:^4.5.1"
     "@discord-player/utils": "npm:^0.2.2"
     "@discordjs/opus": "npm:^0.9.0"
