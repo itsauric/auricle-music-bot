@@ -12,19 +12,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discord-player/extractor@npm:^4.5.1":
-  version: 4.5.1
-  resolution: "@discord-player/extractor@npm:4.5.1"
+"@discord-player/extractor@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "@discord-player/extractor@npm:7.1.0"
   dependencies:
     file-type: "npm:^16.5.4"
-    genius-lyrics: "npm:^4.4.6"
     isomorphic-unfetch: "npm:^4.0.2"
     node-html-parser: "npm:^6.1.4"
     reverbnation-scraper: "npm:^2.0.0"
     soundcloud.ts: "npm:^0.5.2"
     spotify-url-info: "npm:^3.2.6"
-    youtube-sr: "npm:^4.3.9"
-  checksum: 10c0/a55884bf391e4053a711e474c4757029753cc0da1f307a9f827870b901f889d10388b301753d6aafce0aa5777d426a9e1f8b5403c9704029cdf12998ce81658a
+  checksum: 10c0/f0091f3bca1d7091b05fc821d179e76375294ac828e49861994cbbe65ddff31dffaceb5e1622c3446b5e9bab7d649948ddf10edfc9b8cf04890c559454f33b10
   languageName: node
   linkType: hard
 
@@ -1022,7 +1020,7 @@ __metadata:
   resolution: "auricle@workspace:."
   dependencies:
     "@discord-player/equalizer": "npm:^0.2.3"
-    "@discord-player/extractor": "npm:^4.5.1"
+    "@discord-player/extractor": "npm:^7.1.0"
     "@discord-player/utils": "npm:^0.2.2"
     "@discordjs/opus": "npm:^0.10.0"
     "@distube/ytdl-core": "npm:^4.16.8"
@@ -1722,16 +1720,6 @@ __metadata:
     strip-ansi: "npm:^6.0.1"
     wide-align: "npm:^1.1.5"
   checksum: 10c0/ef10d7981113d69225135f994c9f8c4369d945e64a8fc721d655a3a38421b738c9fe899951721d1b47b73c41fdb5404ac87cc8903b2ecbed95d2800363e7e58c
-  languageName: node
-  linkType: hard
-
-"genius-lyrics@npm:^4.4.6":
-  version: 4.4.6
-  resolution: "genius-lyrics@npm:4.4.6"
-  dependencies:
-    node-html-parser: "npm:^6.1.9"
-    undici: "npm:^5.24.0"
-  checksum: 10c0/ffbe44230c210ac60f67c8167ea2dac4eb3dddd2bde99d00382e9f29169207f058d58953ff296e917c8a88d14d77bb048dc9685ef45d0222f9bac58b14ab8f63
   languageName: node
   linkType: hard
 
@@ -2462,7 +2450,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-html-parser@npm:^6.1.4, node-html-parser@npm:^6.1.9":
+"node-html-parser@npm:^6.1.4":
   version: 6.1.10
   resolution: "node-html-parser@npm:6.1.10"
   dependencies:
@@ -3300,7 +3288,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici@npm:^5.22.1, undici@npm:^5.24.0":
+"undici@npm:^5.22.1":
   version: 5.28.2
   resolution: "undici@npm:5.28.2"
   dependencies:
@@ -3439,12 +3427,5 @@ __metadata:
     buffer-crc32: "npm:~0.2.3"
     pend: "npm:~1.2.0"
   checksum: 10c0/7b40b3dc46b95761a2a764391d257a11f494d365875af73a1b48fe16d4bd103dd178612e60168d12a0e59a8ba4f6411a15a5e8871d5a5f78255d6cc1ce39ee62
-  languageName: node
-  linkType: hard
-
-"youtube-sr@npm:^4.3.9":
-  version: 4.3.9
-  resolution: "youtube-sr@npm:4.3.9"
-  checksum: 10c0/e37ffdc994b18d2e27bd45aece7a3f46f8a5add1d637e28835b0bdffac8ca25819537f52acfc8a0b427db9bb27a4b2f892090272d00d20f3ac4b087da0533d22
   languageName: node
   linkType: hard

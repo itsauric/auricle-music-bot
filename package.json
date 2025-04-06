@@ -6,7 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "@discord-player/equalizer": "^0.2.3",
-    "@discord-player/extractor": "^4.5.1",
+    "@discord-player/extractor": "^7.1.0",
     "@discord-player/utils": "^0.2.2",
     "@discordjs/opus": "^0.10.0",
     "@distube/ytdl-core": "^4.16.8",
