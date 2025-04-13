@@ -51,6 +51,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@discord-player/utils@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "@discord-player/utils@npm:7.1.0"
+  dependencies:
+    "@discordjs/collection": "npm:^1.1.0"
+  checksum: 10c0/db4eb223e4cd02d7c2a5845509134dab6d1422e602966b2ee7bfd11129bc4aaa90fe0221bb30481474fa443ee7e7e90290bccf3ccfadad61a07d4757927eee7d
+  languageName: node
+  linkType: hard
+
 "@discordjs/builders@npm:^1.10.1":
   version: 1.10.1
   resolution: "@discordjs/builders@npm:1.10.1"
@@ -1023,7 +1032,7 @@ __metadata:
   dependencies:
     "@discord-player/equalizer": "npm:^0.2.3"
     "@discord-player/extractor": "npm:^4.5.1"
-    "@discord-player/utils": "npm:^0.2.2"
+    "@discord-player/utils": "npm:^7.1.0"
     "@discordjs/opus": "npm:^0.10.0"
     "@distube/ytdl-core": "npm:^4.16.8"
     "@sapphire/discord.js-utilities": "npm:^7.3.2"
