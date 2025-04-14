@@ -576,13 +576,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@skyra/env-utilities@npm:^1.3.0":
-  version: 1.3.0
-  resolution: "@skyra/env-utilities@npm:1.3.0"
+"@skyra/env-utilities@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@skyra/env-utilities@npm:2.0.0"
   dependencies:
-    dotenv: "npm:^16.3.1"
-    dotenv-expand: "npm:^10.0.0"
-  checksum: 10c0/5073fcf83f8f32a5f127230831cf5faa294982f3f9c420d054f2f57a87cd9f78349033a9a2368a63e30742bd5efee9ebb0e1534a98df90617967da171e35fccf
+    dotenv: "npm:^16.4.7"
+    dotenv-expand: "npm:^12.0.1"
+  checksum: 10c0/32a0278fe1c09629b3d784ac14deeb1a7402b610ade1c6883506d640192c13a3667fa435d6745fa7918d32488acb7dab58c37abdf0cf6853613b5178730e5942
   languageName: node
   linkType: hard
 
@@ -1032,7 +1032,7 @@ __metadata:
     "@sapphire/plugin-api": "npm:^8.0.0"
     "@sapphire/plugin-hmr": "npm:^3.0.2"
     "@sapphire/plugin-logger": "npm:^4.0.2"
-    "@skyra/env-utilities": "npm:^1.3.0"
+    "@skyra/env-utilities": "npm:^2.0.0"
     "@swc/cli": "npm:^0.6.0"
     "@swc/core": "npm:^1.11.20"
     "@types/node": "npm:^22.14.1"
@@ -1470,17 +1470,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv-expand@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "dotenv-expand@npm:10.0.0"
-  checksum: 10c0/298f5018e29cfdcb0b5f463ba8e8627749103fbcf6cf81c561119115754ed582deee37b49dfc7253028aaba875ab7aea5fa90e5dac88e511d009ab0e6677924e
+"dotenv-expand@npm:^12.0.1":
+  version: 12.0.1
+  resolution: "dotenv-expand@npm:12.0.1"
+  dependencies:
+    dotenv: "npm:^16.4.5"
+  checksum: 10c0/51996bfa670073d7a441b8fbed26ac991026fba2c05e9a937a898ce7d2a2e7166f7b6ec4eb8879e576defb5d1ad399ed1300db8f803d6977577fea55b4d82dac
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.3.1":
-  version: 16.3.1
-  resolution: "dotenv@npm:16.3.1"
-  checksum: 10c0/b95ff1bbe624ead85a3cd70dbd827e8e06d5f05f716f2d0cbc476532d54c7c9469c3bc4dd93ea519f6ad711cb522c00ac9a62b6eb340d5affae8008facc3fbd7
+"dotenv@npm:^16.4.5, dotenv@npm:^16.4.7":
+  version: 16.4.7
+  resolution: "dotenv@npm:16.4.7"
+  checksum: 10c0/be9f597e36a8daf834452daa1f4cc30e5375a5968f98f46d89b16b983c567398a330580c88395069a77473943c06b877d1ca25b4afafcdd6d4adb549e8293462
   languageName: node
   linkType: hard
 
