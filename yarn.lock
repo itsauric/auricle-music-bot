@@ -1041,7 +1041,7 @@ __metadata:
     discord-api-types: "npm:^0.37.93"
     discord-player: "npm:^6.7.1"
     discord.js: "npm:^14.18.0"
-    npm-run-all2: "npm:^7.0.2"
+    npm-run-all2: "npm:^8.0.3"
     opusscript: "npm:^0.1.1"
     play-dl: "npm:^1.9.7"
     typescript: "npm:^5.4.5"
@@ -2267,6 +2267,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"minimatch@npm:^10.0.1":
+  version: 10.0.1
+  resolution: "minimatch@npm:10.0.1"
+  dependencies:
+    brace-expansion: "npm:^2.0.1"
+  checksum: 10c0/e6c29a81fe83e1877ad51348306be2e8aeca18c88fdee7a99df44322314279e15799e41d7cb274e4e8bb0b451a3bc622d6182e157dfa1717d6cda75e9cd8cd5d
+  languageName: node
+  linkType: hard
+
 "minimatch@npm:^3.1.1":
   version: 3.1.2
   resolution: "minimatch@npm:3.1.2"
@@ -2285,7 +2294,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^9.0.0, minimatch@npm:^9.0.3":
+"minimatch@npm:^9.0.3":
   version: 9.0.3
   resolution: "minimatch@npm:9.0.3"
   dependencies:
@@ -2508,14 +2517,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-run-all2@npm:^7.0.2":
-  version: 7.0.2
-  resolution: "npm-run-all2@npm:7.0.2"
+"npm-run-all2@npm:^8.0.3":
+  version: 8.0.3
+  resolution: "npm-run-all2@npm:8.0.3"
   dependencies:
     ansi-styles: "npm:^6.2.1"
     cross-spawn: "npm:^7.0.6"
     memorystream: "npm:^0.3.1"
-    minimatch: "npm:^9.0.0"
+    minimatch: "npm:^10.0.1"
     pidtree: "npm:^0.6.0"
     read-package-json-fast: "npm:^4.0.0"
     shell-quote: "npm:^1.7.3"
@@ -2525,7 +2534,7 @@ __metadata:
     npm-run-all2: bin/npm-run-all/index.js
     run-p: bin/run-p/index.js
     run-s: bin/run-s/index.js
-  checksum: 10c0/4606c0cdaad9dc7dbe5a6ae432b1aabea25e2ffd541f959307e5c34247d0658952f98352b8ce45f925241af304c6718b2198b425f234e0e9fbc30b342cedb121
+  checksum: 10c0/22773c2144bf0477f2be464043e180c4b37078df63147a374a47b3bac9b5bc5825e7a7253d7b138a2a5e34d2ff13f0fc7cfff4f7d46170405728c373dd733855
   languageName: node
   linkType: hard
 
