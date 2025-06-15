@@ -10,24 +10,24 @@
     "@discord-player/utils": "^0.2.2",
     "@discordjs/opus": "^0.10.0",
     "@distube/ytdl-core": "^4.16.8",
-    "@sapphire/discord.js-utilities": "^7.3.2",
+    "@sapphire/discord.js-utilities": "^7.3.3",
     "@sapphire/duration": "^1.2.0",
-    "@sapphire/framework": "^5.3.3",
-    "@sapphire/plugin-api": "^8.0.0",
+    "@sapphire/framework": "^5.3.6",
+    "@sapphire/plugin-api": "^8.3.0",
     "@sapphire/plugin-hmr": "^3.0.2",
     "@sapphire/plugin-logger": "^4.0.2",
     "@skyra/env-utilities": "^1.3.0",
     "colorette": "^2.0.20",
     "discord-api-types": "^0.37.93",
     "discord-player": "^6.7.1",
-    "discord.js": "^14.18.0",
+    "discord.js": "^14.19.3",
     "opusscript": "^0.1.1",
     "play-dl": "^1.9.7"
   },
   "devDependencies": {
-    "@swc/cli": "^0.6.0",
-    "@swc/core": "^1.11.20",
-    "@types/node": "^22.14.1",
+    "@swc/cli": "^0.7.7",
+    "@swc/core": "^1.12.1",
+    "@types/node": "^22.15.31",
     "@types/ws": "^8.18.1",
     "npm-run-all2": "^7.0.2",
     "typescript": "^5.4.5"
@@ -38,5 +38,5 @@
     "start": "node ./dist/index.js",
     "auricle": "run-p watch start"
   },
-  "packageManager": "yarn@4.9.0"
+  "packageManager": "yarn@4.9.2"
 }
