@@ -49,7 +49,7 @@ Anyone can contribute, please open a pull request on the [repository](repo)
 
 ## 💬 Feedback and Support
 
-For any issues, questions, or suggestions, please open an issue on the [repository](repo
+For any issues, questions, or suggestions, please open an issue on the [repository](repo)
 
 ## 📄 Acknowledgements
 
