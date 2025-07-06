@@ -1,9 +1,10 @@
 import { Command } from '@sapphire/framework';
 import { useMainPlayer } from 'discord-player';
+import { MessageFlags } from 'discord.js';
 import type { GuildMember } from 'discord.js';
 
 export class PlayCommand extends Command {
-	public constructor(context: Command.Context, options: Command.Options) {
+	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
 			description: 'Plays and enqueues track(s) of the query provided'
@@ -53,15 +54,15 @@ export class PlayCommand extends Command {
 		const query = interaction.options.getString('query')!;
 		const member = interaction.member as GuildMember;
 
-		if (permissions.member) return interaction.reply({ content: permissions.member, ephemeral: true });
-		if (permissions.client) return interaction.reply({ content: permissions.client, ephemeral: true });
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
+		if (permissions.member) return interaction.reply({ content: permissions.member, flags: MessageFlags.Ephemeral });
+		if (permissions.client) return interaction.reply({ content: permissions.client, flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
 		const results = await player.search(query);
 		if (!results.hasTracks())
 			return interaction.reply({
 				content: `${emojis.error} | **No** tracks were found for your query`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
 
 		await interaction.deferReply();

@@ -1,8 +1,9 @@
 import { Command } from '@sapphire/framework';
+import { MessageFlags } from 'discord.js';
 import { useQueue } from 'discord-player';
 
 export class moveCommand extends Command {
-	public constructor(context: Command.Context, options: Command.Options) {
+	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
 			description: "Moves the given track's position to the position requested"
@@ -57,13 +58,13 @@ export class moveCommand extends Command {
 		const queue = useQueue(interaction.guild!.id);
 		const permissions = voice(interaction);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
 		if (!queue.tracks)
 			return interaction.reply({
 				content: `${emojis.error} | There are **no tracks** to **move** to`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
 		const move = interaction.options.getInteger('track')! - 1;
 		const position = interaction.options.getInteger('position')! - 1;
@@ -72,12 +73,12 @@ export class moveCommand extends Command {
 		if (!trackResolvable)
 			return interaction.reply({
 				content: `${emojis.error} | The **requested track** doesn't **exist**`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
 		if (position > queue.tracks.size)
 			return interaction.reply({
 				content: `${emojis.error} | The **requested position** doesn't **exist**`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
 
 		queue.node.move(trackResolvable, position);

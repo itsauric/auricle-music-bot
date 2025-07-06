@@ -1,9 +1,10 @@
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { Command } from '@sapphire/framework';
+import { MessageFlags } from 'discord.js';
 import { useHistory, useQueue } from 'discord-player';
 
 export class HistoryCommand extends Command {
-	public constructor(context: Command.Context, options: Command.Options) {
+	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
 			description: 'Displays the queue history in an embed'
@@ -23,11 +24,11 @@ export class HistoryCommand extends Command {
 		const queue = useQueue(interaction.guild!.id);
 		const history = useHistory(interaction.guild!.id);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
 		if (!history?.tracks)
 			return interaction.reply({
 				content: `${emojis.error} | There is **no** queue history to **display**`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
 
 		let pagesNum = Math.ceil(queue.tracks.size / 5);

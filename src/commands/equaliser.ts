@@ -1,8 +1,9 @@
 import { Command } from '@sapphire/framework';
+import { MessageFlags } from 'discord.js';
 import { EqualizerConfigurationPreset, useQueue } from 'discord-player';
 
 export class EqualizerCommand extends Command {
-	public constructor(context: Command.Context, options: Command.Options) {
+	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
 			description: 'The equaliser filter that can be applied to tracks'
@@ -35,21 +36,21 @@ export class EqualizerCommand extends Command {
 		const permissions = voice(interaction);
 		const preset = interaction.options.getString('preset') as string;
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
 		if (!queue.currentTrack)
 			return interaction.reply({
 				content: `${emojis.error} | There is no track **currently** playing`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
 		if (!queue.filters.equalizer)
 			return interaction.reply({
 				content: `${emojis.error} | The equaliser filter is **not available** to be used in this queue`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
 
-		queue.filters.equalizer.setEQ(EqualizerConfigurationPreset[preset]);
+		queue.filters.equalizer.setEQ(EqualizerConfigurationPreset[preset as keyof typeof EqualizerConfigurationPreset]);
 		queue.filters.equalizer.enable();
 
 		return interaction.reply({

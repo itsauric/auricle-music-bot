@@ -1,8 +1,9 @@
 import { Command } from '@sapphire/framework';
+import { MessageFlags } from 'discord.js';
 import { useQueue } from 'discord-player';
 
 export class JumpCommand extends Command {
-	public constructor(context: Command.Context, options: Command.Options) {
+	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
 			description: 'Jumps to the given track without removing any previous tracks'
@@ -54,13 +55,13 @@ export class JumpCommand extends Command {
 		const queue = useQueue(interaction.guild!.id);
 		const permissions = voice(interaction);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
 		if (!queue.tracks)
 			return interaction.reply({
 				content: `${emojis.error} | There are **no tracks** to **jump** to`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
 		const jump = interaction.options.getInteger('track')! - 1;
 		const trackResolvable = queue.tracks.at(jump!);
@@ -68,7 +69,7 @@ export class JumpCommand extends Command {
 		if (!trackResolvable)
 			return interaction.reply({
 				content: `${emojis.error} | The **requested track** doesn't **exist**`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
 
 		queue.node.jump(trackResolvable);

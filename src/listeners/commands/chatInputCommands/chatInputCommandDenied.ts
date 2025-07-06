@@ -1,4 +1,5 @@
 import { DurationFormatter } from '@sapphire/duration';
+import { MessageFlags } from 'discord.js';
 import type { ChatInputCommandDeniedPayload, Events } from '@sapphire/framework';
 import { Listener, UserError } from '@sapphire/framework';
 
@@ -14,14 +15,14 @@ export class UserEvent extends Listener<typeof Events.ChatInputCommandDenied> {
 			return interaction.reply({
 				content: `Slow down! You must wait **${ms}** before using the \`${interaction.commandName}\` comand.`,
 				allowedMentions: { users: [interaction.user.id], roles: [] },
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
 		}
 
 		return interaction.reply({
 			content,
 			allowedMentions: { users: [interaction.user.id], roles: [] },
-			ephemeral: true
+			flags: MessageFlags.Ephemeral
 		});
 	}
 }

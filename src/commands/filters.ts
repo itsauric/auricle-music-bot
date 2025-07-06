@@ -1,8 +1,9 @@
 import { Command } from '@sapphire/framework';
+import { MessageFlags } from 'discord.js';
 import { FiltersName, useQueue } from 'discord-player';
 
 export class FiltersCommand extends Command {
-	public constructor(context: Command.Context, options: Command.Options) {
+	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
 			description: 'The FFmpeg filters that can be applied to tracks'
@@ -43,18 +44,18 @@ export class FiltersCommand extends Command {
 		const permissions = voice(interaction);
 		const filter = interaction.options.getString('filter') as FiltersName | 'Off';
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
 		if (!queue.currentTrack)
 			return interaction.reply({
 				content: `${emojis.error} | There is no track **currently** playing`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
 		if (!queue.filters.ffmpeg)
 			return interaction.reply({
 				content: `${emojis.error} | The FFmpeg filters are **not available** to be used in this queue`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
 
 		if (filter === 'Off') {

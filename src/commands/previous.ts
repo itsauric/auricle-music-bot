@@ -1,8 +1,9 @@
 import { Command } from '@sapphire/framework';
+import { MessageFlags } from 'discord.js';
 import { useHistory, useQueue } from 'discord-player';
 
 export class PreviousCommand extends Command {
-	public constructor(context: Command.Context, options: Command.Options) {
+	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
 			description: 'Plays the previous track'
@@ -23,13 +24,13 @@ export class PreviousCommand extends Command {
 		const history = useHistory(interaction.guild!.id);
 		const permissions = voice(interaction);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
 		if (!history?.previousTrack)
 			return interaction.reply({
 				content: `${emojis.error} | There is **no** previous track in the **history**`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
 
 		await history.previous();

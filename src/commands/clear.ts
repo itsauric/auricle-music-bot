@@ -1,8 +1,9 @@
 import { Command } from '@sapphire/framework';
 import { useQueue } from 'discord-player';
+import { MessageFlags } from 'discord.js';
 
 export class ClearCommand extends Command {
-	public constructor(context: Command.Context, options: Command.Options) {
+	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
 			description: 'Clears the current queue and removes all enqueued tracks'
@@ -24,9 +25,9 @@ export class ClearCommand extends Command {
 		const permissions = voice(interaction);
 		const history = interaction.options.getBoolean('history');
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
-		if (!queue.tracks) return interaction.reply({ content: `${emojis.error} | There is **nothing** to clear`, ephemeral: true });
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
+		if (!queue.tracks) return interaction.reply({ content: `${emojis.error} | There is **nothing** to clear`, flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
 		queue.tracks.clear();
 		if (history) queue.history.clear();

@@ -1,4 +1,5 @@
 import { Command } from '@sapphire/framework';
+import { MessageFlags } from 'discord.js';
 import { QueueRepeatMode, useQueue } from 'discord-player';
 
 const repeatModes = [
@@ -9,7 +10,7 @@ const repeatModes = [
 ];
 
 export class LoopCommand extends Command {
-	public constructor(context: Command.Context, options: Command.Options) {
+	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
 			description: 'Loops the current playing track or the entire queue'
@@ -36,13 +37,13 @@ export class LoopCommand extends Command {
 		const queue = useQueue(interaction.guild!.id);
 		const permissions = voice(interaction);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
 		if (!queue.currentTrack)
 			return interaction.reply({
 				content: `${emojis.error} | There is no track **currently** playing`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
 		const mode = interaction.options.getNumber('mode', true);
 		const name = mode === QueueRepeatMode.OFF ? 'Looping' : repeatModes.find((m) => m.value === mode)?.name;

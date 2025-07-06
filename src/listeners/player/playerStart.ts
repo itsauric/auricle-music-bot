@@ -3,7 +3,7 @@ import type { GuildQueue, Track } from 'discord-player';
 import type { GuildTextBasedChannel } from 'discord.js';
 
 export class PlayerEvent extends Listener {
-	public constructor(context: Listener.Context, options: Listener.Options) {
+	public constructor(context: Listener.LoaderContext, options: Listener.Options) {
 		super(context, {
 			...options,
 			emitter: container.client.player.events,
@@ -11,7 +11,7 @@ export class PlayerEvent extends Listener {
 		});
 	}
 
-	public run(queue: GuildQueue<{ channel: GuildTextBasedChannel }>, track: Track) {
+	public async run(queue: GuildQueue<{ channel: GuildTextBasedChannel }>, track: Track) {
 		const { voice } = container.client.utils;
 		const permissions = voice(queue.metadata.channel);
 		if (permissions.events) return;

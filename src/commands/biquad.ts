@@ -1,11 +1,12 @@
 import { Command } from '@sapphire/framework';
 import { BiquadFilterType, useQueue } from 'discord-player';
+import { MessageFlags } from 'discord.js';
 import type { APIApplicationCommandOptionChoice } from 'discord.js';
 
 type SupportedBiquadFilters = keyof typeof BiquadFilterType | 'Off';
 
 export class BiquadCommand extends Command {
-	public constructor(context: Command.Context, options: Command.Options) {
+	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
 			description: 'The biquad filter that can be applied to tracks'
@@ -50,18 +51,18 @@ export class BiquadCommand extends Command {
 		const filter = interaction.options.getString('filter', true) as SupportedBiquadFilters;
 		const dB = interaction.options.getNumber('gain');
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, ephemeral: true });
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
 		if (!queue.currentTrack)
 			return interaction.reply({
 				content: `${emojis.error} | There is no track **currently** playing`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, ephemeral: true });
+		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
 		if (!queue.filters.biquad)
 			return interaction.reply({
 				content: `${emojis.error} | The biquad filter is **not available** to be used in this queue`,
-				ephemeral: true
+				flags: MessageFlags.Ephemeral
 			});
 
 		if (filter === 'Off') {
