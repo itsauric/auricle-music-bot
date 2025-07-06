@@ -109,13 +109,8 @@ __metadata:
 "@discordjs/opus@npm:^0.10.0":
   version: 0.10.0
   resolution: "@discordjs/opus@npm:0.10.0"
-"@discordjs/opus@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "@discordjs/opus@npm:0.10.0"
   dependencies:
     "@discordjs/node-pre-gyp": "npm:^0.4.5"
-    node-addon-api: "npm:^8.1.0"
-  checksum: 10c0/d7cb5f95c4b9556b3dc6b32e5a5f589396230fcdce33e4aab98d8623bcc8895b0776116255ffb93c5dcca0fb98db3e39b6b70f1687dc2104e0a9f189b5e28362
     node-addon-api: "npm:^8.1.0"
   checksum: 10c0/d7cb5f95c4b9556b3dc6b32e5a5f589396230fcdce33e4aab98d8623bcc8895b0776116255ffb93c5dcca0fb98db3e39b6b70f1687dc2104e0a9f189b5e28362
   languageName: node
@@ -824,8 +819,6 @@ __metadata:
   dependencies:
     "@sapphire/result": "npm:^2.7.2"
   checksum: 10c0/a071fb93bab0864c9182685d2c46aa7f3ddc0581d9a067ac736a193914cef9eb99147f9622dd48c7143cf9ed387c4e889b8b94dffd69c7e730e5910cc7e4f781
-    "@sapphire/result": "npm:^2.7.2"
-  checksum: 10c0/a071fb93bab0864c9182685d2c46aa7f3ddc0581d9a067ac736a193914cef9eb99147f9622dd48c7143cf9ed387c4e889b8b94dffd69c7e730e5910cc7e4f781
   languageName: node
   linkType: hard
 
@@ -926,7 +919,6 @@ __metadata:
   dependencies:
     tslib: "npm:^2.8.1"
   checksum: 10c0/04047dbba597df2db5dfac13bffcf6b0e4757c8bfea62841b56971c4d9f6b19bacba5b53e9cb5adf10f734f7c324d5c1054eb248d9b6395b07ff85fb236ec3f6
-  checksum: 10c0/04047dbba597df2db5dfac13bffcf6b0e4757c8bfea62841b56971c4d9f6b19bacba5b53e9cb5adf10f734f7c324d5c1054eb248d9b6395b07ff85fb236ec3f6
   languageName: node
   linkType: hard
 
@@ -934,6 +926,16 @@ __metadata:
   version: 1.0.5
   resolution: "@sapphire/timestamp@npm:1.0.5"
   checksum: 10c0/e4375da147820274280ea6420204b480b53489b6f539f5f1f10a9db0fdd99b73cb3603aad7756e885aec1db45c3c325b3e965c8239f84913cdb4797f9f0fe1ba
+  languageName: node
+  linkType: hard
+
+"@sapphire/ts-config@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "@sapphire/ts-config@npm:5.0.1"
+  dependencies:
+    tslib: "npm:^2.6.2"
+    typescript: "npm:^5.4.2"
+  checksum: 10c0/ebaadc2481b418c44eae5e121316ee8b7dab1f97e774f3488fc79be18aeaba3b01f6c897c61aa49bf7581a0b02e7c1ff7683d31e63aa285b0ffa66eb651a8007
   languageName: node
   linkType: hard
 
@@ -983,7 +985,6 @@ __metadata:
     source-map: "npm:^0.7.3"
   peerDependencies:
     "@swc/core": ^1.2.66
-    chokidar: ^4.0.1
     chokidar: ^4.0.1
   peerDependenciesMeta:
     chokidar:
@@ -1084,7 +1085,6 @@ __metadata:
     "@swc/types": "npm:^0.1.23"
   peerDependencies:
     "@swc/helpers": ">=0.5.17"
-    "@swc/helpers": ">=0.5.17"
   dependenciesMeta:
     "@swc/core-darwin-arm64":
       optional: true
@@ -1173,7 +1173,6 @@ __metadata:
   resolution: "@types/ws@npm:8.18.1"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 10c0/61aff1129143fcc4312f083bc9e9e168aa3026b7dd6e70796276dcfb2c8211c4292603f9c4864fae702f2ed86e4abd4d38aa421831c2fd7f856c931a481afbab
   checksum: 10c0/61aff1129143fcc4312f083bc9e9e168aa3026b7dd6e70796276dcfb2c8211c4292603f9c4864fae702f2ed86e4abd4d38aa421831c2fd7f856c931a481afbab
   languageName: node
   linkType: hard
@@ -1434,6 +1433,7 @@ __metadata:
     "@sapphire/plugin-hmr": "npm:^3.0.2"
     "@sapphire/plugin-logger": "npm:^4.1.0"
     "@sapphire/plugin-subcommands": "npm:^7.0.1"
+    "@sapphire/ts-config": "npm:^5.0.1"
     "@skyra/env-utilities": "npm:^2.0.1"
     "@swc/cli": "npm:^0.7.7"
     "@swc/core": "npm:^1.12.9"
@@ -4348,7 +4348,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.5.4, typescript@npm:^5.8.3":
+"typescript@npm:^5.4.2, typescript@npm:^5.5.4, typescript@npm:^5.8.3":
   version: 5.8.3
   resolution: "typescript@npm:5.8.3"
   bin:
@@ -4358,7 +4358,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.5.4#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.4.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.5.4#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
   version: 5.8.3
   resolution: "typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"
   bin:
