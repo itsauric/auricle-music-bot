@@ -25,8 +25,8 @@
   "devDependencies": {
     "@sapphire/ts-config": "^5.0.1",
     "@swc/cli": "^0.7.8",
-    "@swc/core": "^1.12.11",
-    "@types/node": "^24.0.13",
+    "@swc/core": "^1.13.1",
+    "@types/node": "^24.0.15",
     "@types/ws": "^8.18.1",
     "npm-run-all2": "^8.0.4",
     "typescript": "^5.8.3"
