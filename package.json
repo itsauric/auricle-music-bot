@@ -11,7 +11,7 @@
     "@discordjs/opus": "^0.10.0",
     "@sapphire/discord.js-utilities": "^7.3.3",
     "@sapphire/duration": "^1.2.0",
-    "@sapphire/framework": "^5.3.6",
+    "@sapphire/framework": "^5.3.7",
     "@sapphire/plugin-api": "^8.3.1",
     "@sapphire/plugin-hmr": "^3.0.2",
     "@sapphire/plugin-logger": "^4.1.0",
@@ -25,7 +25,7 @@
   "devDependencies": {
     "@sapphire/ts-config": "^5.0.1",
     "@swc/cli": "^0.7.8",
-    "@swc/core": "^1.13.5",
+    "@swc/core": "^1.13.20",
     "@types/node": "^24.5.2",
     "@types/ws": "^8.18.1",
     "npm-run-all2": "^8.0.4",
@@ -37,5 +37,5 @@
     "start": "node ./dist/index.js",
     "auricle": "run-p watch start"
   },
-  "packageManager": "yarn@4.10.0"
+  "packageManager": "yarn@4.10.3"
 }
