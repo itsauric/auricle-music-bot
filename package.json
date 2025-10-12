@@ -19,14 +19,14 @@
     "@skyra/env-utilities": "^2.0.1",
     "colorette": "^2.0.20",
     "discord-player": "^7.1.0",
-    "discord.js": "^14.22.1",
+    "discord.js": "^14.23.2",
     "mediaplex": "^1.0.0"
   },
   "devDependencies": {
     "@sapphire/ts-config": "^5.0.1",
     "@swc/cli": "^0.7.8",
     "@swc/core": "^1.13.20",
-    "@types/node": "^24.6.2",
+    "@types/node": "^24.7.2",
     "@types/ws": "^8.18.1",
     "npm-run-all2": "^8.0.4",
     "typescript": "^5.8.3"
