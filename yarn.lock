@@ -970,90 +970,90 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/core-darwin-arm64@npm:1.13.21"
+"@swc/core-darwin-arm64@npm:1.14.0":
+  version: 1.14.0
+  resolution: "@swc/core-darwin-arm64@npm:1.14.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/core-darwin-x64@npm:1.13.21"
+"@swc/core-darwin-x64@npm:1.14.0":
+  version: 1.14.0
+  resolution: "@swc/core-darwin-x64@npm:1.14.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.13.21"
+"@swc/core-linux-arm-gnueabihf@npm:1.14.0":
+  version: 1.14.0
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.14.0"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.13.21"
+"@swc/core-linux-arm64-gnu@npm:1.14.0":
+  version: 1.14.0
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.14.0"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/core-linux-arm64-musl@npm:1.13.21"
+"@swc/core-linux-arm64-musl@npm:1.14.0":
+  version: 1.14.0
+  resolution: "@swc/core-linux-arm64-musl@npm:1.14.0"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/core-linux-x64-gnu@npm:1.13.21"
+"@swc/core-linux-x64-gnu@npm:1.14.0":
+  version: 1.14.0
+  resolution: "@swc/core-linux-x64-gnu@npm:1.14.0"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/core-linux-x64-musl@npm:1.13.21"
+"@swc/core-linux-x64-musl@npm:1.14.0":
+  version: 1.14.0
+  resolution: "@swc/core-linux-x64-musl@npm:1.14.0"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.13.21"
+"@swc/core-win32-arm64-msvc@npm:1.14.0":
+  version: 1.14.0
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.14.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.13.21"
+"@swc/core-win32-ia32-msvc@npm:1.14.0":
+  version: 1.14.0
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.14.0"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.13.21":
-  version: 1.13.21
-  resolution: "@swc/core-win32-x64-msvc@npm:1.13.21"
+"@swc/core-win32-x64-msvc@npm:1.14.0":
+  version: 1.14.0
+  resolution: "@swc/core-win32-x64-msvc@npm:1.14.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.13.21":
-  version: 1.13.21
-  resolution: "@swc/core@npm:1.13.21"
+"@swc/core@npm:^1.14.0":
+  version: 1.14.0
+  resolution: "@swc/core@npm:1.14.0"
   dependencies:
-    "@swc/core-darwin-arm64": "npm:1.13.21"
-    "@swc/core-darwin-x64": "npm:1.13.21"
-    "@swc/core-linux-arm-gnueabihf": "npm:1.13.21"
-    "@swc/core-linux-arm64-gnu": "npm:1.13.21"
-    "@swc/core-linux-arm64-musl": "npm:1.13.21"
-    "@swc/core-linux-x64-gnu": "npm:1.13.21"
-    "@swc/core-linux-x64-musl": "npm:1.13.21"
-    "@swc/core-win32-arm64-msvc": "npm:1.13.21"
-    "@swc/core-win32-ia32-msvc": "npm:1.13.21"
-    "@swc/core-win32-x64-msvc": "npm:1.13.21"
+    "@swc/core-darwin-arm64": "npm:1.14.0"
+    "@swc/core-darwin-x64": "npm:1.14.0"
+    "@swc/core-linux-arm-gnueabihf": "npm:1.14.0"
+    "@swc/core-linux-arm64-gnu": "npm:1.14.0"
+    "@swc/core-linux-arm64-musl": "npm:1.14.0"
+    "@swc/core-linux-x64-gnu": "npm:1.14.0"
+    "@swc/core-linux-x64-musl": "npm:1.14.0"
+    "@swc/core-win32-arm64-msvc": "npm:1.14.0"
+    "@swc/core-win32-ia32-msvc": "npm:1.14.0"
+    "@swc/core-win32-x64-msvc": "npm:1.14.0"
     "@swc/counter": "npm:^0.1.3"
     "@swc/types": "npm:^0.1.25"
   peerDependencies:
@@ -1082,7 +1082,7 @@ __metadata:
   peerDependenciesMeta:
     "@swc/helpers":
       optional: true
-  checksum: 10c0/b4d650b1ef797c0076d2a2225c2415e99e99b714578f43db40b2a913bf62c327d74b1c097d8d980d75b7cbac0a8bc63834bdcdd26a58c0fcb41daad36bd307cf
+  checksum: 10c0/40823d5cf408f305ef91debc555109054dfd234117114dddc6078e498b7dfc97a8cb3ef756a4ff09708372457c40cc0804088c9e07ebc8c0e0030fdc4b8bdfba
   languageName: node
   linkType: hard
 
@@ -1132,12 +1132,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^24.9.1":
-  version: 24.9.1
-  resolution: "@types/node@npm:24.9.1"
+"@types/node@npm:*, @types/node@npm:^24.9.2":
+  version: 24.9.2
+  resolution: "@types/node@npm:24.9.2"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10c0/c52f8168080ef9a7c3dc23d8ac6061fab5371aad89231a0f6f4c075869bc3de7e89b075b1f3e3171d9e5143d0dda1807c3dab8e32eac6d68f02e7480e7e78576
+  checksum: 10c0/7905d43f65cee72ef475fe76316e10bbf6ac5d08a7f0f6c38f2b6285d7ca3009e8fcafc8f8a1d2bf3f55889c9c278dbb203a9081fd0cf2d6d62161703924c6fa
   languageName: node
   linkType: hard
 
@@ -1409,12 +1409,12 @@ __metadata:
     "@sapphire/ts-config": "npm:^5.0.1"
     "@skyra/env-utilities": "npm:^2.0.1"
     "@swc/cli": "npm:^0.7.8"
-    "@swc/core": "npm:^1.13.21"
-    "@types/node": "npm:^24.9.1"
+    "@swc/core": "npm:^1.14.0"
+    "@types/node": "npm:^24.9.2"
     "@types/ws": "npm:^8.18.1"
     colorette: "npm:^2.0.20"
     discord-player: "npm:^7.1.0"
-    discord.js: "npm:^14.24.0"
+    discord.js: "npm:^14.24.2"
     mediaplex: "npm:^1.0.0"
     npm-run-all2: "npm:^8.0.4"
     typescript: "npm:^5.8.3"
@@ -1828,9 +1828,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord.js@npm:^14.24.0":
-  version: 14.24.0
-  resolution: "discord.js@npm:14.24.0"
+"discord.js@npm:^14.24.2":
+  version: 14.24.2
+  resolution: "discord.js@npm:14.24.2"
   dependencies:
     "@discordjs/builders": "npm:^1.13.0"
     "@discordjs/collection": "npm:1.5.3"
@@ -1845,7 +1845,7 @@ __metadata:
     magic-bytes.js: "npm:^1.10.0"
     tslib: "npm:^2.6.3"
     undici: "npm:6.21.3"
-  checksum: 10c0/a749df63d0ef0ebc3dcb4b5055b4dec21485694576b82323785a5a649043c1664eca48b1b18ac2be25a937f2d9943973585da53c29729841dcac3f3e2266c3a7
+  checksum: 10c0/473cae88b3a49434a16a7a43e4ed398864883c923c0419c132378a333ae9777ce01c8a703716f9ad93e42ba2454429e89497c03538364e12efaf36fc27278748
   languageName: node
   linkType: hard
 
