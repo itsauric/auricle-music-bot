@@ -23,7 +23,7 @@
     "mediaplex": "^1.0.0"
   },
   "devDependencies": {
-    "@sapphire/ts-config": "^5.0.2",
+    "@sapphire/ts-config": "^5.0.3",
     "@swc/cli": "^0.7.9",
     "@swc/core": "^1.15.3",
     "@types/node": "^24.10.1",
@@ -37,5 +37,5 @@
     "start": "node ./dist/index.js",
     "auricle": "run-p watch start"
   },
-  "packageManager": "yarn@4.11.0"
+  "packageManager": "yarn@4.12.0"
 }
