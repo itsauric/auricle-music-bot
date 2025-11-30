@@ -913,13 +913,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/ts-config@npm:^5.0.2":
-  version: 5.0.2
-  resolution: "@sapphire/ts-config@npm:5.0.2"
+"@sapphire/ts-config@npm:^5.0.3":
+  version: 5.0.3
+  resolution: "@sapphire/ts-config@npm:5.0.3"
   dependencies:
     tslib: "npm:^2.8.1"
     typescript: "npm:~5.4.5"
-  checksum: 10c0/dd609d51a337612bb0a22de998fe255ff4b1d793bb869b064c5afc2814c1297aebb40e5d47b5f81d5bdf85776037d6321456a33f19878d948253c9cc720298b7
+  checksum: 10c0/b4627d82b66f7b6be8e999656a6d247db3ebdca744859e6f4f1696b240abe35aa3bdb7a1e9f5fb858382d5ffdbd1086fc9082c6f17ffd9c4bc4ce1b7375806a4
   languageName: node
   linkType: hard
 
@@ -1417,7 +1417,7 @@ __metadata:
     "@sapphire/plugin-hmr": "npm:^3.0.2"
     "@sapphire/plugin-logger": "npm:^4.1.0"
     "@sapphire/plugin-subcommands": "npm:^7.0.1"
-    "@sapphire/ts-config": "npm:^5.0.2"
+    "@sapphire/ts-config": "npm:^5.0.3"
     "@skyra/env-utilities": "npm:^2.0.1"
     "@swc/cli": "npm:^0.7.9"
     "@swc/core": "npm:^1.15.3"
