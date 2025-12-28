@@ -773,9 +773,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/framework@npm:^5.4.0":
-  version: 5.4.0
-  resolution: "@sapphire/framework@npm:5.4.0"
+"@sapphire/framework@npm:^5.5.0":
+  version: 5.5.0
+  resolution: "@sapphire/framework@npm:5.5.0"
   dependencies:
     "@discordjs/builders": "npm:^1.13.0"
     "@sapphire/discord-utilities": "npm:^4.0.0"
@@ -786,7 +786,7 @@ __metadata:
     "@sapphire/result": "npm:^2.8.0"
     "@sapphire/stopwatch": "npm:^1.5.4"
     "@sapphire/utilities": "npm:^3.18.2"
-  checksum: 10c0/1877896d52842548cf361de5323ff0ac7a8a8c90f68b410117f89e210b4c9c9db47bfb0af1e019b1e84bae968bcb386700faefbbf5964b711d28c615441ff34f
+  checksum: 10c0/586b1fc898501a1b2b75c44cd26b23e9cf79fbff58df80340d9ea2414ccfe876ee840df96f63fa42b0aaff09cec0ef92dd77d39f846b64285e8d2fff0050e975
   languageName: node
   linkType: hard
 
@@ -1412,7 +1412,7 @@ __metadata:
     "@discordjs/opus": "npm:^0.10.0"
     "@sapphire/discord.js-utilities": "npm:^7.3.3"
     "@sapphire/duration": "npm:^1.2.0"
-    "@sapphire/framework": "npm:^5.4.0"
+    "@sapphire/framework": "npm:^5.5.0"
     "@sapphire/plugin-api": "npm:^8.3.1"
     "@sapphire/plugin-hmr": "npm:^3.0.2"
     "@sapphire/plugin-logger": "npm:^4.1.0"
