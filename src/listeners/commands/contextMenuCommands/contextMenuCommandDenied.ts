@@ -13,7 +13,7 @@ export class UserEvent extends Listener<typeof Events.ContextMenuCommandDenied> 
 			const remaining = Reflect.get(Object(context), 'remaining');
 			const ms = new DurationFormatter().format(remaining);
 			return interaction.reply({
-				content: `Slow down! You must wait **${ms}** before using the \`${interaction.commandName}\` comand.`,
+				content: `Slow down! You must wait **${ms}** before using the \`${interaction.commandName}\` command.`,
 				allowedMentions: { users: [interaction.user.id], roles: [] },
 				flags: MessageFlags.Ephemeral
 			});

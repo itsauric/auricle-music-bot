@@ -21,21 +21,21 @@ export class PauseCommand extends Command {
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		const { emojis, voice } = this.container.client.utils;
 		const queue = useQueue(interaction.guild!.id);
-		const timeline = useTimeline({ node: interaction.guild!.id })!;
+		const timeline = useTimeline({ node: interaction.guild!.id });
 		const permissions = voice(interaction);
 
 		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
-		if (!queue.currentTrack)
+		if (!queue.currentTrack || !timeline)
 			return interaction.reply({
 				content: `${emojis.error} | There is no track **currently** playing`,
 				flags: MessageFlags.Ephemeral
 			});
 		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
-		timeline.paused ? timeline.resume() : timeline.pause();
-		const state = timeline.paused;
+		const wasPaused = timeline.paused;
+		wasPaused ? timeline.resume() : timeline.pause();
 		return interaction.reply({
-			content: `${emojis.success} | **Playback** has been **${state ? 'paused' : 'resumed'}**`
+			content: `${wasPaused ? emojis.play : emojis.pause} | **Playback** has been **${wasPaused ? 'resumed' : 'paused'}**`
 		});
 	}
 }

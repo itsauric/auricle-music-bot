@@ -1,65 +1,111 @@
 [![Sponsor itsauric](https://img.shields.io/badge/Sponsor-itsauric-pink?style=for-the-badge&logo=github)](https://github.com/sponsors/itsauric)
 
-# 🎶 Auricle
+# Auricle
 
-This is a music bot created by using the [sapphire framework][sapphire] & [discord-player][discord-player] with this project being written in TypeScript.
+A feature-rich Discord music bot built with [Sapphire Framework][sapphire] and [discord-player][discord-player], written in TypeScript.
 
-## 🚀 Features
-- **Slash Commands**: Intuitive commands for playing music, skipping tracks, and managing playlists
-- **Hot Module Reloading**: Make changes in real-time without restarting the bot
-- **Built-in Cooldown System**: Helps manage command usage and prevents spamming
-- **Easy Setup**: Simple installation and configuration process for seamless integration
+Supports YouTube, SoundCloud, Spotify, and more — with audio filters, an interactive now-playing card, slash commands, and a full queue management system.
 
-## 📦 Installation
+## Features
 
-### Prerequisites
-- **Node.js** (v18 or higher)
-- **Yarn package manager** (or a package manager of your choice)
+- **Multi-source playback** — YouTube, SoundCloud, Spotify, Apple Music, and direct links
+- **Interactive now-playing card** — Pause/Resume and Skip buttons directly on the embed
+- **Full queue management** — Add, remove, move, skip, shuffle, and clear tracks
+- **Audio processing** — FFmpeg filters, biquad filters, equaliser presets, and PCM effects all under `/audio`
+- **Lyrics** — Fetch lyrics for the currently playing track
+- **Hot Module Reloading** — Live reload commands without restarting (development mode)
+- **Slash commands** — Full Discord application command support with autocomplete
 
-### Installation steps
+## Commands
+
+| Command | Description |
+|---|---|
+| `/play` | Play a track or playlist from a URL or search query |
+| `/playnext` | Add a track to the front of the queue |
+| `/search` | Search and select a track interactively |
+| `/stop` | Stop playback |
+| `/skip` | Skip the current track |
+| `/skipto` | Skip to a specific position in the queue |
+| `/previous` | Play the previous track |
+| `/replay` | Replay the current track from the beginning |
+| `/seek` | Seek to a timestamp in the current track |
+| `/pause` | Pause the current track |
+| `/nowplaying` | Show the currently playing track |
+| `/queue` | Show the current queue |
+| `/history` | Show playback history |
+| `/loop` | Set loop mode (off, track, queue, autoplay) |
+| `/autoplay` | Toggle autoplay |
+| `/shuffle` | Shuffle the queue |
+| `/clear` | Clear the queue |
+| `/remove` | Remove a track from the queue |
+| `/move` | Move a track to a different position |
+| `/jump` | Jump to a position in the queue |
+| `/volume` | Adjust the playback volume |
+| `/audio filter` | Toggle an FFmpeg audio filter |
+| `/audio equaliser` | Apply an equaliser preset |
+| `/audio biquad` | Apply a biquad filter |
+| `/audio effects` | Toggle a PCM audio effect |
+| `/lyrics` | Fetch lyrics for the current track |
+| `/save` | Save the current track to your DMs |
+| `/connect` | Connect to a voice channel |
+| `/disconnect` | Disconnect from the voice channel |
+| `/ping` | Check the bot's latency |
+
+## Prerequisites
+
+- **Node.js** v18 or higher
+- **FFmpeg** (installed globally, or bundled via `ffmpeg-static`)
+- **Yarn** package manager
+
+## Installation
+
 ```bash
 git clone https://github.com/itsauric/auricle-music-bot.git
 cd auricle-music-bot
-```
-```bash
 yarn install
-yarn run build
 ```
 
-### Getting Started
+## Configuration
+
+Create a `src/.env` file:
+
+```env
+DISCORD_TOKEN=your_discord_bot_token
+OWNERS=your_user_id,another_user_id
+```
+
+- `DISCORD_TOKEN` — your bot token from the [Discord Developer Portal](https://discord.com/developers/applications)
+- `OWNERS` — comma-separated list of user IDs that have owner-level access (devOnly commands, cooldown bypass)
+
+## Running
+
 ```bash
-yarn run auricle
+# Build
+yarn build
+
+# Start
+yarn start
+
+# Development (watch + start)
+yarn auricle
 ```
 
-## ⚙️ Generating Commands
+## Stack
 
-###### Before hand you should have the `sapphire` cli globally or installed in your `devDependencies`
-```bash
-sapphire generate command <name>
-```
-This will automatically generate a slash command in the `src/commands` folder from the template in the `templates` folder.
+- [discord.js](https://discord.js.org/) v14
+- [Sapphire Framework](https://sapphirejs.dev/) — commands, listeners, preconditions, subcommands
+- [discord-player](https://discord-player.js.org/) v7 — audio engine
+- [@discord-player/extractor](https://github.com/Androz2091/discord-player) — source extractors
+- [discord-player-googlevideo](https://github.com/yt-dlp/yt-dlp) — YouTube streaming via SABR
+- [SWC](https://swc.rs/) — TypeScript compilation
 
-## 🔄 Keeping Up to Date
+## Contributing
 
-This is from the [GitHub Blog][github] and is a straightforward example for updating your forked repository.
+Pull requests are welcome. Please open an issue first for significant changes.
 
-## 🤝 Contribution
+## License
 
-Anyone can contribute, please open a pull request on the [repository](repo)
+MIT — see [LICENSE](LICENSE) for details.
 
-## 💬 Feedback and Support
-
-For any issues, questions, or suggestions, please open an issue on the [repository](repo)
-
-## 📄 Acknowledgements
-
-Thanks to all contributors and supporters of this project.
-
-## 📜 License
-
-This project is under the **MIT** license. You can find the license details in the root of the repository as `LICENSE`.
-
-[repo]: https://github.com/itsauric/auricle-music-bot
-[github]: https://github.blog/changelog/2021-05-06-sync-an-out-of-date-branch-of-a-fork-from-the-web/
 [sapphire]: https://github.com/sapphiredev/framework
-[discord-player]: https://github.com/Androz2091/discord-player/tree/develop
+[discord-player]: https://github.com/Androz2091/discord-player

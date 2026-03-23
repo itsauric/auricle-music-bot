@@ -9,7 +9,7 @@ export class AuricleClient extends SapphireClient {
 	public utils: typeof Utils;
 	public constructor() {
 		super({
-			disableMentionPrefix: true,
+			defaultPrefix: 'a!',
 			intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates],
 			defaultCooldown: {
 				filteredUsers: envParseArray('OWNERS'),
@@ -22,7 +22,7 @@ export class AuricleClient extends SapphireClient {
 			}
 		});
 		this.utils = Utils;
-		this.player = new Player(this)
+		this.player = new Player(this);
 	}
 }
 

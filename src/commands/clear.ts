@@ -26,13 +26,13 @@ export class ClearCommand extends Command {
 		const history = interaction.options.getBoolean('history');
 
 		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
-		if (!queue.tracks) return interaction.reply({ content: `${emojis.error} | There is **nothing** to clear`, flags: MessageFlags.Ephemeral });
+		if (!queue.tracks.size) return interaction.reply({ content: `${emojis.error} | There is **nothing** to clear`, flags: MessageFlags.Ephemeral });
 		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
 		queue.tracks.clear();
 		if (history) queue.history.clear();
 		return interaction.reply({
-			content: `${emojis.success} | I have **cleared** the queue`
+			content: `${emojis.clear} | I have **cleared** the queue`
 		});
 	}
 }

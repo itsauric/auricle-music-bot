@@ -71,13 +71,46 @@ export function options(interaction: Interaction) {
 	};
 }
 
+export const BRAND_COLOR = 0x5865f2;
+
 export const emojis = {
-	get success() {
-		return '<:passed:1391120068603281478>';
-	},
-	get error() {
-		return '<:failed:1391120127054975106>';
-	}
+	success: '✅',
+	error: '❌',
+	warning: '⚠️',
+
+	// Playback
+	play: '▶️',
+	pause: '⏸️',
+	skip: '⏭️',
+	previous: '⏮️',
+	replay: '🔄',
+	seek: '⏱️',
+
+	// Queue management
+	enqueue: '🎵',
+	shuffle: '🔀',
+	clear: '🗑️',
+	remove: '🗑️',
+	move: '↕️',
+	jump: '↗️',
+
+	// Modes
+	loop: '🔁',
+	autoplay: '♾️',
+	stop: '⏹️',
+
+	// Voice
+	connect: '🔗',
+	disconnect: '🚪',
+
+	// Audio
+	volume: '🔊',
+	filter: '🎛️',
+	equaliser: '🎚️',
+
+	// Misc
+	save: '📌',
+	search: '🔍'
 };
 
 export function logSuccessCommand(payload: ContextMenuCommandSuccessPayload | ChatInputCommandSuccessPayload | MessageCommandSuccessPayload): void {

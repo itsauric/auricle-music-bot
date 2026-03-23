@@ -35,7 +35,7 @@ export class PreviousCommand extends Command {
 
 		await history.previous();
 		return interaction.reply({
-			content: `🔁 | I am **replaying** the previous track`
+			content: `${emojis.previous} | Playing the **previous track**`
 		});
 	}
 }

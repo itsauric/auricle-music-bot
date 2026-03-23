@@ -1,6 +1,7 @@
 import { Command } from '@sapphire/framework';
 import { MessageFlags } from 'discord.js';
 import { useQueue } from 'discord-player';
+import { queueTrackAutocomplete } from '#lib/queue-autocomplete';
 
 export class SkipToCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -21,33 +22,8 @@ export class SkipToCommand extends Command {
 		});
 	}
 
-	public override async autocompleteRun(interaction: Command.AutocompleteInteraction) {
-		const queue = useQueue(interaction.guild!.id);
-		const track = interaction.options.getInteger('track');
-		const skip = queue?.tracks.at(track!);
-		const position = queue?.node.getTrackPosition(skip!);
-
-		const tracks = queue!.tracks.map((t, idx) => ({
-			name: t.title,
-			value: ++idx
-		}));
-
-		if (skip?.title && !tracks.some((t) => t.name === skip.title)) {
-			tracks.unshift({
-				name: skip.title,
-				value: position!
-			});
-		}
-
-		let slicedTracks = tracks.slice(0, 5);
-		if (track) {
-			slicedTracks = tracks.slice(track - 1, track + 4);
-			if (slicedTracks.length > 5) {
-				slicedTracks = slicedTracks.slice(0, 5);
-			}
-		}
-
-		return interaction.respond(slicedTracks);
+	public override autocompleteRun(interaction: Command.AutocompleteInteraction) {
+		return queueTrackAutocomplete(interaction);
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
@@ -56,7 +32,7 @@ export class SkipToCommand extends Command {
 		const permissions = voice(interaction);
 
 		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
-		if (!queue.tracks)
+		if (!queue.tracks.size)
 			return interaction.reply({
 				content: `${emojis.error} | There are **no tracks** to **skip** to`,
 				flags: MessageFlags.Ephemeral
@@ -75,7 +51,7 @@ export class SkipToCommand extends Command {
 
 		queue.node.skipTo(trackResolvable);
 		return interaction.reply({
-			content: `⏩ | I have **skipped** to the track: **${trackResolvable.title}**`
+			content: `${emojis.skip} | Skipped to: **${trackResolvable.title}**`
 		});
 	}
 }

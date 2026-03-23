@@ -1,12 +1,12 @@
 import { Command } from '@sapphire/framework';
-import { MessageFlags } from 'discord.js';
 import { useQueue } from 'discord-player';
+import { MessageFlags } from 'discord.js';
 
-export class SkipCommand extends Command {
+export class ReplayCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
-			description: 'Skips the current track and automatically plays the next'
+			description: 'Restarts the current track from the beginning'
 		});
 	}
 
@@ -25,16 +25,10 @@ export class SkipCommand extends Command {
 
 		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
 		if (!queue.currentTrack)
-			return interaction.reply({
-				content: `${emojis.error} | There is no track **currently** playing`,
-				flags: MessageFlags.Ephemeral
-			});
-
+			return interaction.reply({ content: `${emojis.error} | There is no track **currently** playing`, flags: MessageFlags.Ephemeral });
 		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
-		queue.node.skip();
-		return interaction.reply({
-			content: `${emojis.skip} | Skipped to the **next track**`
-		});
+		await queue.node.seek(0);
+		return interaction.reply({ content: `${emojis.replay} | Replaying: **${queue.currentTrack.title}**` });
 	}
 }

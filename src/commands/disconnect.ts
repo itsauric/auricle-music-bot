@@ -28,7 +28,7 @@ export class DisconnectCommand extends Command {
 
 		queue.delete();
 		return interaction.reply({
-			content: `${emojis.success} | I have **successfully disconnected** from the voice channel`
+			content: `${emojis.disconnect} | I have **successfully disconnected** from the voice channel`
 		});
 	}
 }

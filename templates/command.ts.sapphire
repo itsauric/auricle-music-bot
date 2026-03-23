@@ -21,6 +21,6 @@ export class {{name}}Command extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		return interaction.reply({ content: `${interaction.commandName}`, flags: MessageFlags.Ephemeral });
+		return interaction.reply(interaction.commandName);
 	}
 }

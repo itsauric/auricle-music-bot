@@ -12,6 +12,7 @@ dist/
 !.yarn/versions
 
 # Environment variables
+src/.env
 .env
 .env.local
 .env.development.local

@@ -3,11 +3,11 @@ import { QueryType, useMainPlayer, useQueue } from 'discord-player';
 import { MessageFlags } from 'discord.js';
 import type { GuildMember } from 'discord.js';
 
-export class PlayCommand extends Command {
+export class PlayNextCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
-			description: 'Plays and enqueues track(s) of the query provided'
+			description: 'Plays a track next, inserting it at the front of the queue'
 		});
 	}
 
@@ -16,9 +16,9 @@ export class PlayCommand extends Command {
 			builder //
 				.setName(this.name)
 				.setDescription(this.description)
-				.addStringOption((option) => {
-					return option.setName('query').setDescription('A query of your choice').setRequired(true).setAutocomplete(true);
-				});
+				.addStringOption((option) =>
+					option.setName('query').setDescription('A query of your choice').setRequired(true).setAutocomplete(true)
+				);
 		});
 	}
 
@@ -48,7 +48,7 @@ export class PlayCommand extends Command {
 		const { emojis, voice, options } = this.container.client.utils;
 		const player = useMainPlayer()!;
 		const permissions = voice(interaction);
-		const query = interaction.options.getString('query')!;
+		const query = interaction.options.getString('query', true);
 		const member = interaction.member as GuildMember;
 
 		if (permissions.member) return interaction.reply({ content: permissions.member, flags: MessageFlags.Ephemeral });
@@ -66,19 +66,28 @@ export class PlayCommand extends Command {
 		await interaction.deferReply();
 
 		try {
-			const hadTrack = !!useQueue(interaction.guild!.id)?.currentTrack;
-			const res = await player.play(member.voice.channel!.id, results, { requestedBy: interaction.user, nodeOptions: options(interaction) });
-			const finalQueue = useQueue(interaction.guild!.id);
-			let content: string;
-			if (res.track.playlist) {
-				content = `${emojis.enqueue} | Added tracks from **${res.track.playlist.title}** to the queue`;
-			} else if (!hadTrack || finalQueue?.currentTrack?.url === res.track.url) {
-				content = `${emojis.play} | Now playing: **${res.track.title}**`;
-			} else {
-				const position = finalQueue?.tracks.size ?? 1;
-				content = `${emojis.enqueue} | Added **${res.track.title}** to the queue at position **#${position}**`;
+			// Capture queue size before play so we can locate the newly added track by position
+			const existingQueue = useQueue(interaction.guild!.id);
+			const wasPlaying = existingQueue?.currentTrack != null;
+			const sizeBefore = existingQueue?.tracks.size ?? 0;
+
+			const res = await player.play(member.voice.channel!.id, results, {
+				requestedBy: interaction.user,
+				nodeOptions: options(interaction)
+			});
+
+			if (wasPlaying) {
+				const queue = useQueue(interaction.guild!.id);
+				if (queue && queue.tracks.size > sizeBefore) {
+					// Track landed at the end — move it to position 0 (plays next)
+					const added = queue.tracks.at(queue.tracks.size - 1);
+					if (added) queue.node.move(added, 0);
+				}
 			}
-			return interaction.editReply({ content });
+
+			return interaction.editReply({
+				content: `${emojis.enqueue} | **${res.track.title}** will play **next**`
+			});
 		} catch (error: unknown) {
 			await interaction.editReply({ content: `${emojis.error} | An **error** has occurred` });
 			this.container.logger.error(error);

@@ -45,13 +45,15 @@ export class LoopCommand extends Command {
 			});
 		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
-		const mode = interaction.options.getNumber('mode', true);
-		const name = mode === QueueRepeatMode.OFF ? 'Looping' : repeatModes.find((m) => m.value === mode)?.name;
+		const mode = interaction.options.getNumber('mode', true) as QueueRepeatMode;
+		const name = repeatModes.find((m) => m.value === mode)?.name ?? 'Loop';
+		const toggle = mode !== QueueRepeatMode.OFF && queue.repeatMode === mode;
 
-		queue.setRepeatMode(mode as QueueRepeatMode);
+		queue.setRepeatMode(toggle ? QueueRepeatMode.OFF : mode);
+		const enabled = !toggle && mode !== QueueRepeatMode.OFF;
 
 		return interaction.reply({
-			content: `${emojis.success} | **${name}** has been **${mode === queue.repeatMode ? 'enabled' : 'disabled'}**`
+			content: `${emojis.loop} | **${name}** mode has been **${enabled ? 'enabled' : 'disabled'}**`
 		});
 	}
 }

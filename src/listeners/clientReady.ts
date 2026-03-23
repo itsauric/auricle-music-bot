@@ -10,6 +10,8 @@ export class UserEvent extends Listener {
 	}
 
 	public async run() {
+		const { YoutubeSabrExtractor } = await import('discord-player-googlevideo');
+		await this.container.client.player.extractors.register(YoutubeSabrExtractor, {});
 		await this.container.client.player.extractors.loadMulti(DefaultExtractors);
 		return this.container.client.logger.info(`Successfully logged in as: ${this.container.client.user?.username}`);
 	}

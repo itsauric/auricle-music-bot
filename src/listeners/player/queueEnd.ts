@@ -7,7 +7,7 @@ export class PlayerEvent extends Listener {
 		super(context, {
 			...options,
 			emitter: container.client.player.events,
-			event: 'disconnect'
+			event: 'emptyQueue'
 		});
 	}
 
@@ -17,7 +17,7 @@ export class PlayerEvent extends Listener {
 		if (permissions.events) return;
 
 		return queue.metadata.channel
-			.send(`${emojis.disconnect} | Disconnected from the **voice channel**`)
+			.send(`${emojis.warning} | The queue has **ended** — use \`/play\` to add more tracks`)
 			.then((m) => setTimeout(() => m.delete().catch(() => null), 15_000));
 	}
 }

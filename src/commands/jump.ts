@@ -1,6 +1,7 @@
 import { Command } from '@sapphire/framework';
 import { MessageFlags } from 'discord.js';
 import { useQueue } from 'discord-player';
+import { queueTrackAutocomplete } from '#lib/queue-autocomplete';
 
 export class JumpCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -21,33 +22,8 @@ export class JumpCommand extends Command {
 		});
 	}
 
-	public override async autocompleteRun(interaction: Command.AutocompleteInteraction) {
-		const queue = useQueue(interaction.guild!.id);
-		const track = interaction.options.getInteger('track');
-		const jump = queue?.tracks.at(track!);
-		const position = queue?.node.getTrackPosition(jump!);
-
-		const tracks = queue!.tracks.map((t, idx) => ({
-			name: t.title,
-			value: ++idx
-		}));
-
-		if (jump?.title && !tracks.some((t) => t.name === jump.title)) {
-			tracks.unshift({
-				name: jump.title,
-				value: position!
-			});
-		}
-
-		let slicedTracks = tracks.slice(0, 5);
-		if (track) {
-			slicedTracks = tracks.slice(track - 1, track + 4);
-			if (slicedTracks.length > 5) {
-				slicedTracks = slicedTracks.slice(0, 5);
-			}
-		}
-
-		return interaction.respond(slicedTracks);
+	public override autocompleteRun(interaction: Command.AutocompleteInteraction) {
+		return queueTrackAutocomplete(interaction);
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
@@ -56,7 +32,7 @@ export class JumpCommand extends Command {
 		const permissions = voice(interaction);
 
 		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
-		if (!queue.tracks)
+		if (!queue.tracks.size)
 			return interaction.reply({
 				content: `${emojis.error} | There are **no tracks** to **jump** to`,
 				flags: MessageFlags.Ephemeral
@@ -74,7 +50,7 @@ export class JumpCommand extends Command {
 
 		queue.node.jump(trackResolvable);
 		return interaction.reply({
-			content: `⏩ | I have **jumped** to the track: **${trackResolvable.title}**`
+			content: `${emojis.jump} | Jumped to: **${trackResolvable.title}**`
 		});
 	}
 }

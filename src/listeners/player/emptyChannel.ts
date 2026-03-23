@@ -12,12 +12,12 @@ export class PlayerEvent extends Listener {
 	}
 
 	public run(queue: GuildQueue<{ channel: GuildTextBasedChannel }>) {
-		const { voice } = container.client.utils;
+		const { emojis, voice } = container.client.utils;
 		const permissions = voice(queue.metadata.channel);
 		if (permissions.events) return;
 
 		return queue.metadata.channel
-			.send('I left the channel after **5 minutes** due to **channel inactivity**')
-			.then((m: { delete: () => void }) => setTimeout(() => m.delete(), 15000));
+			.send(`${emojis.disconnect} | Left the voice channel after **5 minutes** of inactivity`)
+			.then((m) => setTimeout(() => m.delete().catch(() => null), 15_000));
 	}
 }

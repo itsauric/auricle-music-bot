@@ -16,9 +16,9 @@ export class PlayerEvent extends Listener {
 		const permissions = voice(queue.metadata.channel);
 		if (permissions.events) return;
 
-		console.log(error);
+		container.logger.error(error);
 		return queue.metadata.channel
-			.send(`${emojis.error} | There was an error with **${track.title}**`)
-			.then((m: { delete: () => void }) => setTimeout(() => m.delete(), 5000));
+			.send(`${emojis.error} | There was an error playing **${track.title}**`)
+			.then((m) => setTimeout(() => m.delete().catch(() => null), 5_000));
 	}
 }

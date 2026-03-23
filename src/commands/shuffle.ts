@@ -33,6 +33,6 @@ export class ShuffleCommand extends Command {
 			});
 
 		queue.tracks.shuffle();
-		return interaction.reply({ content: `${emojis.success} | I have **shuffled** the queue` });
+		return interaction.reply({ content: `${emojis.shuffle} | I have **shuffled** the queue` });
 	}
 }

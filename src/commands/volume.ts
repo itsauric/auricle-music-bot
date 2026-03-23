@@ -24,23 +24,23 @@ export class VolumeCommand extends Command {
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		const { emojis, voice } = this.container.client.utils;
 		const queue = useQueue(interaction.guild!.id);
-		const timeline = useTimeline({ node: interaction.guild!.id })!;
+		const timeline = useTimeline({ node: interaction.guild!.id });
 		const permissions = voice(interaction);
 		const volume = interaction.options.getInteger('amount');
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am not in a voice channel`, flags: MessageFlags.Ephemeral });
-		if (!queue.currentTrack)
+		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
+		if (!queue.currentTrack || !timeline)
 			return interaction.reply({
 				content: `${emojis.error} | There is no track **currently** playing`,
 				flags: MessageFlags.Ephemeral
 			});
 
-		if (!volume) return interaction.reply({ content: `🔊 | **Current** volume is **${timeline.volume}%**` });
+		if (volume === null) return interaction.reply({ content: `${emojis.volume} | **Current** volume is **${timeline.volume}%**` });
 		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
-		timeline.setVolume(volume!);
+		timeline.setVolume(volume);
 		return interaction.reply({
-			content: `${emojis.success} | I **changed** the volume to: **${timeline.volume}%**`
+			content: `${emojis.volume} | I **changed** the volume to: **${timeline.volume}%**`
 		});
 	}
 }

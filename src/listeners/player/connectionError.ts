@@ -11,6 +11,6 @@ export class PlayerEvent extends Listener {
 	}
 
 	public run(queue: GuildQueue, error: Error) {
-		console.log(`[${queue.guild.name}] Error emitted from the connection: ${error.message}`);
+		container.logger.error(`[${queue.guild.name}] Error emitted from the connection: ${error.message}`);
 	}
 }

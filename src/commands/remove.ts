@@ -1,8 +1,9 @@
 import { Command } from '@sapphire/framework';
 import { MessageFlags } from 'discord.js';
 import { useQueue } from 'discord-player';
+import { queueTrackAutocomplete } from '#lib/queue-autocomplete';
 
-export class removeCommand extends Command {
+export class RemoveCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
@@ -21,33 +22,8 @@ export class removeCommand extends Command {
 		});
 	}
 
-	public override async autocompleteRun(interaction: Command.AutocompleteInteraction) {
-		const queue = useQueue(interaction.guild!.id);
-		const track = interaction.options.getInteger('track');
-		const remove = queue?.tracks.at(track!);
-		const position = queue?.node.getTrackPosition(remove!);
-
-		const tracks = queue!.tracks.map((t, idx) => ({
-			name: t.title,
-			value: ++idx
-		}));
-
-		if (remove?.title && !tracks.some((t) => t.name === remove.title)) {
-			tracks.unshift({
-				name: remove.title,
-				value: position!
-			});
-		}
-
-		let slicedTracks = tracks.slice(0, 5);
-		if (track) {
-			slicedTracks = tracks.slice(track - 1, track + 4);
-			if (slicedTracks.length > 5) {
-				slicedTracks = slicedTracks.slice(0, 5);
-			}
-		}
-
-		return interaction.respond(slicedTracks);
+	public override autocompleteRun(interaction: Command.AutocompleteInteraction) {
+		return queueTrackAutocomplete(interaction);
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
@@ -56,7 +32,7 @@ export class removeCommand extends Command {
 		const permissions = voice(interaction);
 
 		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
-		if (!queue.tracks)
+		if (!queue.tracks.size)
 			return interaction.reply({
 				content: `${emojis.error} | There are **no tracks** to **remove**`,
 				flags: MessageFlags.Ephemeral
@@ -74,7 +50,7 @@ export class removeCommand extends Command {
 
 		queue.node.remove(trackResolvable);
 		return interaction.reply({
-			content: `${emojis.success} | I have **removed** the track: **${trackResolvable.title}**`
+			content: `${emojis.remove} | I have **removed** the track: **${trackResolvable.title}**`
 		});
 	}
 }

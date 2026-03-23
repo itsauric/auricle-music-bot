@@ -1,12 +1,12 @@
 import { Command } from '@sapphire/framework';
-import { MessageFlags } from 'discord.js';
 import { useQueue } from 'discord-player';
+import { MessageFlags } from 'discord.js';
 
-export class SkipCommand extends Command {
+export class StopCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
 		super(context, {
 			...options,
-			description: 'Skips the current track and automatically plays the next'
+			description: 'Stops playback and clears the queue without disconnecting'
 		});
 	}
 
@@ -24,17 +24,15 @@ export class SkipCommand extends Command {
 		const permissions = voice(interaction);
 
 		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
-		if (!queue.currentTrack)
-			return interaction.reply({
-				content: `${emojis.error} | There is no track **currently** playing`,
-				flags: MessageFlags.Ephemeral
-			});
-
+		if (!queue.currentTrack && !queue.tracks.size)
+			return interaction.reply({ content: `${emojis.error} | There is nothing **currently** playing`, flags: MessageFlags.Ephemeral });
 		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
 
-		queue.node.skip();
+		queue.tracks.clear();
+		if (queue.currentTrack) queue.node.skip();
+
 		return interaction.reply({
-			content: `${emojis.skip} | Skipped to the **next track**`
+			content: `${emojis.stop} | Playback **stopped** — I'll leave in 5 minutes if nothing is added`
 		});
 	}
 }

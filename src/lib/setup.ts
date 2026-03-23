@@ -1,9 +1,12 @@
 import { ApplicationCommandRegistries, RegisterBehavior } from '@sapphire/framework';
 import '@sapphire/plugin-api/register';
-import '@sapphire/plugin-hmr/register';
 import '@sapphire/plugin-logger/register';
 import { setup, type ArrayString } from '@skyra/env-utilities';
 import { join } from 'path';
+
+if (process.env.NODE_ENV !== 'production') {
+	require('@sapphire/plugin-hmr/register');
+}
 
 ApplicationCommandRegistries.setDefaultBehaviorWhenNotIdentical(RegisterBehavior.BulkOverwrite);
 
@@ -14,5 +17,6 @@ setup({ path: join(srcDir, '.env') });
 declare module '@skyra/env-utilities' {
 	interface Env {
 		OWNERS: ArrayString;
+		GENIUS_TOKEN: string;
 	}
 }
