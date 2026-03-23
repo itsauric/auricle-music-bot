@@ -1,5 +1,6 @@
 import { Command } from '@sapphire/framework';
 import { QueryType, useMainPlayer, useQueue } from 'discord-player';
+
 import { ActionRowBuilder, ComponentType, MessageFlags, StringSelectMenuBuilder } from 'discord.js';
 import type { GuildMember } from 'discord.js';
 import { makeEmbed } from '#lib/utils';
@@ -34,8 +35,13 @@ export class SearchCommand extends Command {
 
 		await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 
-		const searchEngine = query.startsWith('http') ? undefined : QueryType.YOUTUBE_SEARCH;
-		const results = await player.search(query, { searchEngine });
+		const searchEngine = query.startsWith('http') ? undefined : QueryType.SOUNDCLOUD_SEARCH;
+		let results;
+		try {
+			results = await player.search(query, { searchEngine });
+		} catch {
+			return interaction.editReply({ embeds: [makeEmbed(`${emojis.error} | Search failed — please try again`)] });
+		}
 		if (!results.hasTracks())
 			return interaction.editReply({ embeds: [makeEmbed(`${emojis.error} | **No** tracks were found for your query`)] });
 
