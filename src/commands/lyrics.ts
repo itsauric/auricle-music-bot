@@ -1,7 +1,6 @@
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { Command } from '@sapphire/framework';
-import { useQueue } from 'discord-player';
-import { Client as GeniusClient } from 'genius-lyrics';
+import { useMainPlayer, useQueue } from 'discord-player';
 import { MessageFlags } from 'discord.js';
 import { BRAND_COLOR } from '#lib/utils';
 
@@ -48,7 +47,8 @@ export class LyricsCommand extends Command {
 		const { emojis } = this.container.client.utils;
 		const queue = useQueue(interaction.guild!.id);
 		const trackInput = interaction.options.getString('track');
-		const searchQuery = trackInput ?? queue?.currentTrack?.title;
+		const currentTrack = queue?.currentTrack;
+		const searchQuery = trackInput ?? currentTrack?.title;
 
 		if (!searchQuery)
 			return interaction.reply({
@@ -58,33 +58,34 @@ export class LyricsCommand extends Command {
 
 		await interaction.deferReply();
 
-		const token = process.env.GENIUS_TOKEN;
-		const genius = new GeniusClient(token);
+		const player = useMainPlayer();
 
 		try {
-			const songs = await genius.songs.search(searchQuery);
-			if (!songs.length)
+			const results = await player.lyrics.search(
+				currentTrack && !trackInput
+					? { trackName: currentTrack.cleanTitle, artistName: currentTrack.author }
+					: { q: searchQuery }
+			);
+
+			if (!results.length)
 				return interaction.editReply({ content: `${emojis.error} | No lyrics found for **${searchQuery}**` });
 
-			const song = songs[0];
-			const lyrics = await song.lyrics();
+			const result = results[0];
 
-			if (!lyrics?.trim())
-				return interaction.editReply({ content: `${emojis.error} | No lyrics available for **${song.title}**` });
+			if (!result.plainLyrics?.trim())
+				return interaction.editReply({ content: `${emojis.error} | No lyrics available for **${result.trackName}**` });
 
-			const chunks = chunkLyrics(lyrics);
+			const chunks = chunkLyrics(result.plainLyrics);
 			const paginatedMessage = new PaginatedMessage();
 
 			for (const chunk of chunks) {
 				paginatedMessage.addPageEmbed((embed) =>
 					embed
 						.setColor(BRAND_COLOR)
-						.setAuthor({ name: song.artist.name, url: song.artist.url })
-						.setTitle(song.title)
-						.setURL(song.url)
-						.setThumbnail(song.thumbnail)
+						.setAuthor({ name: result.artistName })
+						.setTitle(result.trackName)
 						.setDescription(chunk)
-						.setFooter({ text: `Page ${chunks.indexOf(chunk) + 1} of ${chunks.length} • Powered by Genius` })
+						.setFooter({ text: `Page ${chunks.indexOf(chunk) + 1} of ${chunks.length}` })
 				);
 			}
 

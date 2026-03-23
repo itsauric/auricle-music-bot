@@ -1621,7 +1621,6 @@ __metadata:
     discord-player-googlevideo: "npm:^0.2.5"
     discord.js: "npm:^14.25.1"
     ffmpeg-static: "npm:^5.3.0"
-    genius-lyrics: "npm:^4.4.7"
     mediaplex: "npm:^1.0.0"
     npm-run-all2: "npm:^8.0.4"
     typescript: "npm:^5.8.3"
@@ -2607,16 +2606,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"genius-lyrics@npm:^4.4.7":
-  version: 4.4.7
-  resolution: "genius-lyrics@npm:4.4.7"
-  dependencies:
-    node-html-parser: "npm:^6.1.13"
-    undici: "npm:^6.11.1"
-  checksum: 10c0/ae008e069c9fc820682fcff1072f566e5107fb99628f3ce61489f47be10d79a004c1a00372c6f195748cc4b760c6a1aa964b98c4c12eafb81fa3df5a3dd11cb7
-  languageName: node
-  linkType: hard
-
 "get-stream@npm:^6.0.0, get-stream@npm:^6.0.1":
   version: 6.0.1
   resolution: "get-stream@npm:6.0.1"
@@ -3591,16 +3580,6 @@ __metadata:
   bin:
     node-gyp: bin/node-gyp.js
   checksum: 10c0/bd8d8c76b06be761239b0c8680f655f6a6e90b48e44d43415b11c16f7e8c15be346fba0cbf71588c7cdfb52c419d928a7d3db353afc1d952d19756237d8f10b9
-  languageName: node
-  linkType: hard
-
-"node-html-parser@npm:^6.1.13":
-  version: 6.1.13
-  resolution: "node-html-parser@npm:6.1.13"
-  dependencies:
-    css-select: "npm:^5.1.0"
-    he: "npm:1.2.0"
-  checksum: 10c0/ca36290507da8ec0fa131a0fd67ba62e300365c3950b5a6058b0e32b71b520ff43a5661b19e98a5c9797dbe3428b08db788b602f1f8aa62f2db5bb66e1d80782
   languageName: node
   linkType: hard
 
@@ -4835,7 +4814,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici@npm:6.24.1, undici@npm:^6.11.1":
+"undici@npm:6.24.1":
   version: 6.24.1
   resolution: "undici@npm:6.24.1"
   checksum: 10c0/53fdbaa357139a2c12deed34f67d67fc6ad269630ba85a1507e7717f53ad2d3a02c95fbd17d3ab321e34c60b6f0a716cdc2f7e2eca1e07178702dc89cc3a73c4

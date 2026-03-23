@@ -17,6 +17,5 @@ setup({ path: join(srcDir, '.env') });
 declare module '@skyra/env-utilities' {
 	interface Env {
 		OWNERS: ArrayString;
-		GENIUS_TOKEN: string;
 	}
 }

@@ -67,7 +67,7 @@ yarn install
 
 ## Configuration
 
-Create a `src/.env` file:
+Copy `src/.env.example` to `src/.env` and fill in your values:
 
 ```env
 DISCORD_TOKEN=your_discord_bot_token
