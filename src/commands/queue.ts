@@ -47,7 +47,7 @@ export class QueueCommand extends Command {
 		});
 
 		const currentTrack = queue.currentTrack;
-		const totalMs = queue.tracks.reduce((sum, t) => sum + (t.durationMS ?? 0), 0);
+		const totalMs = queue.tracks.toArray().reduce((sum, t) => sum + (t.durationMS ?? 0), 0);
 		const paginatedMessage = new PaginatedMessage();
 
 		for (let i = 0; i < pagesNum; i++) {
