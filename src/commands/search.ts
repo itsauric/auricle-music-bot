@@ -1,5 +1,5 @@
 import { Command } from '@sapphire/framework';
-import { QueryType, useMainPlayer } from 'discord-player';
+import { QueryType, useMainPlayer, useQueue } from 'discord-player';
 import { ActionRowBuilder, ComponentType, MessageFlags, StringSelectMenuBuilder } from 'discord.js';
 import type { GuildMember } from 'discord.js';
 import { makeEmbed } from '#lib/utils';
@@ -64,12 +64,20 @@ export class SearchCommand extends Command {
 		collector.on('collect', async (i) => {
 			const track = tracks[parseInt(i.values[0])];
 			try {
+				const hadTrack = !!useQueue(interaction.guild!.id)?.currentTrack;
 				const res = await player.play(member.voice.channel!.id, track, {
 					requestedBy: interaction.user,
 					nodeOptions: options(interaction)
 				});
+				const isNowPlaying = !hadTrack || useQueue(interaction.guild!.id)?.currentTrack?.url === res.track.url;
 				await i.update({
-					embeds: [makeEmbed(`${emojis.enqueue} | Successfully enqueued: **${res.track.title}**`)],
+					embeds: [
+						makeEmbed(
+							isNowPlaying
+								? `${emojis.play} | Now playing: **${res.track.title}**`
+								: `${emojis.enqueue} | Added **${res.track.title}** to the queue`
+						)
+					],
 					components: []
 				});
 			} catch (error: unknown) {
