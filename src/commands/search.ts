@@ -76,15 +76,19 @@ export class SearchCommand extends Command {
 					nodeOptions: options(interaction)
 				});
 				const isNowPlaying = !hadTrack || useQueue(interaction.guild!.id)?.currentTrack?.url === res.track.url;
-				await i.update({
+
+				// Dismiss the ephemeral select menu
+				await i.update({ embeds: [makeEmbed(`${emojis.success} | Track selected`)], components: [] });
+
+				// Send a public message so the server can see who queued what
+				await interaction.followUp({
 					embeds: [
 						makeEmbed(
 							isNowPlaying
 								? `${emojis.play} | Now playing: **${res.track.title}**`
-								: `${emojis.enqueue} | Added **${res.track.title}** to the queue`
+								: `${emojis.enqueue} | **${interaction.user.displayName}** added **${res.track.title}** to the queue`
 						)
-					],
-					components: []
+					]
 				});
 			} catch (error: unknown) {
 				await i.update({ embeds: [makeEmbed(`${emojis.error} | An **error** has occurred`)], components: [] });
