@@ -2,6 +2,7 @@ import { DurationFormatter } from '@sapphire/duration';
 import { MessageFlags } from 'discord.js';
 import type { ChatInputCommandDeniedPayload, Events } from '@sapphire/framework';
 import { Listener, UserError } from '@sapphire/framework';
+import { makeEmbed } from '#lib/utils';
 
 export class UserEvent extends Listener<typeof Events.ChatInputCommandDenied> {
 	public run({ identifier, context, message: content }: UserError, { interaction }: ChatInputCommandDeniedPayload) {
@@ -13,14 +14,14 @@ export class UserEvent extends Listener<typeof Events.ChatInputCommandDenied> {
 			const remaining = Reflect.get(Object(context), 'remaining');
 			const ms = new DurationFormatter().format(remaining);
 			return interaction.reply({
-				content: `Slow down! You must wait **${ms}** before using the \`${interaction.commandName}\` command.`,
+				embeds: [makeEmbed(`⏳ | Slow down! Wait **${ms}** before using \`/${interaction.commandName}\` again`)],
 				allowedMentions: { users: [interaction.user.id], roles: [] },
 				flags: MessageFlags.Ephemeral
 			});
 		}
 
 		return interaction.reply({
-			content,
+			embeds: [makeEmbed(content)],
 			allowedMentions: { users: [interaction.user.id], roles: [] },
 			flags: MessageFlags.Ephemeral
 		});

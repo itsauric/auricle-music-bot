@@ -1,6 +1,7 @@
 import { Command } from '@sapphire/framework';
 import { useQueue } from 'discord-player';
 import { MessageFlags } from 'discord.js';
+import { makeEmbed } from '#lib/utils';
 
 export class ClearCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -25,14 +26,12 @@ export class ClearCommand extends Command {
 		const permissions = voice(interaction);
 		const history = interaction.options.getBoolean('history');
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
-		if (!queue.tracks.size) return interaction.reply({ content: `${emojis.error} | There is **nothing** to clear`, flags: MessageFlags.Ephemeral });
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
+		if (!queue.tracks.size) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | There is **nothing** to clear`)], flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
 		queue.tracks.clear();
 		if (history) queue.history.clear();
-		return interaction.reply({
-			content: `${emojis.clear} | I have **cleared** the queue`
-		});
+		return interaction.reply({ embeds: [makeEmbed(`${emojis.clear} | I have **cleared** the queue`)] });
 	}
 }

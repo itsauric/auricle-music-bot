@@ -1,6 +1,7 @@
 import { Command } from '@sapphire/framework';
 import { useQueue } from 'discord-player';
 import { MessageFlags } from 'discord.js';
+import { makeEmbed } from '#lib/utils';
 
 export class DisconnectCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -23,12 +24,10 @@ export class DisconnectCommand extends Command {
 		const queue = useQueue(interaction.guild!.id);
 		const permissions = voice(interaction);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
 		queue.delete();
-		return interaction.reply({
-			content: `${emojis.disconnect} | I have **successfully disconnected** from the voice channel`
-		});
+		return interaction.reply({ embeds: [makeEmbed(`${emojis.disconnect} | I have **successfully disconnected** from the voice channel`)] });
 	}
 }

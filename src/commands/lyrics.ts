@@ -2,7 +2,7 @@ import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { Command } from '@sapphire/framework';
 import { useMainPlayer, useQueue } from 'discord-player';
 import { MessageFlags } from 'discord.js';
-import { BRAND_COLOR } from '#lib/utils';
+import { BRAND_COLOR, makeEmbed } from '#lib/utils';
 
 const CHUNK_SIZE = 4000;
 
@@ -52,7 +52,7 @@ export class LyricsCommand extends Command {
 
 		if (!searchQuery)
 			return interaction.reply({
-				content: `${emojis.error} | Provide a track name or start playing something first`,
+				embeds: [makeEmbed(`${emojis.error} | Provide a track name or start playing something first`)],
 				flags: MessageFlags.Ephemeral
 			});
 
@@ -68,12 +68,12 @@ export class LyricsCommand extends Command {
 			);
 
 			if (!results.length)
-				return interaction.editReply({ content: `${emojis.error} | No lyrics found for **${searchQuery}**` });
+				return interaction.editReply({ embeds: [makeEmbed(`${emojis.error} | No lyrics found for **${searchQuery}**`)] });
 
 			const result = results[0];
 
 			if (!result.plainLyrics?.trim())
-				return interaction.editReply({ content: `${emojis.error} | No lyrics available for **${result.trackName}**` });
+				return interaction.editReply({ embeds: [makeEmbed(`${emojis.error} | No lyrics available for **${result.trackName}**`)] });
 
 			const chunks = chunkLyrics(result.plainLyrics);
 			const paginatedMessage = new PaginatedMessage();
@@ -92,7 +92,7 @@ export class LyricsCommand extends Command {
 			return paginatedMessage.run(interaction);
 		} catch (error: unknown) {
 			this.container.logger.error(error);
-			return interaction.editReply({ content: `${emojis.error} | Failed to fetch lyrics — please try again` });
+			return interaction.editReply({ embeds: [makeEmbed(`${emojis.error} | Failed to fetch lyrics - please try again`)] });
 		}
 	}
 }

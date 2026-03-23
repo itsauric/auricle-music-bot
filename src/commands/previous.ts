@@ -1,6 +1,7 @@
 import { Command } from '@sapphire/framework';
 import { MessageFlags } from 'discord.js';
 import { useHistory, useQueue } from 'discord-player';
+import { makeEmbed } from '#lib/utils';
 
 export class PreviousCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -24,18 +25,16 @@ export class PreviousCommand extends Command {
 		const history = useHistory(interaction.guild!.id);
 		const permissions = voice(interaction);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
 		if (!history?.previousTrack)
 			return interaction.reply({
-				content: `${emojis.error} | There is **no** previous track in the **history**`,
+				embeds: [makeEmbed(`${emojis.error} | There is **no** previous track in the **history**`)],
 				flags: MessageFlags.Ephemeral
 			});
 
 		await history.previous();
-		return interaction.reply({
-			content: `${emojis.previous} | Playing the **previous track**`
-		});
+		return interaction.reply({ embeds: [makeEmbed(`${emojis.previous} | Playing the **previous track**`)] });
 	}
 }

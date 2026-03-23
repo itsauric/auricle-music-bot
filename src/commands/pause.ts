@@ -1,6 +1,7 @@
 import { Command } from '@sapphire/framework';
 import { MessageFlags } from 'discord.js';
 import { useQueue, useTimeline } from 'discord-player';
+import { makeEmbed } from '#lib/utils';
 
 export class PauseCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -24,18 +25,18 @@ export class PauseCommand extends Command {
 		const timeline = useTimeline({ node: interaction.guild!.id });
 		const permissions = voice(interaction);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
 		if (!queue.currentTrack || !timeline)
 			return interaction.reply({
-				content: `${emojis.error} | There is no track **currently** playing`,
+				embeds: [makeEmbed(`${emojis.error} | There is no track **currently** playing`)],
 				flags: MessageFlags.Ephemeral
 			});
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
 		const wasPaused = timeline.paused;
 		wasPaused ? timeline.resume() : timeline.pause();
 		return interaction.reply({
-			content: `${wasPaused ? emojis.play : emojis.pause} | **Playback** has been **${wasPaused ? 'resumed' : 'paused'}**`
+			embeds: [makeEmbed(`${wasPaused ? emojis.play : emojis.pause} | **Playback** has been **${wasPaused ? 'resumed' : 'paused'}**`)]
 		});
 	}
 }

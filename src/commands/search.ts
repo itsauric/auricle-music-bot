@@ -1,7 +1,9 @@
 import { Command } from '@sapphire/framework';
-import { QueryType, useMainPlayer } from 'discord-player';
+import { QueryType, useMainPlayer, useQueue } from 'discord-player';
+
 import { ActionRowBuilder, ComponentType, MessageFlags, StringSelectMenuBuilder } from 'discord.js';
 import type { GuildMember } from 'discord.js';
+import { makeEmbed } from '#lib/utils';
 
 export class SearchCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -27,16 +29,21 @@ export class SearchCommand extends Command {
 		const query = interaction.options.getString('query', true);
 		const member = interaction.member as GuildMember;
 
-		if (permissions.member) return interaction.reply({ content: permissions.member, flags: MessageFlags.Ephemeral });
-		if (permissions.client) return interaction.reply({ content: permissions.client, flags: MessageFlags.Ephemeral });
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+		if (permissions.member) return interaction.reply({ embeds: [makeEmbed(permissions.member)], flags: MessageFlags.Ephemeral });
+		if (permissions.client) return interaction.reply({ embeds: [makeEmbed(permissions.client)], flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
-		await interaction.deferReply();
+		await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 
-		const searchEngine = query.startsWith('http') ? undefined : QueryType.YOUTUBE_SEARCH;
-		const results = await player.search(query, { searchEngine });
+		const searchEngine = query.startsWith('http') ? undefined : QueryType.SOUNDCLOUD_SEARCH;
+		let results;
+		try {
+			results = await player.search(query, { searchEngine });
+		} catch {
+			return interaction.editReply({ embeds: [makeEmbed(`${emojis.error} | Search failed - please try again`)] });
+		}
 		if (!results.hasTracks())
-			return interaction.editReply({ content: `${emojis.error} | **No** tracks were found for your query` });
+			return interaction.editReply({ embeds: [makeEmbed(`${emojis.error} | **No** tracks were found for your query`)] });
 
 		const tracks = results.tracks.slice(0, 5);
 		const menu = new StringSelectMenuBuilder()
@@ -51,7 +58,7 @@ export class SearchCommand extends Command {
 			);
 
 		const row = new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(menu);
-		const reply = await interaction.editReply({ content: `${emojis.search} | Select a track to play:`, components: [row] });
+		const reply = await interaction.editReply({ embeds: [makeEmbed(`${emojis.search} | Select a track to play:`)], components: [row] });
 
 		const collector = reply.createMessageComponentCollector({
 			componentType: ComponentType.StringSelect,
@@ -63,23 +70,36 @@ export class SearchCommand extends Command {
 		collector.on('collect', async (i) => {
 			const track = tracks[parseInt(i.values[0])];
 			try {
+				const hadTrack = !!useQueue(interaction.guild!.id)?.currentTrack;
 				const res = await player.play(member.voice.channel!.id, track, {
 					requestedBy: interaction.user,
 					nodeOptions: options(interaction)
 				});
-				await i.update({
-					content: `${emojis.enqueue} | Successfully enqueued: **${res.track.title}**`,
-					components: []
+
+				// Dismiss the ephemeral select menu silently
+				await i.update({ embeds: [makeEmbed(`${emojis.success} | Track selected`)], components: [] });
+
+				// Send directly to the channel - guaranteed public regardless of interaction ephemeral state
+				await interaction.channel!.send({
+					embeds: [
+						makeEmbed(
+							!hadTrack
+								? `${emojis.play} | Now playing: **${res.track.title}**`
+								: `${emojis.enqueue} | **${interaction.user.displayName}** added **${res.track.title}** to the queue`
+						)
+					]
 				});
 			} catch (error: unknown) {
-				await i.update({ content: `${emojis.error} | An **error** has occurred`, components: [] });
+				await i.update({ embeds: [makeEmbed(`${emojis.error} | An **error** has occurred`)], components: [] });
 				this.container.logger.error(error);
 			}
 		});
 
 		collector.on('end', (collected) => {
 			if (!collected.size) {
-				interaction.editReply({ content: `${emojis.warning} | Search timed out — use \`/search\` to try again`, components: [] }).catch(() => null);
+				interaction
+					.editReply({ embeds: [makeEmbed(`${emojis.warning} | Search timed out - use \`/search\` to try again`)], components: [] })
+					.catch(() => null);
 			}
 		});
 	}

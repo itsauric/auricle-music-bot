@@ -3,7 +3,7 @@ import type { GuildQueue, Track } from 'discord-player';
 import { useTimeline } from 'discord-player';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ComponentType, EmbedBuilder, MessageFlags } from 'discord.js';
 import type { GuildMember, GuildTextBasedChannel } from 'discord.js';
-import { BRAND_COLOR } from '../../lib/utils';
+import { BRAND_COLOR, makeEmbed } from '../../lib/utils';
 
 export class PlayerEvent extends Listener {
 	public constructor(context: Listener.LoaderContext, options: Listener.Options) {
@@ -65,7 +65,7 @@ export class PlayerEvent extends Listener {
 		collector.on('collect', async (i) => {
 			const member = i.member as GuildMember;
 			if (member.voice.channelId !== queue.guild.members.me?.voice.channelId) {
-				await i.reply({ content: `${emojis.error} | You need to be in my voice channel`, flags: MessageFlags.Ephemeral });
+				await i.reply({ embeds: [makeEmbed(`${emojis.error} | You need to be in my voice channel`)], flags: MessageFlags.Ephemeral });
 				return;
 			}
 

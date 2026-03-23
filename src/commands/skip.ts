@@ -1,6 +1,7 @@
 import { Command } from '@sapphire/framework';
 import { MessageFlags } from 'discord.js';
 import { useQueue } from 'discord-player';
+import { makeEmbed } from '#lib/utils';
 
 export class SkipCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -23,18 +24,16 @@ export class SkipCommand extends Command {
 		const queue = useQueue(interaction.guild!.id);
 		const permissions = voice(interaction);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
 		if (!queue.currentTrack)
 			return interaction.reply({
-				content: `${emojis.error} | There is no track **currently** playing`,
+				embeds: [makeEmbed(`${emojis.error} | There is no track **currently** playing`)],
 				flags: MessageFlags.Ephemeral
 			});
 
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
 		queue.node.skip();
-		return interaction.reply({
-			content: `${emojis.skip} | Skipped to the **next track**`
-		});
+		return interaction.reply({ embeds: [makeEmbed(`${emojis.skip} | Skipped to the **next track**`)] });
 	}
 }

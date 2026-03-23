@@ -2,6 +2,7 @@ import { Command } from '@sapphire/framework';
 import { QueryType, useMainPlayer, useQueue } from 'discord-player';
 import { MessageFlags } from 'discord.js';
 import type { GuildMember } from 'discord.js';
+import { makeEmbed } from '#lib/utils';
 
 export class PlayNextCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -51,15 +52,15 @@ export class PlayNextCommand extends Command {
 		const query = interaction.options.getString('query', true);
 		const member = interaction.member as GuildMember;
 
-		if (permissions.member) return interaction.reply({ content: permissions.member, flags: MessageFlags.Ephemeral });
-		if (permissions.client) return interaction.reply({ content: permissions.client, flags: MessageFlags.Ephemeral });
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+		if (permissions.member) return interaction.reply({ embeds: [makeEmbed(permissions.member)], flags: MessageFlags.Ephemeral });
+		if (permissions.client) return interaction.reply({ embeds: [makeEmbed(permissions.client)], flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
 		const searchEngine = query.startsWith('http') ? undefined : QueryType.YOUTUBE_SEARCH;
 		const results = await player.search(query, { searchEngine });
 		if (!results.hasTracks())
 			return interaction.reply({
-				content: `${emojis.error} | **No** tracks were found for your query`,
+				embeds: [makeEmbed(`${emojis.error} | **No** tracks were found for your query`)],
 				flags: MessageFlags.Ephemeral
 			});
 
@@ -79,17 +80,17 @@ export class PlayNextCommand extends Command {
 			if (wasPlaying) {
 				const queue = useQueue(interaction.guild!.id);
 				if (queue && queue.tracks.size > sizeBefore) {
-					// Track landed at the end — move it to position 0 (plays next)
+					// Track landed at the end - move it to position 0 (plays next)
 					const added = queue.tracks.at(queue.tracks.size - 1);
 					if (added) queue.node.move(added, 0);
 				}
 			}
 
 			return interaction.editReply({
-				content: `${emojis.enqueue} | **${res.track.title}** will play **next**`
+				embeds: [makeEmbed(`${emojis.enqueue} | **${res.track.title}** will play **next**`)]
 			});
 		} catch (error: unknown) {
-			await interaction.editReply({ content: `${emojis.error} | An **error** has occurred` });
+			await interaction.editReply({ embeds: [makeEmbed(`${emojis.error} | An **error** has occurred`)] });
 			this.container.logger.error(error);
 		}
 	}

@@ -1,7 +1,16 @@
 import { Command } from '@sapphire/framework';
 import { QueueRepeatMode, useQueue, useTimeline } from 'discord-player';
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ComponentType, EmbedBuilder, MessageFlags } from 'discord.js';
-import { BRAND_COLOR } from '#lib/utils';
+import {
+	ActionRowBuilder,
+	ButtonBuilder,
+	ButtonStyle,
+	ComponentType,
+	EmbedBuilder,
+	MessageFlags,
+	StringSelectMenuBuilder
+} from 'discord.js';
+import { BRAND_COLOR, makeEmbed } from '#lib/utils';
+import { Playlist } from '#lib/schemas/Playlist';
 
 const REPEAT_LABELS: Record<number, string> = {
 	[QueueRepeatMode.OFF]: '⏹ Off',
@@ -56,9 +65,9 @@ export class NowPlayingCommand extends Command {
 		const queue = useQueue(interaction.guild!.id);
 		const timeline = useTimeline({ node: interaction.guild!.id });
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
 		if (!queue.currentTrack)
-			return interaction.reply({ content: `${emojis.error} | There is no track **currently** playing`, flags: MessageFlags.Ephemeral });
+			return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | There is no track **currently** playing`)], flags: MessageFlags.Ephemeral });
 
 		const refreshButton = new ButtonBuilder()
 			.setCustomId('nowplaying_refresh')
@@ -66,27 +75,124 @@ export class NowPlayingCommand extends Command {
 			.setEmoji('🔄')
 			.setStyle(ButtonStyle.Secondary);
 
-		const row = new ActionRowBuilder<ButtonBuilder>().addComponents(refreshButton);
+		const saveButton = new ButtonBuilder()
+			.setCustomId('nowplaying_save')
+			.setLabel('Add to Playlist')
+			.setEmoji('📋')
+			.setStyle(ButtonStyle.Secondary);
+
+		const row = new ActionRowBuilder<ButtonBuilder>().addComponents(refreshButton, saveButton);
 		const response = await interaction.reply({ embeds: [buildEmbed(queue, timeline)], components: [row], withResponse: true });
 		const message = response.resource!.message!;
 
 		const collector = message.createMessageComponentCollector({
 			componentType: ComponentType.Button,
 			time: 300_000,
-			filter: (i) => i.customId === 'nowplaying_refresh'
+			filter: (i) => i.customId === 'nowplaying_refresh' || (i.customId === 'nowplaying_save' && i.user.id === interaction.user.id)
 		});
 
 		collector.on('collect', async (i) => {
 			const currentQueue = useQueue(interaction.guild!.id);
 			const currentTimeline = useTimeline({ node: interaction.guild!.id });
 
-			if (!currentQueue?.currentTrack) {
-				await i.update({ content: `${emojis.error} | No track is currently playing`, embeds: [], components: [] });
-				collector.stop();
+			if (i.customId === 'nowplaying_refresh') {
+				if (!currentQueue?.currentTrack) {
+					await i.update({ embeds: [makeEmbed(`${emojis.error} | No track is currently playing`)], components: [] });
+					collector.stop();
+					return;
+				}
+				await i.update({ embeds: [buildEmbed(currentQueue, currentTimeline)] });
 				return;
 			}
 
-			await i.update({ embeds: [buildEmbed(currentQueue, currentTimeline)] });
+			// Add to Playlist flow - show a select menu with user's playlists
+			let playlists: Awaited<ReturnType<typeof Playlist.find>>;
+			try {
+				playlists = await Playlist.find({ userId: i.user.id }).select('name tracks').lean();
+			} catch {
+				await i.reply({ embeds: [makeEmbed(`${emojis.error} | Database error - please try again`)], flags: MessageFlags.Ephemeral });
+				return;
+			}
+
+			if (!playlists.length) {
+				await i.reply({
+					embeds: [makeEmbed(`${emojis.error} | You have no playlists - create one with \`/playlist create\``)],
+					flags: MessageFlags.Ephemeral
+				});
+				return;
+			}
+
+			const track = currentQueue?.currentTrack;
+			if (!track) {
+				await i.reply({ embeds: [makeEmbed(`${emojis.error} | No track is currently playing`)], flags: MessageFlags.Ephemeral });
+				return;
+			}
+
+			const menu = new StringSelectMenuBuilder()
+				.setCustomId('nowplaying_playlist_select')
+				.setPlaceholder('Select a playlist...')
+				.addOptions(
+					playlists.map((p) => ({
+						label: p.name.slice(0, 100),
+						description: `${p.tracks.length} track${p.tracks.length !== 1 ? 's' : ''}`,
+						value: p.name
+					}))
+				);
+
+			const selectRow = new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(menu);
+			const selectReply = await i.reply({
+				embeds: [makeEmbed(`${emojis.playlist} | Which playlist would you like to add **${track.title}** to?`)],
+				components: [selectRow],
+				flags: MessageFlags.Ephemeral,
+				withResponse: true
+			});
+
+			const selectCollector = selectReply.resource!.message!.createMessageComponentCollector({
+				componentType: ComponentType.StringSelect,
+				time: 30_000,
+				max: 1
+			});
+
+			selectCollector.on('collect', async (sel) => {
+				const playlistName = sel.values[0];
+				try {
+					const playlist = await Playlist.findOne({ userId: i.user.id, name: playlistName });
+
+					if (!playlist) {
+						await sel.update({ embeds: [makeEmbed(`${emojis.error} | Playlist not found`)], components: [] });
+						return;
+					}
+
+					if (playlist.tracks.some((t) => t.url === track.url)) {
+						await sel.update({ embeds: [makeEmbed(`${emojis.warning} | **${track.title}** is already in **${playlistName}**`)], components: [] });
+						return;
+					}
+
+					await playlist.updateOne({
+						$push: {
+							tracks: {
+								title: track.title,
+								url: track.url,
+								author: track.author,
+								duration: track.duration,
+								durationMS: track.durationMS,
+								thumbnail: track.thumbnail,
+								addedAt: new Date()
+							}
+						}
+					});
+
+					await sel.update({ embeds: [makeEmbed(`${emojis.playlist} | Added **${track.title}** to **${playlistName}**`)], components: [] });
+				} catch {
+					await sel.update({ embeds: [makeEmbed(`${emojis.error} | Database error - please try again`)], components: [] });
+				}
+			});
+
+			selectCollector.on('end', (collected) => {
+				if (!collected.size) {
+					i.editReply({ components: [] }).catch(() => null);
+				}
+			});
 		});
 
 		collector.on('end', (_, reason) => {

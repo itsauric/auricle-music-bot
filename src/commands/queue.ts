@@ -2,7 +2,7 @@ import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { Command } from '@sapphire/framework';
 import { MessageFlags } from 'discord.js';
 import { useQueue } from 'discord-player';
-import { BRAND_COLOR } from '#lib/utils';
+import { BRAND_COLOR, makeEmbed } from '#lib/utils';
 
 function formatTotalMs(ms: number): string {
 	const h = Math.floor(ms / 3_600_000);
@@ -31,10 +31,10 @@ export class QueueCommand extends Command {
 		const { emojis } = this.container.client.utils;
 		const queue = useQueue(interaction.guild!.id);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
 		if (!queue.currentTrack)
 			return interaction.reply({
-				content: `${emojis.error} | There is **no** queue to **display**`,
+				embeds: [makeEmbed(`${emojis.error} | There is **no** queue to **display**`)],
 				flags: MessageFlags.Ephemeral
 			});
 
@@ -47,7 +47,7 @@ export class QueueCommand extends Command {
 		});
 
 		const currentTrack = queue.currentTrack;
-		const totalMs = queue.tracks.reduce((sum, t) => sum + (t.durationMS ?? 0), 0);
+		const totalMs = queue.tracks.toArray().reduce((sum, t) => sum + (t.durationMS ?? 0), 0);
 		const paginatedMessage = new PaginatedMessage();
 
 		for (let i = 0; i < pagesNum; i++) {

@@ -1,6 +1,7 @@
 import { Command } from '@sapphire/framework';
 import { useQueue } from 'discord-player';
 import { MessageFlags } from 'discord.js';
+import { makeEmbed } from '#lib/utils';
 
 function parseTimeInput(input: string): number | null {
 	const parts = input.split(':').map(Number);
@@ -60,27 +61,27 @@ export class SeekCommand extends Command {
 		const permissions = voice(interaction);
 		const input = interaction.options.getString('position', true);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
 		if (!queue.currentTrack)
-			return interaction.reply({ content: `${emojis.error} | There is no track **currently** playing`, flags: MessageFlags.Ephemeral });
+			return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | There is no track **currently** playing`)], flags: MessageFlags.Ephemeral });
 		if (!queue.currentTrack.durationMS)
-			return interaction.reply({ content: `${emojis.error} | Cannot seek on a **live stream**`, flags: MessageFlags.Ephemeral });
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+			return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | Cannot seek on a **live stream**`)], flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
 		const ms = parseTimeInput(input);
 		if (ms === null)
 			return interaction.reply({
-				content: `${emojis.error} | Invalid time format. Use \`mm:ss\`, \`hh:mm:ss\` or raw seconds`,
+				embeds: [makeEmbed(`${emojis.error} | Invalid time format. Use \`mm:ss\`, \`hh:mm:ss\` or raw seconds`)],
 				flags: MessageFlags.Ephemeral
 			});
 
 		if (ms >= queue.currentTrack.durationMS)
 			return interaction.reply({
-				content: `${emojis.error} | Position exceeds the track duration (**${queue.currentTrack.duration}**)`,
+				embeds: [makeEmbed(`${emojis.error} | Position exceeds the track duration (**${queue.currentTrack.duration}**)`)],
 				flags: MessageFlags.Ephemeral
 			});
 
 		await queue.node.seek(ms);
-		return interaction.reply({ content: `${emojis.seek} | Seeked to **${formatMs(ms)}**` });
+		return interaction.reply({ embeds: [makeEmbed(`${emojis.seek} | Seeked to **${formatMs(ms)}**`)] });
 	}
 }

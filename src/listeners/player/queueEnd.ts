@@ -1,6 +1,7 @@
 import { container, Listener } from '@sapphire/framework';
 import type { GuildQueue } from 'discord-player';
 import type { GuildTextBasedChannel } from 'discord.js';
+import { makeEmbed } from '../../lib/utils';
 
 export class PlayerEvent extends Listener {
 	public constructor(context: Listener.LoaderContext, options: Listener.Options) {
@@ -17,7 +18,7 @@ export class PlayerEvent extends Listener {
 		if (permissions.events) return;
 
 		return queue.metadata.channel
-			.send(`${emojis.warning} | The queue has **ended** — use \`/play\` to add more tracks`)
+			.send({ embeds: [makeEmbed(`${emojis.warning} | The queue has **ended** - use \`/play\` to add more tracks`)] })
 			.then((m) => setTimeout(() => m.delete().catch(() => null), 15_000));
 	}
 }

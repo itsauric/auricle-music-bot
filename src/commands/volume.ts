@@ -1,6 +1,7 @@
 import { Command } from '@sapphire/framework';
 import { MessageFlags } from 'discord.js';
 import { useQueue, useTimeline } from 'discord-player';
+import { makeEmbed } from '#lib/utils';
 
 export class VolumeCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -28,19 +29,17 @@ export class VolumeCommand extends Command {
 		const permissions = voice(interaction);
 		const volume = interaction.options.getInteger('amount');
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
 		if (!queue.currentTrack || !timeline)
 			return interaction.reply({
-				content: `${emojis.error} | There is no track **currently** playing`,
+				embeds: [makeEmbed(`${emojis.error} | There is no track **currently** playing`)],
 				flags: MessageFlags.Ephemeral
 			});
 
-		if (volume === null) return interaction.reply({ content: `${emojis.volume} | **Current** volume is **${timeline.volume}%**` });
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+		if (volume === null) return interaction.reply({ embeds: [makeEmbed(`${emojis.volume} | **Current** volume is **${timeline.volume}%**`)] });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
 		timeline.setVolume(volume);
-		return interaction.reply({
-			content: `${emojis.volume} | I **changed** the volume to: **${timeline.volume}%**`
-		});
+		return interaction.reply({ embeds: [makeEmbed(`${emojis.volume} | I **changed** the volume to: **${timeline.volume}%**`)] });
 	}
 }

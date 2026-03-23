@@ -1,7 +1,7 @@
 import type { ChatInputCommandSuccessPayload, Command, ContextMenuCommandSuccessPayload, MessageCommandSuccessPayload } from '@sapphire/framework';
 import { container } from '@sapphire/framework';
 import { cyan } from 'colorette';
-import { Guild, GuildMember, GuildTextBasedChannel, Interaction, PermissionsBitField, User } from 'discord.js';
+import { EmbedBuilder, Guild, GuildMember, GuildTextBasedChannel, Interaction, PermissionsBitField, User } from 'discord.js';
 
 interface VoiceResult1 {
 	client: string | undefined;
@@ -73,6 +73,10 @@ export function options(interaction: Interaction) {
 
 export const BRAND_COLOR = 0x5865f2;
 
+export function makeEmbed(description: string) {
+	return new EmbedBuilder().setColor(BRAND_COLOR).setDescription(description);
+}
+
 export const emojis = {
 	success: '✅',
 	error: '❌',
@@ -110,7 +114,8 @@ export const emojis = {
 
 	// Misc
 	save: '📌',
-	search: '🔍'
+	search: '🔍',
+	playlist: '📋'
 };
 
 export function logSuccessCommand(payload: ContextMenuCommandSuccessPayload | ChatInputCommandSuccessPayload | MessageCommandSuccessPayload): void {
