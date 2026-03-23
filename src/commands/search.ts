@@ -32,7 +32,7 @@ export class SearchCommand extends Command {
 		if (permissions.client) return interaction.reply({ embeds: [makeEmbed(permissions.client)], flags: MessageFlags.Ephemeral });
 		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
-		await interaction.deferReply();
+		await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 
 		const searchEngine = query.startsWith('http') ? undefined : QueryType.YOUTUBE_SEARCH;
 		const results = await player.search(query, { searchEngine });
