@@ -75,16 +75,15 @@ export class SearchCommand extends Command {
 					requestedBy: interaction.user,
 					nodeOptions: options(interaction)
 				});
-				const isNowPlaying = !hadTrack || useQueue(interaction.guild!.id)?.currentTrack?.url === res.track.url;
 
-				// Dismiss the ephemeral select menu
+				// Dismiss the ephemeral select menu silently
 				await i.update({ embeds: [makeEmbed(`${emojis.success} | Track selected`)], components: [] });
 
-				// Send a public message so the server can see who queued what
-				await interaction.followUp({
+				// Send directly to the channel — guaranteed public regardless of interaction ephemeral state
+				await interaction.channel!.send({
 					embeds: [
 						makeEmbed(
-							isNowPlaying
+							!hadTrack
 								? `${emojis.play} | Now playing: **${res.track.title}**`
 								: `${emojis.enqueue} | **${interaction.user.displayName}** added **${res.track.title}** to the queue`
 						)
