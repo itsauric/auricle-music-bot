@@ -1,6 +1,7 @@
 import { Command } from '@sapphire/framework';
 import { MessageFlags } from 'discord.js';
 import { QueueRepeatMode, useQueue } from 'discord-player';
+import { makeEmbed } from '#lib/utils';
 
 const repeatModes = [
 	{ name: 'Off', value: QueueRepeatMode.OFF },
@@ -37,13 +38,13 @@ export class LoopCommand extends Command {
 		const queue = useQueue(interaction.guild!.id);
 		const permissions = voice(interaction);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
 		if (!queue.currentTrack)
 			return interaction.reply({
-				content: `${emojis.error} | There is no track **currently** playing`,
+				embeds: [makeEmbed(`${emojis.error} | There is no track **currently** playing`)],
 				flags: MessageFlags.Ephemeral
 			});
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
 		const mode = interaction.options.getNumber('mode', true) as QueueRepeatMode;
 		const name = repeatModes.find((m) => m.value === mode)?.name ?? 'Loop';
@@ -53,7 +54,7 @@ export class LoopCommand extends Command {
 		const enabled = !toggle && mode !== QueueRepeatMode.OFF;
 
 		return interaction.reply({
-			content: `${emojis.loop} | **${name}** mode has been **${enabled ? 'enabled' : 'disabled'}**`
+			embeds: [makeEmbed(`${emojis.loop} | **${name}** mode has been **${enabled ? 'enabled' : 'disabled'}**`)]
 		});
 	}
 }

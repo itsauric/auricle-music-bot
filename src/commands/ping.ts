@@ -1,5 +1,6 @@
 import { Command } from '@sapphire/framework';
 import { ApplicationCommandType, ApplicationIntegrationType, InteractionContextType, Message } from 'discord.js';
+import { makeEmbed } from '#lib/utils';
 
 export class PingCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -47,20 +48,24 @@ export class PingCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		const sent = await interaction.reply({ content: 'Ping?', withResponse: true });
-		await interaction.editReply(
-			`Pong! Bot Latency ${Math.round(this.container.client.ws.ping)}ms. API Latency ${
-				sent.resource!.message!.createdTimestamp - interaction.createdTimestamp
-			}ms.`
-		);
+		const sent = await interaction.reply({ embeds: [makeEmbed('Ping?')], withResponse: true });
+		await interaction.editReply({
+			embeds: [
+				makeEmbed(
+					`🏓 **Pong!**\nBot Latency: \`${Math.round(this.container.client.ws.ping)}ms\`\nAPI Latency: \`${sent.resource!.message!.createdTimestamp - interaction.createdTimestamp}ms\``
+				)
+			]
+		});
 	}
 
 	public override async contextMenuRun(interaction: Command.ContextMenuCommandInteraction) {
-		const sent = await interaction.reply({ content: 'Ping?', withResponse: true });
-		await interaction.editReply(
-			`Pong! Bot Latency ${Math.round(this.container.client.ws.ping)}ms. API Latency ${
-				sent.resource!.message!.createdTimestamp - interaction.createdTimestamp
-			}ms.`
-		);
+		const sent = await interaction.reply({ embeds: [makeEmbed('Ping?')], withResponse: true });
+		await interaction.editReply({
+			embeds: [
+				makeEmbed(
+					`🏓 **Pong!**\nBot Latency: \`${Math.round(this.container.client.ws.ping)}ms\`\nAPI Latency: \`${sent.resource!.message!.createdTimestamp - interaction.createdTimestamp}ms\``
+				)
+			]
+		});
 	}
 }

@@ -2,6 +2,7 @@ import { Command } from '@sapphire/framework';
 import { QueryType, useMainPlayer, useQueue } from 'discord-player';
 import { MessageFlags } from 'discord.js';
 import type { GuildMember } from 'discord.js';
+import { makeEmbed } from '#lib/utils';
 
 export class PlayCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -51,15 +52,15 @@ export class PlayCommand extends Command {
 		const query = interaction.options.getString('query')!;
 		const member = interaction.member as GuildMember;
 
-		if (permissions.member) return interaction.reply({ content: permissions.member, flags: MessageFlags.Ephemeral });
-		if (permissions.client) return interaction.reply({ content: permissions.client, flags: MessageFlags.Ephemeral });
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+		if (permissions.member) return interaction.reply({ embeds: [makeEmbed(permissions.member)], flags: MessageFlags.Ephemeral });
+		if (permissions.client) return interaction.reply({ embeds: [makeEmbed(permissions.client)], flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
 		const searchEngine = query.startsWith('http') ? undefined : QueryType.YOUTUBE_SEARCH;
 		const results = await player.search(query, { searchEngine });
 		if (!results.hasTracks())
 			return interaction.reply({
-				content: `${emojis.error} | **No** tracks were found for your query`,
+				embeds: [makeEmbed(`${emojis.error} | **No** tracks were found for your query`)],
 				flags: MessageFlags.Ephemeral
 			});
 
@@ -69,18 +70,18 @@ export class PlayCommand extends Command {
 			const hadTrack = !!useQueue(interaction.guild!.id)?.currentTrack;
 			const res = await player.play(member.voice.channel!.id, results, { requestedBy: interaction.user, nodeOptions: options(interaction) });
 			const finalQueue = useQueue(interaction.guild!.id);
-			let content: string;
+			let description: string;
 			if (res.track.playlist) {
-				content = `${emojis.enqueue} | Added tracks from **${res.track.playlist.title}** to the queue`;
+				description = `${emojis.enqueue} | Added tracks from **${res.track.playlist.title}** to the queue`;
 			} else if (!hadTrack || finalQueue?.currentTrack?.url === res.track.url) {
-				content = `${emojis.play} | Now playing: **${res.track.title}**`;
+				description = `${emojis.play} | Now playing: **${res.track.title}**`;
 			} else {
 				const position = finalQueue?.tracks.size ?? 1;
-				content = `${emojis.enqueue} | Added **${res.track.title}** to the queue at position **#${position}**`;
+				description = `${emojis.enqueue} | Added **${res.track.title}** to the queue at position **#${position}**`;
 			}
-			return interaction.editReply({ content });
+			return interaction.editReply({ embeds: [makeEmbed(description)] });
 		} catch (error: unknown) {
-			await interaction.editReply({ content: `${emojis.error} | An **error** has occurred` });
+			await interaction.editReply({ embeds: [makeEmbed(`${emojis.error} | An **error** has occurred`)] });
 			this.container.logger.error(error);
 		}
 	}

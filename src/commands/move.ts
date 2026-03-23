@@ -2,6 +2,7 @@ import { Command } from '@sapphire/framework';
 import { MessageFlags } from 'discord.js';
 import { useQueue } from 'discord-player';
 import { queueTrackAutocomplete } from '#lib/queue-autocomplete';
+import { makeEmbed } from '#lib/utils';
 
 export class MoveCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -34,13 +35,13 @@ export class MoveCommand extends Command {
 		const queue = useQueue(interaction.guild!.id);
 		const permissions = voice(interaction);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
 		if (!queue.tracks.size)
 			return interaction.reply({
-				content: `${emojis.error} | There are **no tracks** to **move** to`,
+				embeds: [makeEmbed(`${emojis.error} | There are **no tracks** to **move** to`)],
 				flags: MessageFlags.Ephemeral
 			});
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
 		const move = interaction.options.getInteger('track')! - 1;
 		const position = interaction.options.getInteger('position')! - 1;
@@ -48,18 +49,16 @@ export class MoveCommand extends Command {
 
 		if (!trackResolvable)
 			return interaction.reply({
-				content: `${emojis.error} | The **requested track** doesn't **exist**`,
+				embeds: [makeEmbed(`${emojis.error} | The **requested track** doesn't **exist**`)],
 				flags: MessageFlags.Ephemeral
 			});
 		if (position > queue.tracks.size)
 			return interaction.reply({
-				content: `${emojis.error} | The **requested position** doesn't **exist**`,
+				embeds: [makeEmbed(`${emojis.error} | The **requested position** doesn't **exist**`)],
 				flags: MessageFlags.Ephemeral
 			});
 
 		queue.node.move(trackResolvable, position);
-		return interaction.reply({
-			content: `${emojis.move} | I have **moved** the track: **${trackResolvable.title}**`
-		});
+		return interaction.reply({ embeds: [makeEmbed(`${emojis.move} | I have **moved** the track: **${trackResolvable.title}**`)] });
 	}
 }

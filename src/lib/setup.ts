@@ -17,5 +17,6 @@ setup({ path: join(srcDir, '.env') });
 declare module '@skyra/env-utilities' {
 	interface Env {
 		OWNERS: ArrayString;
+		MONGODB_URI: string;
 	}
 }

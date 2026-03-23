@@ -1,7 +1,7 @@
 import { Command } from '@sapphire/framework';
 import { QueueRepeatMode, useQueue, useTimeline } from 'discord-player';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ComponentType, EmbedBuilder, MessageFlags } from 'discord.js';
-import { BRAND_COLOR } from '#lib/utils';
+import { BRAND_COLOR, makeEmbed } from '#lib/utils';
 
 const REPEAT_LABELS: Record<number, string> = {
 	[QueueRepeatMode.OFF]: '⏹ Off',
@@ -56,9 +56,9 @@ export class NowPlayingCommand extends Command {
 		const queue = useQueue(interaction.guild!.id);
 		const timeline = useTimeline({ node: interaction.guild!.id });
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
 		if (!queue.currentTrack)
-			return interaction.reply({ content: `${emojis.error} | There is no track **currently** playing`, flags: MessageFlags.Ephemeral });
+			return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | There is no track **currently** playing`)], flags: MessageFlags.Ephemeral });
 
 		const refreshButton = new ButtonBuilder()
 			.setCustomId('nowplaying_refresh')
@@ -81,7 +81,7 @@ export class NowPlayingCommand extends Command {
 			const currentTimeline = useTimeline({ node: interaction.guild!.id });
 
 			if (!currentQueue?.currentTrack) {
-				await i.update({ content: `${emojis.error} | No track is currently playing`, embeds: [], components: [] });
+				await i.update({ embeds: [makeEmbed(`${emojis.error} | No track is currently playing`)], components: [] });
 				collector.stop();
 				return;
 			}

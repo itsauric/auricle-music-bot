@@ -2,6 +2,7 @@ import { Command } from '@sapphire/framework';
 import { QueryType, useMainPlayer } from 'discord-player';
 import { ActionRowBuilder, ComponentType, MessageFlags, StringSelectMenuBuilder } from 'discord.js';
 import type { GuildMember } from 'discord.js';
+import { makeEmbed } from '#lib/utils';
 
 export class SearchCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -27,16 +28,16 @@ export class SearchCommand extends Command {
 		const query = interaction.options.getString('query', true);
 		const member = interaction.member as GuildMember;
 
-		if (permissions.member) return interaction.reply({ content: permissions.member, flags: MessageFlags.Ephemeral });
-		if (permissions.client) return interaction.reply({ content: permissions.client, flags: MessageFlags.Ephemeral });
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+		if (permissions.member) return interaction.reply({ embeds: [makeEmbed(permissions.member)], flags: MessageFlags.Ephemeral });
+		if (permissions.client) return interaction.reply({ embeds: [makeEmbed(permissions.client)], flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
 		await interaction.deferReply();
 
 		const searchEngine = query.startsWith('http') ? undefined : QueryType.YOUTUBE_SEARCH;
 		const results = await player.search(query, { searchEngine });
 		if (!results.hasTracks())
-			return interaction.editReply({ content: `${emojis.error} | **No** tracks were found for your query` });
+			return interaction.editReply({ embeds: [makeEmbed(`${emojis.error} | **No** tracks were found for your query`)] });
 
 		const tracks = results.tracks.slice(0, 5);
 		const menu = new StringSelectMenuBuilder()
@@ -51,7 +52,7 @@ export class SearchCommand extends Command {
 			);
 
 		const row = new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(menu);
-		const reply = await interaction.editReply({ content: `${emojis.search} | Select a track to play:`, components: [row] });
+		const reply = await interaction.editReply({ embeds: [makeEmbed(`${emojis.search} | Select a track to play:`)], components: [row] });
 
 		const collector = reply.createMessageComponentCollector({
 			componentType: ComponentType.StringSelect,
@@ -68,18 +69,20 @@ export class SearchCommand extends Command {
 					nodeOptions: options(interaction)
 				});
 				await i.update({
-					content: `${emojis.enqueue} | Successfully enqueued: **${res.track.title}**`,
+					embeds: [makeEmbed(`${emojis.enqueue} | Successfully enqueued: **${res.track.title}**`)],
 					components: []
 				});
 			} catch (error: unknown) {
-				await i.update({ content: `${emojis.error} | An **error** has occurred`, components: [] });
+				await i.update({ embeds: [makeEmbed(`${emojis.error} | An **error** has occurred`)], components: [] });
 				this.container.logger.error(error);
 			}
 		});
 
 		collector.on('end', (collected) => {
 			if (!collected.size) {
-				interaction.editReply({ content: `${emojis.warning} | Search timed out — use \`/search\` to try again`, components: [] }).catch(() => null);
+				interaction
+					.editReply({ embeds: [makeEmbed(`${emojis.warning} | Search timed out — use \`/search\` to try again`)], components: [] })
+					.catch(() => null);
 			}
 		});
 	}

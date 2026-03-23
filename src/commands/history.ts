@@ -2,7 +2,7 @@ import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { Command } from '@sapphire/framework';
 import { MessageFlags } from 'discord.js';
 import { useHistory, useQueue } from 'discord-player';
-import { BRAND_COLOR } from '#lib/utils';
+import { BRAND_COLOR, makeEmbed } from '#lib/utils';
 
 export class HistoryCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -25,10 +25,10 @@ export class HistoryCommand extends Command {
 		const queue = useQueue(interaction.guild!.id);
 		const history = useHistory(interaction.guild!.id);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
 		if (!history?.tracks.size)
 			return interaction.reply({
-				content: `${emojis.error} | There is **no** queue history to **display**`,
+				embeds: [makeEmbed(`${emojis.error} | There is **no** queue history to **display**`)],
 				flags: MessageFlags.Ephemeral
 			});
 

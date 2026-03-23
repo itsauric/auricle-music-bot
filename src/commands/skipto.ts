@@ -2,6 +2,7 @@ import { Command } from '@sapphire/framework';
 import { MessageFlags } from 'discord.js';
 import { useQueue } from 'discord-player';
 import { queueTrackAutocomplete } from '#lib/queue-autocomplete';
+import { makeEmbed } from '#lib/utils';
 
 export class SkipToCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -31,27 +32,25 @@ export class SkipToCommand extends Command {
 		const queue = useQueue(interaction.guild!.id);
 		const permissions = voice(interaction);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
 		if (!queue.tracks.size)
 			return interaction.reply({
-				content: `${emojis.error} | There are **no tracks** to **skip** to`,
+				embeds: [makeEmbed(`${emojis.error} | There are **no tracks** to **skip** to`)],
 				flags: MessageFlags.Ephemeral
 			});
 
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
 		const skip = interaction.options.getInteger('track')! - 1;
 		const trackResolvable = queue.tracks.at(skip!);
 
 		if (!trackResolvable)
 			return interaction.reply({
-				content: `${emojis.error} | The **requested track** doesn't **exist**`,
+				embeds: [makeEmbed(`${emojis.error} | The **requested track** doesn't **exist**`)],
 				flags: MessageFlags.Ephemeral
 			});
 
 		queue.node.skipTo(trackResolvable);
-		return interaction.reply({
-			content: `${emojis.skip} | Skipped to: **${trackResolvable.title}**`
-		});
+		return interaction.reply({ embeds: [makeEmbed(`${emojis.skip} | Skipped to: **${trackResolvable.title}**`)] });
 	}
 }

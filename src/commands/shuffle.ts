@@ -1,6 +1,7 @@
 import { Command } from '@sapphire/framework';
 import { MessageFlags } from 'discord.js';
 import { useQueue } from 'discord-player';
+import { makeEmbed } from '#lib/utils';
 
 export class ShuffleCommand extends Command {
 	public constructor(context: Command.LoaderContext, options: Command.Options) {
@@ -23,16 +24,16 @@ export class ShuffleCommand extends Command {
 		const queue = useQueue(interaction.guild!.id);
 		const permissions = voice(interaction);
 
-		if (!queue) return interaction.reply({ content: `${emojis.error} | I am **not** in a voice channel`, flags: MessageFlags.Ephemeral });
-		if (permissions.clientToMember) return interaction.reply({ content: permissions.clientToMember, flags: MessageFlags.Ephemeral });
+		if (!queue) return interaction.reply({ embeds: [makeEmbed(`${emojis.error} | I am **not** in a voice channel`)], flags: MessageFlags.Ephemeral });
+		if (permissions.clientToMember) return interaction.reply({ embeds: [makeEmbed(permissions.clientToMember)], flags: MessageFlags.Ephemeral });
 
 		if (queue.tracks.size < 2)
 			return interaction.reply({
-				content: `${emojis.error} | There are not **enough tracks** in queue to **shuffle**`,
+				embeds: [makeEmbed(`${emojis.error} | There are not **enough tracks** in queue to **shuffle**`)],
 				flags: MessageFlags.Ephemeral
 			});
 
 		queue.tracks.shuffle();
-		return interaction.reply({ content: `${emojis.shuffle} | I have **shuffled** the queue` });
+		return interaction.reply({ embeds: [makeEmbed(`${emojis.shuffle} | I have **shuffled** the queue`)] });
 	}
 }
